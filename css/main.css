@@ -3,19 +3,123 @@ html {
    background-color: black;
 }
 
+/* Conteneur principal : onglets + contenu */
+#flexer {
+  display: flex;
+  text-align: center;
+  align-items: flex-start;
+  box-sizing: border-box;
+  
+}
+
+/* Colonne verticale à gauche */
+#onglets {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 180px; /* largeur fixe raisonnable */
+  box-sizing: border-box;
+  font-family: 'Courier New', monospace;
+}
 
 
-#particules {
+/* Boutons des onglets */
+.onglet_button {
+  background-color: #333;
+  color: #fff;
+  border : none;
+  border: 1px solid #0af;
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  
+}
+
+  .onglet_button:hover {
+    background: rgba(0, 170, 255, 0.2);
+  }
+  
+.ui_box{
+    background-color: #222;
+}
+
+
+#game_bar {
+    flex: 1; /* prend tout l’espace restant */
+}
+
+
+.score {
+    border-bottom: 1px solid #0af;
+    border-top: 1px solid #0af;
     text-align: center;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+.progress {
+  width: 300px;
+  height: 25px;
+  background-color: #222;
+  border: 1px solid #555;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 10px auto;
+  position: relative; /* nécessaire pour positionner le bouton et la barre */
+}
+
+.progress_bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
+  z-index: 1;
+}
+
+.buy_button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2; /* au-dessus de la barre */
+}
+
+
+.buy_button:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.text_progress {
+  margin-right: 15px;
+  font-weight: bold;
 }
 
 
 
+  #contenu_onglets {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .barre_achat {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px auto; /* centre horizontalement */
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+  
 
 
-
-
-@keyframes scintille {
-    0%, 100% { opacity: 0.8;}
-    50% { opacity: 0.4; }
-}
