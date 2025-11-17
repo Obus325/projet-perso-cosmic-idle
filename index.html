@@ -12,6 +12,7 @@
     <!-- chargement du javascript -->
 
     <!-- 1️⃣ Assets JS : utilitaires, UI, audio -->
+    <script src="javascript/data/constantes.js"></script>
     <script src="javascript/ui/animations.js"></script>
   
     <!-- 2️⃣ Game JS : moteur, player, shop, achievements -->
@@ -36,6 +37,7 @@
                 <span id = "monnaie_global">particules</span>
             </button>
             <button class="onglet_button" id="onglet_particules">particules</button>
+            <button class="onglet_button" id="onglet_equilibre">équilibre</button>
             <button class="onglet_button" id="onglet_statistiques">statistiques</button>
         </div>
     
@@ -51,8 +53,8 @@
                 <div class = "barre_achat" id = "atome">
                     <span class="text_progress">atome (<span id ="nombre_atome">0</span>)</span>
                     <div class="progress">
-                        <div class="progress_bar" style="width: 50%;"></div>
-                        <button class="buy_button" id="buy_atome" onclick="acheter('atome', 1)">
+                        <div class="progress_bar" id="barre_atome"></div>
+                        <button class="buy_button" id="buy_atome" onclick="Acheter('atome', 1)">
                           <span id="prix_atome">0</span> particules
                         </button>
                     </div>
@@ -61,8 +63,8 @@
                 <div class = "barre_achat" id = "nebuleuse">
                   <span class="text_progress">nebuleuse (<span id ="nombre_nebuleuse">0</span>)</span>
                   <div class="progress">
-                      <div class="progress_bar" style="width: 50%;"></div>
-                      <button class="buy_button" id="buy_nebuleuse" onclick="acheter('nebuleuse', 1)">
+                      <div class="progress_bar" id="barre_nebuleuse"></div>
+                      <button class="buy_button" id="buy_nebuleuse" onclick="Acheter('nebuleuse', 1)">
                         <span id="prix_nebuleuse">0</span> particules
                       </button>
                   </div>
@@ -71,8 +73,8 @@
                 <div class = "barre_achat" id = "etoile">
                   <span class="text_progress">etoile (<span id ="nombre_etoile">0</span>)</span>
                   <div class="progress">
-                      <div class="progress_bar" style="width: 50%;"></div>
-                      <button class="buy_button" id="buy_etoile" onclick="acheter('etoile', 1)">
+                      <div class="progress_bar" id="barre_etoile"></div>
+                      <button class="buy_button" id="buy_etoile" onclick="Acheter('etoile', 1)">
                         <span id="prix_etoile">0</span> particules
                       </button>
                   </div>
@@ -81,8 +83,8 @@
                 <div class = "barre_achat" id = "galaxie">
                   <span class="text_progress">galaxie (<span id ="nombre_galaxie">0</span>)</span>
                   <div class="progress">
-                      <div class="progress_bar" style="width: 50%;"></div>
-                      <button class="buy_button" id="buy_galaxie" onclick="acheter('galaxie', 1)">
+                      <div class="progress_bar" id="barre_galaxie"></div>
+                      <button class="buy_button" id="buy_galaxie" onclick="Acheter('galaxie', 1)">
                         <span id="prix_galaxie">0</span> particules
                       </button>
                   </div>
@@ -90,6 +92,12 @@
 
               </div>
           
+
+              <div class="contenu_onglets" id="contenu_equilibre" hidden>
+                <!-- contenu de l’onglet "équilibre de l'univers" -->
+              </div>
+
+
               <div class="contenu_onglets" id="contenu_statistiques" hidden>
                 <!-- contenu de l’onglet "statistiques" -->
               </div>
