@@ -1,20 +1,32 @@
+/*
+Fonction permettant de calculer un tick.
+IN : les valeurs de différents objets du jeu.
+OUT : met à jour la valeur de plusieurs objets du jeu et appelle les fonctions utiles.
+*/ 
 async function Tick(params)
 {
-
     if(run.running)
     {
-        let entites = Object.keys(nombres_entite);
+        let entites = Object.keys(nombres_entite['particules']);
         for (let i = 0; i < entites.length; i++)
         {
-            ressources['particules'] += nombres_entite[entites[i]]
+            ressources['particules'] += nombres_entite['particules'][entites[i]]
+
         }
         
         
-        document.getElementById("valeur_particules").innerText = ressources['particules'].toString();
+        
+        CalculerDensite();
+        AfficherRessources();
+
     }
-    
 }
 
+/*
+Fonction permettant de mettre en pause le jeu ou de reprendre.
+IN : aucun.
+OUT : le jeu passe dans l'êtat qu'il n'avait pas.
+*/ 
 function Stop()
 {
     run.running = !run.running;

@@ -2,7 +2,7 @@
 <html lang="fr">
     
 <head>
-    <meta charset="UTF_8">
+    <meta charset="unicode">
     <title>cosmic idle</title>
     
     <!-- chargement du CSS -->
@@ -14,13 +14,14 @@
     <!-- 1️⃣ Assets JS : utilitaires, UI, audio -->
     <script src="javascript/data/constantes.js"></script>
     <script src="javascript/ui/animations.js"></script>
+    <script src="javascript/ui/manageurDocument.js"></script>
   
     <!-- 2️⃣ Game JS : moteur, player, shop, achievements -->
     <script src="javascript/core/moteur.js"></script>
   
     <!-- 3️⃣ Main JS : initialisation du jeu -->
     <script src="javascript/main.js"></script>
-
+    
 
 </head>
 
@@ -31,14 +32,14 @@
     <div id ="flexer">
 
         <div id="onglets" class="ui_box">
-            <button class = "onglet_button" id="global_score">
-                <span id="valeur_global">0</span> 
+            <button class = "onglet_button" id="score_global" onclick="ChangerRessource()">
+                <span id="valeur_globale">0</span> 
                 </br> 
-                <span id = "monnaie_global">particules</span>
+                <span id = "monnaie_globale">particules</span>
             </button>
-            <button class="onglet_button" id="onglet_particules">particules</button>
-            <button class="onglet_button" id="onglet_equilibre">équilibre</button>
-            <button class="onglet_button" id="onglet_statistiques">statistiques</button>
+            <button class="onglet_button" id="onglet_particules" onclick="ChangerOnglet('contenu_particules')">particules</button>
+            <button class="onglet_button" id="onglet_densite" onclick="ChangerOnglet('contenu_equilibre')" hidden>equilibre</button>
+            <button class="onglet_button" id="onglet_statistiques" onclick="ChangerOnglet('contenu_statistiques')">statistiques</button>
         </div>
     
         <div id="game_bar">
@@ -48,7 +49,7 @@
           
             <div id="contenu_onglets">
               <div class="onglet_contenu" id="contenu_particules">
-                
+                <!-- contenu de l’onglet de base -->
                 
                 <div class = "barre_achat" id = "atome">
                     <span class="text_progress">atome (<span id ="nombre_atome">0</span>)</span>
@@ -95,6 +96,7 @@
 
               <div class="contenu_onglets" id="contenu_equilibre" hidden>
                 <!-- contenu de l’onglet "équilibre de l'univers" -->
+                densité de l'univers : <span class="valeur" id="valeur_densité">0</span>
               </div>
 
 
@@ -107,6 +109,7 @@
     
     </div>
 
+    <button onclick="Stop()">pause</button>
 
 </body>
 
