@@ -64,13 +64,13 @@ function CalculerDensite()
     masse = 0;
     for (let i = 0; i < entites.length; i++)
     {
-        masse += (densite[entites[i]]*nombres_entite['particules'][entites[i]])/constantes['densite']['diviseurDensite'];
+        masse += (densite[entites[i]]*nombres_entite['particules'][entites[i]]);
     }
 
-    masse *= constantes['densite']['alpha'];
+    masse /= constantes['densite']['diviseurDensite'];
     densiteBrute = masse / constantes['densite']['taille'];
 
-    densiteActuelle = densiteBrute * 0.05 + ressources['densite'] * 0.95;
+    densiteActuelle = densiteBrute * constantes['densite']['alpha'] + ressources['densite'] * (1-constantes['densite']['alpha']);
     densiteActuelle = Math.min(densiteActuelle, constantes['densite']['cap']);
 
     if (densiteActuelle > ressources['densite_max'])
@@ -83,6 +83,8 @@ function CalculerDensite()
     }
     ressources['densite'] = densiteActuelle;
     ressources['densitepc'] = densiteActuelle * 100;
+    constantes['densite']['vitesse'] = constantes['densite']['cap'] - ressources['densitepc'];
+    document.getElementById('pourcent_densite').style.width = ressources['densite'] + '%'
 
 }
 

@@ -32,10 +32,10 @@ OUT : met à jour la valeur des ressources visibles.
 */ 
 function AfficherRessources()
 {
-    document.getElementById("valeur_particules").innerText = ressources['particules'].toString();
+    document.getElementById("valeur_particules").innerText = ressources['particules'].toFixed(2).toString();
     if (evenements['menu']['densite'])
     {
-        document.getElementById("valeur_densité").innerText = ressources['densite'].toString();
+        document.getElementById("valeur_densité").innerText = ressources['densite'].toFixed(2).toString();
     }
     
 }

@@ -8,12 +8,14 @@ async function Tick(params)
     if(run.running)
     {
         let entites = Object.keys(nombres_entite['particules']);
+        production = 0
         for (let i = 0; i < entites.length; i++)
         {
-            ressources['particules'] += nombres_entite['particules'][entites[i]]
+            production += nombres_entite['particules'][entites[i]];
 
         }
         
+        ressources['particules'] += (constantes['densite']['vitesse'] * ressources['densitepc']) * production;
         
         
         CalculerDensite();

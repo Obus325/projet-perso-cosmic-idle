@@ -5,7 +5,7 @@ const nombres_entite =
         atome : 0,
         nebuleuse : 0,
         etoile : 0,
-        galaxie : 100,
+        galaxie : 0,
     }
     
 }
@@ -55,7 +55,8 @@ const constantes =
         diviseurDensite : 1,
         alpha : 0.05,
         taille : 100,
-        cap : 1,
+        cap : 100,
+        vitesse : 0,
     }
 
 }

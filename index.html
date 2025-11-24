@@ -6,10 +6,14 @@
     <title>cosmic idle</title>
     
     <!-- chargement du CSS -->
+    <link rel="stylesheet" href="css/materialize.css">
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/main.css">
     
     <!-- chargement du javascript -->
+
+    <!-- chargement du framework -->
+    <script src="javascript/data/materialize.js"></script>
 
     <!-- 1️⃣ Assets JS : utilitaires, UI, audio -->
     <script src="javascript/data/constantes.js"></script>
@@ -17,6 +21,7 @@
     <script src="javascript/ui/manageurDocument.js"></script>
   
     <!-- 2️⃣ Game JS : moteur, player, shop, achievements -->
+    
     <script src="javascript/core/moteur.js"></script>
   
     <!-- 3️⃣ Main JS : initialisation du jeu -->
@@ -97,6 +102,40 @@
               <div class="contenu_onglets" id="contenu_equilibre" hidden>
                 <!-- contenu de l’onglet "équilibre de l'univers" -->
                 densité de l'univers : <span class="valeur" id="valeur_densité">0</span>
+                <span class="text_progress"> </span>
+                <div class="progress">
+                    <div class="progress_bar" id="pourcent_densite"></div>
+                </div>
+
+
+                <table class="equilibre table_ameliorations">
+                  <tr>
+                    <td class="amelioration_equilibre">
+                      <button class="buy_button" id = "ameliorer_taille"> taille </button>
+                    </td>
+                    <td class="amelioration_equilibre">
+                      <button class="buy_button"> taille </button>
+                    </td>
+                    <td class="amelioration_equilibre">
+                      <button class="buy_button"> taille </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="amelioration_equilibre">
+                      <button class="buy_button"> taille </button>
+                    </td>
+                    <td class="amelioration_equilibre">
+                      <button class="buy_button"> taille </button>
+                    </td>
+                    <td class="amelioration_equilibre">
+                      <button class="buy_button"> taille </button>
+                    </td>
+                  </tr>
+                  
+
+                </table>
+
               </div>
 
 
