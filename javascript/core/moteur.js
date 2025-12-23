@@ -6,7 +6,7 @@ OUT : instancie le jeu, les variables, et remet la page prête pour reprendre le
 */ 
 function Start()
 {
-    CreateStar();
+    //CreateStar();
     setInterval(Tick, 1000);
     let entites = Object.keys(nombres_entite['particules']);
     for (let i = 0; i < entites.length; i++)
@@ -16,16 +16,7 @@ function Start()
     }
     document.getElementById("valeur_particules").innerText = ressources['particules'].toString();
 
-    let onglets = Object.keys(evenements['menu']);
-    console.log(onglets);
-    for (let i = 0; i < onglets.length; i++)
-    {
-        console.log(i, onglets[i]);
-        if (onglets[i])
-        {
-            AfficherOnglet("onglet_" + onglets[i])
-        }
-    }
+    AfficherJeu();
 
 }
 
@@ -43,11 +34,11 @@ function Acheter(entite, nombre)
         nombres_entite['particules'][entite] += nombre;
         if (nombres_entite['particules'][entite] % 10 == 0)
         {
-            nombres_entite['particules'][entite] *= nombres_entite['particules'][entite];
+            prix_entite['particules'][entite] *= prix_initiaux_entite['particules'][entite];
         }
         document.getElementById("nombre_" + entite ).innerText = nombres_entite['particules'][entite];
-        document.getElementById("prix_" + entite).innerText = nombres_entite['particules'][entite];
-        document.getElementById("valeur_particules").innerText = ressources['particules'].toString();
+        document.getElementById("prix_" + entite).innerText = prix_entite['particules'][entite];
+        AfficherRessources();
         document.getElementById("barre_" + entite).style.width = ((nombres_entite['particules'][entite] % 10) * 10) + "%";
 
     }
@@ -67,25 +58,56 @@ function CalculerDensite()
         masse += (densite[entites[i]]*nombres_entite['particules'][entites[i]]);
     }
 
-    masse /= constantes['densite']['diviseurDensite'];
+    masse /= constantes['densite']['diviseurMassique'];
     densiteBrute = masse / constantes['densite']['taille'];
+    console.log(densiteBrute);
 
-    densiteActuelle = densiteBrute * constantes['densite']['alpha'] + ressources['densite'] * (1-constantes['densite']['alpha']);
-    densiteActuelle = Math.min(densiteActuelle, constantes['densite']['cap']);
+    densiteActuelle = densiteBrute /** constantes['densite']['alpha'] + ressources['densite'] * (1-constantes['densite']['alpha'])*/;
+    densiteActuelle = Math.min(densiteActuelle*100, constantes['densite']['cap'])/100;
 
     if (densiteActuelle > ressources['densite_max'])
     {
         ressources['densite_max'] = densiteActuelle;
-        if (!evenements['menu']['densite'] && densiteActuelle >= 100)
+        if (!ongletsVisibles['menu']['densite'] && densiteActuelle >= 0.5)
         {
-            AfficherOnglet('onglet_densite');
+            AfficherOnglet(ongletsVisibles['menu']['densite'], 'onglet_densite');
+            document.getElementById("valeur_densité").innerText = ressources['densitepc'].toFixed(0).toString() + "%";
         }
+        AfficherPaliersDensiteMax();
     }
     ressources['densite'] = densiteActuelle;
     ressources['densitepc'] = densiteActuelle * 100;
-    constantes['densite']['vitesse'] = constantes['densite']['cap'] - ressources['densitepc'];
-    document.getElementById('pourcent_densite').style.width = ressources['densite'] + '%'
+    constantes['densite']['vitesse'] = Math.max(constantes['densite']['cap'] - ressources['densitepc'], 0);
+    document.getElementById("valeur_densité").innerText = ressources['densitepc'].toFixed(0).toString() + "%";
+    document.getElementById('pourcent_densite').style.width = (ressources['densitepc']/constantes['densite']['cap'])*100 + '%'
 
 }
 
+/*
+Fonction permettant d'appeler la fonction d'un bouton d'amélioration.
+IN : le type d'amélioration (string) et sa valeur (float).
+OUT : appelle la fonction nécessaire
+*/ 
 
+function Amelioration(type, valeur, chemin, objet)
+{
+    switch (type)
+    {
+        case "augmenterpc" :
+            AugmenterPourcent(chemin, objet, valeur);
+            break;
+        case "augmenter" :
+            Augmenter(chemin, objet, valeur)
+            break;
+    }
+}
+
+function AugmenterPourcent(chemin, objet, valeur)
+{
+    chemin[objet] *= valeur;
+}
+
+function Augmenter(chemin, objet, valeur)
+{
+    chemin[objet] += valeur;
+}

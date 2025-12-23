@@ -32,13 +32,7 @@ const prix_initiaux_entite =
     }
 }
 
-const ressources = 
-{
-    particules : 1,
-    densite : 0,
-    densitepc : 0,
-    densite_max : 0,
-}
+
 
 const densite = 
 {
@@ -48,11 +42,22 @@ const densite =
     galaxie : 40,
 }
 
+
+//ensemble des ressources du joueur (mal rangé)
+const ressources = 
+{
+    particules : 1,
+    densite : 0,
+    densitepc : 0,
+    densite_max : 0,
+}
+//constante comportant l'ensemble des valeur 'fixes' permettants les calculs
+//ces constantes sont modifiables sous des conditions précises
 const constantes = 
 {
     densite :
     {
-        diviseurDensite : 1,
+        diviseurMassique : 1,
         alpha : 0.05,
         taille : 100,
         cap : 100,
@@ -61,14 +66,51 @@ const constantes =
 
 }
 
-const evenements =
+//constante des differents paliers de densite max
+const paliers = 
+{
+    
+}
+
+
+
+//constantes sur les onglets pour la gestion dynamique
+const ongletsVisibles =
 {
     menu : 
     {
+        particules : true,
         densite : true,
+        statistiques : true,
     },
+
+    sous_onglets :
+    {
+        particules :
+        {
+            base : true,
+            p1 : false,
+            p2 : true,
+        },
+        densite : 
+        {
+            densite : true,
+            progression : true,
+        },
+        statistiques :
+        {
+        },
+        
+    }
 }
 
+const onglet_actuel = {
+    onglet_actuel : "contenu_particules",
+    sous_onglet_actuel : "sous_onglet_particules_base",
+}
+//fin des constantes sur les onglets
+
+
+//constante permettant de mettre sur pause
 const run = {running : true}
 
-const onglet_actuel = {onglet_actuel : "contenu_particules"}

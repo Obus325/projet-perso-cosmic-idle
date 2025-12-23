@@ -45,6 +45,29 @@ html
 {
   background: rgba(0, 170, 255, 0.2);
 }
+
+/* Boutons des sous-onglets */
+.sous_onglet_button
+{
+  background-color: #2a2a2a;
+  color: #0af;
+  border: 1px solid #0af;
+  padding: 8px 12px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 0px;
+  margin: 5px;
+  flex: 1;
+  transition: background-color 0.2s;
+  width: 100px;
+}
+
+.sous_onglet_button:hover
+{
+  background-color: rgba(0, 170, 255, 0.15);
+  color: #4caf50;
+}
   
 .ui_box{
   background-color: #222;
@@ -62,6 +85,7 @@ html
   border-bottom: 1px solid #0af;
   border-top: 1px solid #0af;
   text-align: center;
+  margin-top: 0px;
   padding-bottom: 50px;
   padding-top: 50px;
 }
@@ -142,11 +166,52 @@ html
   gap: 50px;
 }
 
+.amelioration
+{
+  width: 150px;
+}
 
 .amelioration_equilibre
 {
   border : white solid 1px;
   border-radius: 6px;
   height: 50px;
-  width: 50px;
+  width: 100px;
+  
+}
+
+.indicateur_palier
+{
+  height: 50px;
+  width: 300px;
+  position: relative;
+  overflow: visible;
+}
+.palier
+{
+  border : white solid 1px;
+  border-radius: 6px;
+  height: 50px;
+  width: 300px;
+  position: relative;
+  overflow: visible;
+}
+
+.palier_bottom
+{
+  border: white solid 1px;
+  border-radius: 6px;
+  height: 30px;
+  padding: 5px;
+}
+
+.progress_bar_palier
+{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #4caf50;
+  transition: height 0.5s ease;
+  z-index: -1;
 }
