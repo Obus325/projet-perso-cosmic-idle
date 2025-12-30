@@ -6,7 +6,9 @@ OUT : instancie le jeu, les variables, et remet la page prête pour reprendre le
 */ 
 function Start()
 {
-    //CreateStar();
+    RecupererSauvegarde("save");
+    CreateStar();
+    statistiques.tickPrecedent = Date.now();
     setInterval(Tick, 1000);
     let entites = Object.keys(nombres_entite['particules']);
     for (let i = 0; i < entites.length; i++)
@@ -58,28 +60,28 @@ function CalculerDensite()
         masse += (densite[entites[i]]*nombres_entite['particules'][entites[i]]);
     }
 
-    masse /= constantes['densite']['diviseurMassique'];
-    densiteBrute = masse / constantes['densite']['taille'];
-    console.log(densiteBrute);
+    masse /= variables['densite']['diviseurMassique'];
+    densiteBrute = masse / variables['densite']['taille'];
+    //console.log(densiteBrute);
 
-    densiteActuelle = densiteBrute /** constantes['densite']['alpha'] + ressources['densite'] * (1-constantes['densite']['alpha'])*/;
-    densiteActuelle = Math.min(densiteActuelle*100, constantes['densite']['cap'])/100;
+    densiteActuelle = densiteBrute /** variables['densite']['alpha'] + ressources['densite'] * (1-variables['densite']['alpha'])*/;
+    densiteActuelle = Math.min(densiteActuelle*100, variables['densite']['cap'])/100;
 
-    if (densiteActuelle > ressources['densite_max'])
+
+    ressources['densite_max'] = Math.max(ressources['densite_max'], /*densiteActuelle*/ressources['densite_max']*variables.densite.boostDMax);
+    if (!ongletsVisibles['menu']['densite'] && densiteActuelle >= 0.5)
     {
-        ressources['densite_max'] = densiteActuelle;
-        if (!ongletsVisibles['menu']['densite'] && densiteActuelle >= 0.5)
-        {
-            AfficherOnglet(ongletsVisibles['menu']['densite'], 'onglet_densite');
-            document.getElementById("valeur_densité").innerText = ressources['densitepc'].toFixed(0).toString() + "%";
-        }
-        AfficherPaliersDensiteMax();
+        AfficherOnglet(ongletsVisibles['menu']['densite'], 'onglet_densite');
+        document.getElementById("valeur_densité").innerText = ressources['densitepc'].toFixed(0).toString() + "%";
     }
+    AfficherPaliersDensiteMax();
+
+
     ressources['densite'] = densiteActuelle;
     ressources['densitepc'] = densiteActuelle * 100;
-    constantes['densite']['vitesse'] = Math.max(constantes['densite']['cap'] - ressources['densitepc'], 0);
+    variables['densite']['vitesse'] = Math.max(variables['densite']['cap'] - ressources['densitepc'], 0);
     document.getElementById("valeur_densité").innerText = ressources['densitepc'].toFixed(0).toString() + "%";
-    document.getElementById('pourcent_densite').style.width = (ressources['densitepc']/constantes['densite']['cap'])*100 + '%'
+    document.getElementById('pourcent_densite').style.width = (ressources['densitepc']/variables['densite']['cap'])*100 + '%'
 
 }
 

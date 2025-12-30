@@ -197,6 +197,7 @@ html
   overflow: visible;
 }
 
+
 .palier_bottom
 {
   border: white solid 1px;
@@ -214,4 +215,18 @@ html
   background-color: #4caf50;
   transition: height 0.5s ease;
   z-index: -1;
+}
+
+#div_boutons_fonctions
+{
+  text-align: center;
+}
+
+
+.boutons_fonctions
+{
+  margin-top: 5.5%;
+  font-size: large;
+  text-align: center; 
+  color:rgb(43, 177, 244);
 }

@@ -51,9 +51,11 @@ const ressources =
     densitepc : 0,
     densite_max : 0,
 }
-//constante comportant l'ensemble des valeur 'fixes' permettants les calculs
-//ces constantes sont modifiables sous des conditions précises
-const constantes = 
+
+
+//variables comportant l'ensemble des valeur 'fixes' permettants les calculs
+//ces variables sont modifiables sous des conditions précises
+const variables = 
 {
     densite :
     {
@@ -62,14 +64,21 @@ const constantes =
         taille : 100,
         cap : 100,
         vitesse : 0,
+        boostDMax : 1,
     }
 
 }
 
-//constante des differents paliers de densite max
+//valeur cibles des differents paliers de densite max
 const paliers = 
 {
-    
+    0 : 0,
+    1 : 3,
+    2 : 10,
+    3 : 35,
+    4 : 140,
+    5 : 700,
+    6 : Infinity,
 }
 
 
@@ -114,3 +123,12 @@ const onglet_actuel = {
 //constante permettant de mettre sur pause
 const run = {running : true}
 
+
+const statistiques = 
+{
+    dateCreation : 0,
+    tempsEnJeu : 0,
+    
+    //recherche d'une meilleure solution en cours.
+    tickPrecedent : 0,
+}

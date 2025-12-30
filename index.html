@@ -140,15 +140,21 @@
                   <table class="equilibre table_ameliorations">
                     <tr>
                       <td class="amelioration_equilibre">
-                        <button class="buy_button amelioration" id = "ameliorer_taille" onclick="Amelioration('augmenterpc', 1.1, constantes.densite, 'taille'); document.getElementById('valeur_taille').innerText = constantes.densite['taille'].toFixed(0).toString();">augmenter la taille de l'univers de 10% </br> actuellement : <span id="valeur_taille"> 100 </span>
+                        <button class="buy_button amelioration" id = "ameliorer_taille" 
+                        onclick="Amelioration('augmenterpc', 1.1, variables.densite, 'taille'); document.getElementById('valeur_taille').innerText = variables.densite['taille'].toFixed(0).toString() + '%';">
+                        augmenter la taille de l'univers de 10% </br> actuellement : <span id="valeur_taille"> 100 </span>
                         </button>
                       </td>
                       <td class="amelioration_equilibre">
-                        <button class="buy_button amelioration" id = "ameliorer_diviseur" onclick="Amelioration('augmenterpc', 0.95, constantes.densite, 'diviseurMassique'); document.getElementById('valeur_diviseurMassique').innerText = constantes.densite['diviseurMassique'].toFixed(2).toString();"> diminuer le réducteur de masse de 5 % </br> actuellement : <span id="valeur_diviseurMassique"> 1 </span>
+                        <button class="buy_button amelioration" id = "ameliorer_diviseur" 
+                        onclick="Amelioration('augmenterpc', 0.95, variables.densite, 'diviseurMassique'); document.getElementById('valeur_diviseurMassique').innerText = variables.densite['diviseurMassique'].toFixed(2).toString() + '%';"> 
+                        diminuer le réducteur de masse de 5 % </br> actuellement : <span id="valeur_diviseurMassique"> 1 </span>
                         </button>
                       </td>
                       <td class="amelioration_equilibre">
-                        <button class="buy_button amelioration" id = "ameliorer_cap" onclick="Amelioration('augmenter', 10, constantes.densite, 'cap'); document.getElementById('valeur_cap').innerText = constantes.densite['cap'].toFixed(0).toString();"> augmenter le cap de densité de 10 </br> actuellement : <span id="valeur_cap"> 100 </span>
+                        <button class="buy_button amelioration" id = "ameliorer_cap" 
+                        onclick="Amelioration('augmenter', 10, variables.densite, 'cap'); document.getElementById('valeur_cap').innerText = variables.densite['cap'].toFixed(0).toString() + '%';"> 
+                        augmenter le cap de densité de 10 </br> actuellement : <span id="valeur_cap"> 100 </span>
                         </button>
                       </td>
                     </tr>
@@ -161,7 +167,9 @@
                         <button class="buy_button amelioration" id = "ameliorer_particulesD" onclick="Amelioration('augmenterpc', 1.01)"> obtenir 1% plus de particules de densité par seconde (WIP)</button>
                       </td>
                       <td class="amelioration_equilibre">
-                        <button class="buy_button amelioration" id = "ameliorer_dmax" onclick="Amelioration('augmenter', 1.05, ressources, 'densite_max'); document.getElementById('valeur_densite_max').innerText = ressources['densite_max'].toFixed(0).toString();"> obtenir un boost à la densité maximum de 5% </br> actuellement : <span id="valeur_densite_max"> 0 </span>
+                        <button class="buy_button amelioration" id = "ameliorer_dmax" 
+                        onclick="Amelioration('augmenterpc', 1.05, variables.densite, 'boostDMax'); document.getElementById('valeur_densite_max').innerText = 'x' + variables.densite['boostDMax'].toFixed(2).toString();"> 
+                        obtenir un boost à la densité maximum de 5% </br> actuellement : <span id="valeur_densite_max"> x1 </span>
                         </button>
                       </td>
                     </tr>
@@ -178,37 +186,60 @@
                 <div class="sous_onglets" id="sous_onglet_densite_echelle" hidden>
                   <!-- contenu du sous onglet sur l'échelle de la densité max -->
                   <table class="equilibre table_ameliorations" style="margin-top: 50px;">
+
                     <tr>
                       <td class="indicateur_palier">
-                        
+                        débloquer ??? (à déterminer)
+                      </td>
+
+                      <td class="palier" id="palier_5">
+                        700
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="indicateur_palier">
+                        débloquer ??? (à déterminer)
+                      </td>
+
+                      <td class="palier" id="palier_4">
+                        140
+                      </td>
+                    </tr>
+
+
+                    <tr>
+                      <td class="indicateur_palier">
+                        débloquer ??? (à déterminer)
+                      </td>
+
+                      <td class="palier" id="palier_3">
+                        35
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="indicateur_palier">
+                        débloquer ??? (à déterminer)
+                      </td>
+
+                      <td class="palier" id="palier_2">
+                        10
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="indicateur_palier">
+                        débloquer ??? (à déterminer)
                       </td>
 
                       <td class="palier" id="palier_1">
-                        débloquer ????
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td class="indicateur_palier">
-                        
-                      </td>
-                      
-                      <td class="palier">
-                        
-                      </td>
-
-                    </tr>
-                    <tr>
-                      
-                      <td class="indicateur_palier">
-
-                      </td>
-                      <td class="palier">
                         <div class="progress_bar_palier" id="barre_paliers" style="height: 150%;"></div>
-                        
+                        3
                       </td>
                     </tr>
-                    
+
+
 
                   </table>
                 </div>
@@ -218,7 +249,10 @@
 
 
               <div class="contenu_onglets" id="contenu_statistiques" hidden>
-                <!-- contenu de l’onglet "statistiques" -->
+              <!-- contenu de l’onglet "statistiques" -->
+                <!-- les NaN servent de placeholder pour la première apparition de l'onglet (à améliorer)-->
+                <p id="p_tempsDepuisCreation"> temps depuis creation : <span id="tempsDepuisCreation"> NaN </span> </p>
+                <p id="p_tempstempsEnJeu"> temps en jeu : <span id="tempsEnJeu"> NaN </span> </p>
               </div>
 
 
@@ -234,7 +268,12 @@
     
     </div>
 
-    <button onclick="Stop()">pause</button>
+
+    <div id="div_boutons_fonctions">
+      <button class="boutons_fonctions" onclick="Stop()">pause</button>
+      <button class="boutons_fonctions" onclick="Sauvegarder()">Sauvegarder</button>
+    </div>
+    
 
 </body>
 

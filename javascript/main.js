@@ -7,6 +7,10 @@ async function Tick(params)
 {
     if(run.running)
     {
+        TickActuel = Date.now();
+        statistiques.tempsEnJeu += TickActuel - statistiques.tickPrecedent;
+        statistiques.tickPrecedent = TickActuel;
+
         let entites = Object.keys(nombres_entite['particules']);
         production = 0
         for (let i = 0; i < entites.length; i++)
@@ -15,11 +19,17 @@ async function Tick(params)
 
         }
         
-        ressources['particules'] += (constantes['densite']['vitesse'] * ressources['densitepc']) * production;
+        ressources['particules'] += (variables['densite']['vitesse'] * ressources['densitepc']) * production;
         
         
         CalculerDensite();
+        AfficherPaliersDensiteMax();
         AfficherRessources();
+        if (onglet_actuel.onglet_actuel == 'contenu_statistiques')
+        {
+            AfficherStatistiques();
+        }
+        
 
     }
 }
