@@ -1,20 +1,29 @@
 /*
+inverse la valeur de hidden de l'objet selectionné
+IN : l'objet HTML à modifier
+OUT : l'objet est masué/affiché
+*/
+function ModifierVisibilite(objet){
+    document.getElementById(objet).hidden = !document.getElementById(objet).hidden;
+}
+
+/*
 Fonction permettant d'afficher un onglet.
 IN : l'onglet cible.
 OUT : affiche le contenu de l'onglet souhaité en masquant le précédant.
 */ 
 function ChangerOnglet(direction)
 {
-    document.getElementById(onglet_actuel['onglet_actuel']).hidden = true;
+    ModifierVisibilite(onglet_actuel['onglet_actuel']);
     onglet_actuel['onglet_actuel'] = direction;
-    document.getElementById(direction).hidden = false;
+    ModifierVisibilite(direction);
 }
 
 function ChangerSousOnglet(direction)
 {
-    document.getElementById(onglet_actuel['sous_onglet_actuel']).hidden = true;
+    ModifierVisibilite(onglet_actuel['sous_onglet_actuel']);
     onglet_actuel['sous_onglet_actuel'] = direction;
-    document.getElementById(direction).hidden = false;
+    ModifierVisibilite(direction);
 }
 
 /*
@@ -44,7 +53,24 @@ function AfficherRessources()
     {
         document.getElementById("valeur_densité").innerText = ressources['densitepc'].toFixed(0).toString() + "%";
     }
-    
+    document.getElementById("valeur_globale").innerText = ressources[document.getElementById("monnaie_globale").innerText];
+}
+
+/*
+Fonction permettant d'afficher les informations des entites de base.
+IN : none.
+OUT : met à jour l'affichage.
+*/ 
+function AffichageEntites()
+{
+    let entites = Object.keys(nombres_entite['particules']);
+    for (let i = 0; i < entites.length; i++)
+    {
+        document.getElementById("nombre_" + entites[i] ).innerText = nombres_entite['particules'][entites[i]];
+        document.getElementById("prix_" + entites[i]).innerText = prix_entite['particules'][entites[i]];
+        AfficherRessources();
+        document.getElementById("barre_" + entites[i]).style.width = ((nombres_entite['particules'][entites[i]] % 10) * 10) + "%";
+    }
 }
 
 /*
@@ -56,11 +82,23 @@ function AfficherOnglet(chemin, onglet)
 {
     if (document.getElementById(onglet).hidden)
     {
-        document.getElementById(onglet).hidden = false;
+        ModifierVisibilite(onglet);
     }
     chemin = true;
 }
 
+function AfficherSousOnglets(onglet)
+{
+    let sousOnglets = Object.keys(ongletsVisibles['sous_onglets'][onglet]);
+    for (let j = 0; j < sousOnglets.length; j++)
+    {
+        if (ongletsVisibles['sous_onglets'][onglet][sousOnglets[j]])
+        {
+
+            AfficherOnglet(ongletsVisibles['sous_onglets'][onglet][sousOnglets[j]], "bouton_sous_onglet_"+ onglet +"_"+ sousOnglets[j])  
+        }
+    }
+}
 
 /*
 Fonction permettant d'afficher tous les onglets et sous onglets disponibles (utilisée au lancement du jeu).
@@ -70,22 +108,12 @@ OUT : execute la fonction AfficherOnglet sur tous les élements à afficher.
 function AfficherJeu()
 {
     let onglets = Object.keys(ongletsVisibles['menu']);
-    console.log(onglets);
     for (let i = 0; i < onglets.length; i++)
     {
         if (ongletsVisibles['menu'][onglets[i]])
         {
             AfficherOnglet(ongletsVisibles['menu'][onglets[i]], "onglet_" + onglets[i])
-
-            let sousOnglets = Object.keys(ongletsVisibles['sous_onglets'][onglets[i]]);
-            for (let j = 0; j < sousOnglets.length; j++)
-            {
-                if (ongletsVisibles['sous_onglets'][onglets[i]][sousOnglets[j]])
-                {
-                    console.log(ongletsVisibles['sous_onglets'][onglets[i]][sousOnglets[j]], "bouton_sous_onglet_"+ onglets[i] +"_"+ sousOnglets[j])
-                    AfficherOnglet(ongletsVisibles['sous_onglets'][onglets[i]][sousOnglets[j]], "bouton_sous_onglet_"+ onglets[i] +"_"+ sousOnglets[j])  
-                }
-            }
+            AfficherSousOnglets(onglets[i]);
         }
     }
 }
@@ -106,13 +134,11 @@ function DernierPalierAtteint()
 
 function AfficherPaliersDensiteMax()
 {
-    let precedent = DernierPalierAtteint();
-    let suivant = DernierPalierAtteint()+1;
+    let palier = DernierPalierAtteint();
 
-    let resultat = Math.min(500, ((ressources['densite_max'] - paliers[precedent]) / (paliers[suivant] - paliers[precedent])) + precedent);
+    let resultat = Math.min(500, (Math.abs(ressources['densite_max'] - paliers[palier]) / (paliers[palier+1] - paliers[palier])));
     
-    document.getElementById('barre_paliers').style.height = resultat*100 + suivant + 1 + "%";
-    return (ressources['densite_max'] + " . " + resultat + " . " + paliers[precedent] + " . " + paliers[suivant]);
+    document.getElementById('barre_paliers').style.height = resultat*100 + palier*102 + "%";
 }
 
 /*
@@ -180,10 +206,10 @@ function Sauvegarder()
     save.variables = variables;
     save.ongletsVisibles = ongletsVisibles;
     save.statistiques = statistiques;
+    save.challenges = challenges;
     
 
     saveJSON = JSON.stringify(save);
-    console.log(save + "\n\n" + saveJSON);
     localStorage.setItem("save", saveJSON);
 }
 
@@ -196,14 +222,12 @@ OUT : modifie les valeurs du jeu afin de restaurer la sauvergarde.
 function RecupererSauvegarde(sauvegarde)
 {
     let sauvegardeLocale = localStorage.getItem(sauvegarde);
-    console.log(sauvegardeLocale);
     
     if (sauvegardeLocale != null)
     {
         let objetLocal;
         try {
             objetLocal = JSON.parse(sauvegardeLocale);
-            console.log(objetLocal);
         } catch(erreur) {
             console.warn("Save corrompue ou invalide, on l'ignore :", erreur);
             return;
@@ -215,10 +239,22 @@ function RecupererSauvegarde(sauvegarde)
         if (objetLocal.variables) Object.assign(variables, objetLocal.variables);
         if (objetLocal.ongletsVisibles) Object.assign(ongletsVisibles, objetLocal.ongletsVisibles);
         if (objetLocal.statistiques) Object.assign(statistiques, objetLocal.statistiques);
+        if (objetLocal.challenges) Object.assign(challenges, objetLocal.challenges);
     }
 
     if (statistiques.dateCreation == 0)
     {
         statistiques.dateCreation = Date.now();
     }
+}
+
+
+/*
+Fonction qui supprime une sauvegarde sur le stockage local.
+IN : sauvergarde(str) le nom de la clé de sauvegarde.
+OUT : supprime la sauvergarde.
+*/ 
+function SupprimerSauvegarde(sauvegarde)
+{
+    localStorage.removeItem(sauvegarde);
 }

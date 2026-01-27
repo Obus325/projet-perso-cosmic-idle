@@ -9,17 +9,10 @@ function Start()
     RecupererSauvegarde("save");
     CreateStar();
     statistiques.tickPrecedent = Date.now();
-    setInterval(Tick, 1000);
-    let entites = Object.keys(nombres_entite['particules']);
-    for (let i = 0; i < entites.length; i++)
-    {
-        document.getElementById("prix_" + entites[i] ).innerText = nombres_entite['particules'][entites[i]];
-        document.getElementById("barre_" + entites[i]).style.width = (nombres_entite['particules'][entites[i]] % 10) + "%";
-    }
+    setInterval(Tick, 200);
+    AffichageEntites();
     document.getElementById("valeur_particules").innerText = ressources['particules'].toString();
-
     AfficherJeu();
-
 }
 
 
@@ -38,11 +31,7 @@ function Acheter(entite, nombre)
         {
             prix_entite['particules'][entite] *= prix_initiaux_entite['particules'][entite];
         }
-        document.getElementById("nombre_" + entite ).innerText = nombres_entite['particules'][entite];
-        document.getElementById("prix_" + entite).innerText = prix_entite['particules'][entite];
-        AfficherRessources();
-        document.getElementById("barre_" + entite).style.width = ((nombres_entite['particules'][entite] % 10) * 10) + "%";
-
+        AffichageEntites();
     }
 }
 
@@ -68,7 +57,7 @@ function CalculerDensite()
     densiteActuelle = Math.min(densiteActuelle*100, variables['densite']['cap'])/100;
 
 
-    ressources['densite_max'] = Math.max(ressources['densite_max'], /*densiteActuelle*/ressources['densite_max']*variables.densite.boostDMax);
+    ressources['densite_max'] = Math.max(ressources['densite_max'], densiteActuelle*variables.densite.boostDMax);
     if (!ongletsVisibles['menu']['densite'] && densiteActuelle >= 0.5)
     {
         AfficherOnglet(ongletsVisibles['menu']['densite'], 'onglet_densite');
@@ -85,24 +74,6 @@ function CalculerDensite()
 
 }
 
-/*
-Fonction permettant d'appeler la fonction d'un bouton d'amélioration.
-IN : le type d'amélioration (string) et sa valeur (float).
-OUT : appelle la fonction nécessaire
-*/ 
-
-function Amelioration(type, valeur, chemin, objet)
-{
-    switch (type)
-    {
-        case "augmenterpc" :
-            AugmenterPourcent(chemin, objet, valeur);
-            break;
-        case "augmenter" :
-            Augmenter(chemin, objet, valeur)
-            break;
-    }
-}
 
 function AugmenterPourcent(chemin, objet, valeur)
 {

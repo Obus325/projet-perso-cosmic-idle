@@ -44,6 +44,8 @@
             </button>
             <button class="onglet_button" id="onglet_particules" onclick="ChangerOnglet('contenu_particules')" hidden>particules</button>
             <button class="onglet_button" id="onglet_densite" onclick="ChangerOnglet('contenu_equilibre')" hidden>equilibre</button>
+            <button class="onglet_button" id="onglet_crunch" onclick="ChangerOnglet('contenu_crunch')" hidden>crunch</button>
+            <button class="onglet_button" id="onglet_challenges" onclick="ChangerOnglet('contenu_challenges')" hidden>challenges</button>
             <button class="onglet_button" id="onglet_statistiques" onclick="ChangerOnglet('contenu_statistiques')" hidden>statistiques</button>
         </div>
     
@@ -58,7 +60,7 @@
               <div class="onglet_contenu" id="contenu_particules">
                 <!-- menu des sous-onglets de base-->
                 <button class="sous_onglet_button" id="bouton_sous_onglet_particules_base" onclick="ChangerSousOnglet('sous_onglet_particules_base')" hidden>particules</button>
-                <button class="sous_onglet_button" id="bouton_sous_onglet_particules_p1" onclick="ChangerSousOnglet('sous_onglet_particules_p1')" hidden>prestige 1</button>
+                <button class="sous_onglet_button" id="bouton_sous_onglet_particules_crunch" onclick="ChangerSousOnglet('sous_onglet_particules_crunch')" hidden>prestige 1</button>
                 <button class="sous_onglet_button" id="bouton_sous_onglet_particules_p2" onclick="ChangerSousOnglet('sous_onglet_particules_p2')" hidden>prestige 2</button>
 
                 <!-- contenu du sous_onglet principal -->
@@ -105,9 +107,9 @@
                 </div>
                 <!-- fin du sous onglet principal-->
 
-                <!-- contenu du sous_onglet <à venir> (présumé prestige 1) -->
-                <div class="sous_onglets" id="sous_onglet_particules_p1" hidden>
-                  onglet en travaux (présumé prestige 1)
+                <!-- contenu du sous_onglet <à venir> (présumé crunch) -->
+                <div class="sous_onglets" id="sous_onglet_particules_crunch" hidden>
+                  onglet en travaux (présumé crunch)
                 </div>
                 <!-- fin du sous onglet 'nom à venir'-->
 
@@ -141,19 +143,19 @@
                     <tr>
                       <td class="amelioration_equilibre">
                         <button class="buy_button amelioration" id = "ameliorer_taille" 
-                        onclick="Amelioration('augmenterpc', 1.1, variables.densite, 'taille'); document.getElementById('valeur_taille').innerText = variables.densite['taille'].toFixed(0).toString() + '%';">
+                        onclick="AugmenterPourcent(1.1, variables.densite, 'taille'); document.getElementById('valeur_taille').innerText = variables.densite['taille'].toFixed(0).toString() + '%';">
                         augmenter la taille de l'univers de 10% </br> actuellement : <span id="valeur_taille"> 100 </span>
                         </button>
                       </td>
                       <td class="amelioration_equilibre">
                         <button class="buy_button amelioration" id = "ameliorer_diviseur" 
-                        onclick="Amelioration('augmenterpc', 0.95, variables.densite, 'diviseurMassique'); document.getElementById('valeur_diviseurMassique').innerText = variables.densite['diviseurMassique'].toFixed(2).toString() + '%';"> 
+                        onclick="AugmenterPourcent(0.95, variables.densite, 'diviseurMassique'); document.getElementById('valeur_diviseurMassique').innerText = variables.densite['diviseurMassique'].toFixed(2).toString() + '%';"> 
                         diminuer le réducteur de masse de 5 % </br> actuellement : <span id="valeur_diviseurMassique"> 1 </span>
                         </button>
                       </td>
                       <td class="amelioration_equilibre">
                         <button class="buy_button amelioration" id = "ameliorer_cap" 
-                        onclick="Amelioration('augmenter', 10, variables.densite, 'cap'); document.getElementById('valeur_cap').innerText = variables.densite['cap'].toFixed(0).toString() + '%';"> 
+                        onclick="Augmenter(10, variables.densite, 'cap'); document.getElementById('valeur_cap').innerText = variables.densite['cap'].toFixed(0).toString() + '%';"> 
                         augmenter le cap de densité de 10 </br> actuellement : <span id="valeur_cap"> 100 </span>
                         </button>
                       </td>
@@ -164,11 +166,12 @@
                         <button class="buy_button amelioration" id = "acheter_automate"> acheter un nouvel automate (WIP)</button>
                       </td>
                       <td class="amelioration_equilibre">
-                        <button class="buy_button amelioration" id = "ameliorer_particulesD" onclick="Amelioration('augmenterpc', 1.01)"> obtenir 1% plus de particules de densité par seconde (WIP)</button>
+                        <button class="buy_button amelioration" id = "ameliorer_particulesD" onclick="AugmenterPourcent(1.01)"> obtenir 1% plus de particules de densité par seconde (WIP)</button>
                       </td>
                       <td class="amelioration_equilibre">
                         <button class="buy_button amelioration" id = "ameliorer_dmax" 
-                        onclick="Amelioration('augmenterpc', 1.05, variables.densite, 'boostDMax'); document.getElementById('valeur_densite_max').innerText = 'x' + variables.densite['boostDMax'].toFixed(2).toString();"> 
+                        onclick="AugmenterPourcent(1.05, variables.densite, 'boostDMax'); document.getElementById('valeur_densite_max').innerText = 'x' + variables.densite['boostDMax'].toFixed(2).toString();
+                        ressources.densite_max *= 1.05;"> 
                         obtenir un boost à la densité maximum de 5% </br> actuellement : <span id="valeur_densite_max"> x1 </span>
                         </button>
                       </td>
@@ -187,7 +190,7 @@
                   <!-- contenu du sous onglet sur l'échelle de la densité max -->
                   <table class="equilibre table_ameliorations" style="margin-top: 50px;">
 
-                    <tr>
+                    <tr class="palier_densite">
                       <td class="indicateur_palier">
                         débloquer ??? (à déterminer)
                       </td>
@@ -197,7 +200,7 @@
                       </td>
                     </tr>
 
-                    <tr>
+                    <tr class="palier_densite">
                       <td class="indicateur_palier">
                         débloquer ??? (à déterminer)
                       </td>
@@ -208,7 +211,7 @@
                     </tr>
 
 
-                    <tr>
+                    <tr class="palier_densite">
                       <td class="indicateur_palier">
                         débloquer ??? (à déterminer)
                       </td>
@@ -218,7 +221,7 @@
                       </td>
                     </tr>
 
-                    <tr>
+                    <tr class="palier_densite">
                       <td class="indicateur_palier">
                         débloquer ??? (à déterminer)
                       </td>
@@ -228,7 +231,7 @@
                       </td>
                     </tr>
 
-                    <tr>
+                    <tr class="palier_densite">
                       <td class="indicateur_palier">
                         débloquer ??? (à déterminer)
                       </td>
@@ -248,6 +251,52 @@
               </div>
 
 
+
+              <div class="contenu_onglets" id="contenu_crunch" hidden>
+                <!-- menu des sous-onglets du premier prestige-->
+                <button class="sous_onglet_button" id="bouton_sous_onglet_crunch_base" onclick="ChangerSousOnglet('sous_onglet_crunch_base')"> crunch </button>
+                <button class="sous_onglet_button" id="bouton_sous_onglet_crunch_arbre" onclick="ChangerSousOnglet('sous_onglet_crunch_arbre')"> arbre </button>
+
+                <div class="sous_onglets" id="sous_onglet_crunch_base" hidden>
+                  <!-- contenu du sous onglet de base du premier prestige" -->
+                  prestige 1
+                </div>
+                <!-- fin du sous onglet principal du premier prestige -->
+
+
+
+
+                <div class="sous_onglets" id="sous_onglet_crunch_arbre" hidden>
+                  <!-- contenu du sous onglet sur l'arbre -->
+                   arbre de compétences
+                </div>
+                <!-- fin du sous onglet de l'arbre-->
+
+              </div>
+
+
+              <div class="contenu_onglets" id="contenu_challenges" hidden>
+                <!-- menu des sous-onglets des challenges-->
+                <button class="sous_onglet_button" id="bouton_sous_onglet_challenges_particules" onclick="ChangerSousOnglet('sous_onglet_challenges_particules')"> particules </button>
+                <button class="sous_onglet_button" id="bouton_sous_onglet_challenges_crunch" onclick="ChangerSousOnglet('sous_onglet_challenges_crunch')"> crunch </button>
+
+                <div class="sous_onglets" id="sous_onglet_challenges_particules" hidden>
+                  <!-- contenu du sous onglet des premiers challenges -->
+                  challenges particules
+                </div>
+                <!-- fin du sous onglet -->
+
+
+
+
+                <div class="sous_onglets" id="sous_onglet_challenges_crunch" hidden>
+                  <!-- contenu du sous onglet des seconds challenges -->
+                  challenges crunch
+                </div>
+                <!-- fin du sous onglet -->
+
+              </div>
+
               <div class="contenu_onglets" id="contenu_statistiques" hidden>
               <!-- contenu de l’onglet "statistiques" -->
                 <!-- les NaN servent de placeholder pour la première apparition de l'onglet (à améliorer)-->
@@ -263,6 +312,24 @@
             </div>
             <!-- fin des onglets-->
 
+
+
+
+
+            <!-- template onglet -->
+            <div class="contenu_onglets" id="contenu_" hidden>
+              <!-- menu des sous-onglets de l'équilibre-->
+              <button class="sous_onglet_button" id="bouton_sous_onglet__" onclick="ChangerSousOnglet('sous_onglet__')">  </button>
+
+              <div class="sous_onglets" id="sous_onglet__" hidden>
+                <!-- contenu du sous onglet  -->
+                
+              </div>
+              <!-- fin du sous onglet-->
+
+
+            </div>
+            <!-- fin du template -->
           </div>
     
     
@@ -272,6 +339,7 @@
     <div id="div_boutons_fonctions">
       <button class="boutons_fonctions" onclick="Stop()">pause</button>
       <button class="boutons_fonctions" onclick="Sauvegarder()">Sauvegarder</button>
+      <button class="boutons_fonctions" onclick="SupprimerSauvegarde('save')">Supprimer sauvegarde</button>
     </div>
     
 

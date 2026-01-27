@@ -90,7 +90,9 @@ const ongletsVisibles =
     {
         particules : true,
         densite : true,
+        crunch : true,
         statistiques : true,
+        challenges : true,
     },
 
     sous_onglets :
@@ -98,7 +100,7 @@ const ongletsVisibles =
         particules :
         {
             base : true,
-            p1 : false,
+            crunch : false,
             p2 : true,
         },
         densite : 
@@ -106,6 +108,18 @@ const ongletsVisibles =
             densite : true,
             progression : true,
         },
+
+        crunch : 
+        {
+            base : true,
+        },
+
+        challenges :
+        {
+            particules : true,
+            crunch : true,
+        },
+
         statistiques :
         {
         },
@@ -131,4 +145,17 @@ const statistiques =
     
     //recherche d'une meilleure solution en cours.
     tickPrecedent : 0,
+}
+
+const challenges = 
+{
+    EnCours : 0,
+    particules : 
+    {
+        
+    },
+    crunch : 
+    {
+
+    },
 }

@@ -11,6 +11,7 @@ html
   text-align: center;
   align-items: flex-start;
   box-sizing: border-box;
+  color: white;
   
 }
 
@@ -187,11 +188,16 @@ html
   position: relative;
   overflow: visible;
 }
+
+.palier_densite
+{
+  height: 50px;
+}
+
 .palier
 {
   border : white solid 1px;
   border-radius: 6px;
-  height: 50px;
   width: 300px;
   position: relative;
   overflow: visible;
