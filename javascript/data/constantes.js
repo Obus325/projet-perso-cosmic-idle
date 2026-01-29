@@ -5,6 +5,7 @@ const nombres_entite =
         atome : 0,
         nebuleuse : 0,
         etoile : 0,
+        constellation : 0,
         galaxie : 0,
     }
     
@@ -17,7 +18,8 @@ const prix_entite =
         atome : 1,
         nebuleuse : 10,
         etoile : 100,
-        galaxie : 1000,
+        constellation : 1000,
+        galaxie : 10000,
     }
 }
 
@@ -28,7 +30,8 @@ const prix_initiaux_entite =
         atome : 10,
         nebuleuse : 100,
         etoile : 1000,
-        galaxie : 10000,
+        constellation : 10000,
+        galaxie : 100000,
     }
 }
 
@@ -39,7 +42,8 @@ const densite =
     atome : 10,
     nebuleuse : 20,
     etoile : 30,
-    galaxie : 40,
+    constellation : 40,
+    galaxie : 50,
 }
 
 
@@ -152,10 +156,41 @@ const challenges =
     EnCours : 0,
     particules : 
     {
-        
+        debloque : true,
+        defis :
+        {
+            11 : 
+            {
+                reussi : false
+            },
+            12 : 
+            {
+                reussi : false
+            },
+            13 : 
+            {
+                reussi : false
+            },
+            14 : 
+            {
+                reussi : false
+            },
+            15 : 
+            {
+                reussi : false
+            },
+        },
     },
+    
     crunch : 
     {
-
-    },
+        debloque : false,
+        defis :
+        {
+            11 : 
+            {
+                debloque : false
+            }
+        },
+    }
 }

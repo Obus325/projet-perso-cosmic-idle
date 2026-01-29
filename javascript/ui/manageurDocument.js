@@ -19,6 +19,9 @@ function ChangerOnglet(direction)
     ModifierVisibilite(direction);
 }
 
+/*
+
+*/ 
 function ChangerSousOnglet(direction)
 {
     ModifierVisibilite(onglet_actuel['sous_onglet_actuel']);
@@ -87,6 +90,9 @@ function AfficherOnglet(chemin, onglet)
     chemin = true;
 }
 
+/*
+
+*/ 
 function AfficherSousOnglets(onglet)
 {
     let sousOnglets = Object.keys(ongletsVisibles['sous_onglets'][onglet]);
@@ -118,6 +124,9 @@ function AfficherJeu()
     }
 }
 
+/*
+
+*/ 
 function DernierPalierAtteint()
 {
     let palierActuel = 0;
@@ -132,6 +141,9 @@ function DernierPalierAtteint()
     
 }
 
+/*
+
+*/ 
 function AfficherPaliersDensiteMax()
 {
     let palier = DernierPalierAtteint();
@@ -139,6 +151,17 @@ function AfficherPaliersDensiteMax()
     let resultat = Math.min(500, (Math.abs(ressources['densite_max'] - paliers[palier]) / (paliers[palier+1] - paliers[palier])));
     
     document.getElementById('barre_paliers').style.height = resultat*100 + palier*102 + "%";
+}
+
+/*
+
+*/
+function ActualiserPaliers()
+{
+    for (let i = 1; i < 6; i++)
+    {
+        document.getElementById("valeur_palier_"+i).innerText = paliers[i];
+    }
 }
 
 /*

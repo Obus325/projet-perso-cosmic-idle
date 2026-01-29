@@ -95,6 +95,16 @@
                     </div>
                   </div>
 
+                  <div class = "barre_achat" id = "constellation">
+                    <span class="text_progress">constellation (<span id ="nombre_constellation">0</span>)</span>
+                    <div class="progress">
+                        <div class="progress_bar" id="barre_constellation"></div>
+                        <button class="buy_button" id="buy_constellation" onclick="Acheter('constellation', 1)">
+                          <span id="prix_constellation">0</span> particules
+                        </button>
+                    </div>
+                  </div>
+
                   <div class = "barre_achat" id = "galaxie">
                     <span class="text_progress">galaxie (<span id ="nombre_galaxie">0</span>)</span>
                     <div class="progress">
@@ -143,19 +153,19 @@
                     <tr>
                       <td class="amelioration_equilibre">
                         <button class="buy_button amelioration" id = "ameliorer_taille" 
-                        onclick="AugmenterPourcent(1.1, variables.densite, 'taille'); document.getElementById('valeur_taille').innerText = variables.densite['taille'].toFixed(0).toString() + '%';">
+                        onclick="Amelioration('augmenterpc', 1.1, variables.densite, 'taille'); document.getElementById('valeur_taille').innerText = variables.densite['taille'].toFixed(0).toString() + '%';">
                         augmenter la taille de l'univers de 10% </br> actuellement : <span id="valeur_taille"> 100 </span>
                         </button>
                       </td>
                       <td class="amelioration_equilibre">
                         <button class="buy_button amelioration" id = "ameliorer_diviseur" 
-                        onclick="AugmenterPourcent(0.95, variables.densite, 'diviseurMassique'); document.getElementById('valeur_diviseurMassique').innerText = variables.densite['diviseurMassique'].toFixed(2).toString() + '%';"> 
+                        onclick="Amelioration('augmenterpc', 0.95, variables.densite, 'diviseurMassique'); document.getElementById('valeur_diviseurMassique').innerText = variables.densite['diviseurMassique'].toFixed(2).toString() + '%';"> 
                         diminuer le réducteur de masse de 5 % </br> actuellement : <span id="valeur_diviseurMassique"> 1 </span>
                         </button>
                       </td>
                       <td class="amelioration_equilibre">
                         <button class="buy_button amelioration" id = "ameliorer_cap" 
-                        onclick="Augmenter(10, variables.densite, 'cap'); document.getElementById('valeur_cap').innerText = variables.densite['cap'].toFixed(0).toString() + '%';"> 
+                        onclick="Amelioration('augmenter', 10, variables.densite, 'cap'); document.getElementById('valeur_cap').innerText = variables.densite['cap'].toFixed(0).toString();"> 
                         augmenter le cap de densité de 10 </br> actuellement : <span id="valeur_cap"> 100 </span>
                         </button>
                       </td>
@@ -166,7 +176,7 @@
                         <button class="buy_button amelioration" id = "acheter_automate"> acheter un nouvel automate (WIP)</button>
                       </td>
                       <td class="amelioration_equilibre">
-                        <button class="buy_button amelioration" id = "ameliorer_particulesD" onclick="AugmenterPourcent(1.01)"> obtenir 1% plus de particules de densité par seconde (WIP)</button>
+                        <button class="buy_button amelioration" id = "ameliorer_particulesD" onclick="Amelioration('augmenterpc', 1.01)"> obtenir 1% plus de particules de densité par seconde (WIP)</button>
                       </td>
                       <td class="amelioration_equilibre">
                         <button class="buy_button amelioration" id = "ameliorer_dmax" 
@@ -196,7 +206,7 @@
                       </td>
 
                       <td class="palier" id="palier_5">
-                        700
+                        <span id="valeur_palier_5">700</span>
                       </td>
                     </tr>
 
@@ -206,7 +216,7 @@
                       </td>
 
                       <td class="palier" id="palier_4">
-                        140
+                        <span id="valeur_palier_4">140</span>
                       </td>
                     </tr>
 
@@ -217,7 +227,7 @@
                       </td>
 
                       <td class="palier" id="palier_3">
-                        35
+                        <span id="valeur_palier_3">35</span>
                       </td>
                     </tr>
 
@@ -227,7 +237,7 @@
                       </td>
 
                       <td class="palier" id="palier_2">
-                        10
+                        <span id="valeur_palier_2">10</span>
                       </td>
                     </tr>
 
@@ -238,7 +248,7 @@
 
                       <td class="palier" id="palier_1">
                         <div class="progress_bar_palier" id="barre_paliers" style="height: 150%;"></div>
-                        3
+                        <span id="valeur_palier_1">3</span>
                       </td>
                     </tr>
 
@@ -282,7 +292,31 @@
 
                 <div class="sous_onglets" id="sous_onglet_challenges_particules" hidden>
                   <!-- contenu du sous onglet des premiers challenges -->
-                  challenges particules
+                  challenges particules (visuel à modifier)
+                  challenge en cours : <span id="challenge_actuel">0</span>
+                  <div class="challenge" id="challenge_11">
+                    <button onclick="StartChallenge(11)">démarrer challenge 1</button>
+                  </div>
+
+                  <div class="challenge" id="challenge_12">
+                    <button onclick="StartChallenge(12)">démarrer challenge 2</button>
+                  </div>
+
+                  <div class="challenge" id="challenge_13">
+                    <button onclick="StartChallenge(13)">démarrer challenge 3</button>
+                  </div>
+
+                  <div class="challenge" id="challenge_14">
+                    <button onclick="StartChallenge(14)">démarrer challenge 4</button>
+                  </div>
+
+                  <div class="challenge" id="challenge_15">
+                    <button onclick="StartChallenge(15)">démarrer challenge 5</button>
+                  </div>
+
+                  <div class="challenge" id="challenge_0">
+                    <button onclick="ExitChallenge()">quitter challenge actuel</button>
+                  </div>
                 </div>
                 <!-- fin du sous onglet -->
 
