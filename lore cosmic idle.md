@@ -1,0 +1,4 @@
+Au-delà du temps, des entités existent. Ces entités appelés Gardiens \[compléter le titre\] sont responsables des lois générales et immuables l’univers.  
+Cependant, ces Gardiens ne veillent pas uniquement sur notre univers, mais sur un réseau entier appelé Multivers. Ce multivers peut être représenté comme un arbre où chaque racines (univers primordiaux) se rejoignent pour former un tronc puis à chaque choix, chaque possibilité, chaque micro modification, les univers se séparent en différentes branches (timelines) représentant toutes les possibilités.
+
+Afin de s’aider à veiller sur les différents univers principaux, les gardiens ont déléguer certaines tâches simples à des entités nommées les protecteurs.
