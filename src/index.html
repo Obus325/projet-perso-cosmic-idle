@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="fr">
+    
+<head>
+    <meta charset="unicode">
+    <title>cosmic idle</title>
+    
+    <!-- chargement du CSS -->
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/main.css">
+    
+    <!-- chargement du javascript -->
+
+    <!-- chargement du framework -->
+    <script src="javascript/data/materialize.js"></script>
+
+    <!-- 1️⃣ Assets JS : utilitaires, UI, audio -->
+    <script src="javascript/data/constantes.js"></script>
+    <script src="javascript/ui/animations.js"></script>
+    <script src="javascript/ui/manageurDocument.js"></script>
+  
+    <!-- 2️⃣ Game JS : moteur, player, shop, achievements -->
+    
+    <script src="javascript/core/moteur.js"></script>
+    <script src="javascript/core/crunch.js"></script>
+  
+    <!-- 3️⃣ Main JS : initialisation du jeu -->
+    <script src="javascript/main.js"></script>
+    
+
+</head>
+
+<body>
+
+    <!--animation du fond-->
+    <div id="etoiles"></div>
+    <div id ="flexer">
+
+        <div id="onglets" class="ui_box">
+            <button class = "onglet_button" id="score_global" onclick="ChangerRessource()">
+                <span id="valeur_globale">0</span> 
+                </br> 
+                <span id = "monnaie_globale">particules</span>
+            </button>
+            <button class="onglet_button" id="onglet_particules" onclick="ChangerOnglet('contenu_particules')" hidden>particules</button>
+            <button class="onglet_button" id="onglet_densite" onclick="ChangerOnglet('contenu_equilibre')" hidden>equilibre</button>
+            <button class="onglet_button" id="onglet_crunch" onclick="ChangerOnglet('contenu_crunch')" hidden>crunch</button>
+            <button class="onglet_button" id="onglet_challenges" onclick="ChangerOnglet('contenu_challenges')" hidden>challenges</button>
+            <button class="onglet_button" id="onglet_statistiques" onclick="ChangerOnglet('contenu_statistiques')" hidden>statistiques</button>
+        </div>
+    
+        <div id="game_bar">
+          <div id="barre_principale">
+            <button class="crunch" onclick="Crunch()"> réinitialiser le temps</button>
+            <h1 class="score ui_box" >
+              particules : <span class="valeur" id="valeur_particules">0</span>
+            </h1>
+          </div>
+
+            <!-- contenu des onglets-->
+            <div id="contenu_onglets">
+              <div class="onglet_contenu" id="contenu_particules">
+                <!-- menu des sous-onglets de base-->
+                <button class="sous_onglet_button" id="bouton_sous_onglet_particules_base" onclick="ChangerSousOnglet('sous_onglet_particules_base')" hidden>particules</button>
+                <button class="sous_onglet_button" id="bouton_sous_onglet_particules_crunch" onclick="ChangerSousOnglet('sous_onglet_particules_crunch')" hidden>prestige 1</button>
+                <button class="sous_onglet_button" id="bouton_sous_onglet_particules_p2" onclick="ChangerSousOnglet('sous_onglet_particules_p2')" hidden>prestige 2</button>
+
+                <!-- contenu du sous_onglet principal -->
+                <div class="sous_onglets" id="sous_onglet_particules_base">
+                  <div class = "barre_achat" id = "atome">
+                      <span class="text_progress">atome (<span id ="nombre_atome">0</span>)</span>
+                      <div class="progress">
+                          <div class="progress_bar" id="barre_atome"></div>
+                          <button class="buy_button" id="buy_atome" onclick="Acheter('atome', 1)">
+                            <span id="prix_atome">0</span> particules
+                          </button>
+                      </div>
+                  </div>
+
+                  <div class = "barre_achat" id = "nebuleuse">
+                    <span class="text_progress">nebuleuse (<span id ="nombre_nebuleuse">0</span>)</span>
+                    <div class="progress">
+                        <div class="progress_bar" id="barre_nebuleuse"></div>
+                        <button class="buy_button" id="buy_nebuleuse" onclick="Acheter('nebuleuse', 1)">
+                          <span id="prix_nebuleuse">0</span> particules
+                        </button>
+                    </div>
+                  </div>
+
+                  <div class = "barre_achat" id = "etoile">
+                    <span class="text_progress">etoile (<span id ="nombre_etoile">0</span>)</span>
+                    <div class="progress">
+                        <div class="progress_bar" id="barre_etoile"></div>
+                        <button class="buy_button" id="buy_etoile" onclick="Acheter('etoile', 1)">
+                          <span id="prix_etoile">0</span> particules
+                        </button>
+                    </div>
+                  </div>
+
+                  <div class = "barre_achat" id = "constellation">
+                    <span class="text_progress">constellation (<span id ="nombre_constellation">0</span>)</span>
+                    <div class="progress">
+                        <div class="progress_bar" id="barre_constellation"></div>
+                        <button class="buy_button" id="buy_constellation" onclick="Acheter('constellation', 1)">
+                          <span id="prix_constellation">0</span> particules
+                        </button>
+                    </div>
+                  </div>
+
+                  <div class = "barre_achat" id = "galaxie">
+                    <span class="text_progress">galaxie (<span id ="nombre_galaxie">0</span>)</span>
+                    <div class="progress">
+                        <div class="progress_bar" id="barre_galaxie"></div>
+                        <button class="buy_button" id="buy_galaxie" onclick="Acheter('galaxie', 1)">
+                          <span id="prix_galaxie">0</span> particules
+                        </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- fin du sous onglet principal-->
+
+                <!-- contenu du sous_onglet <à venir> (présumé crunch) -->
+                <div class="sous_onglets" id="sous_onglet_particules_crunch" hidden>
+                  onglet en travaux (présumé crunch)
+                </div>
+                <!-- fin du sous onglet 'nom à venir'-->
+
+                <!-- contenu du sous_onglet <à venir> (présumé prestige 2) -->
+                <div class="sous_onglets" id="sous_onglet_particules_p2" hidden>
+                  onglet en travaux (présumé prestige 2)
+                </div>
+                <!-- fin du sous onglet <à venir> (présumé prestige 2)-->
+
+              </div>
+              <!-- fin de l'onglet des particules -->
+
+
+
+              <div class="contenu_onglets" id="contenu_equilibre" hidden>
+                <!-- menu des sous-onglets de l'équilibre-->
+                <button class="sous_onglet_button" id="bouton_sous_onglet_densite_densite" onclick="ChangerSousOnglet('sous_onglet_densite_base')"> équilibre </button>
+                <button class="sous_onglet_button" id="bouton_sous_onglet_densite_progression" onclick="ChangerSousOnglet('sous_onglet_densite_echelle')" hidden> progression </button>
+                <!--<button class="sous_onglet_button" id="onglet_statistiques" onclick="ChangerSousOnglet('sous_onglet_particules_p2')"> prestige 2 </button> non utilisé pour le moment-->
+
+                <div class="sous_onglets" id="sous_onglet_densite_base" hidden>
+                  <!-- contenu du sous onglet "équilibre de l'univers" -->
+                  densité de l'univers : <span class="valeur" id="valeur_densité">0</span>
+                  <span class="text_progress"> </span>
+                  <div class="progress">
+                      <div class="progress_bar" id="pourcent_densite"></div>
+                  </div>
+
+
+                  <table class="equilibre table_ameliorations">
+                    <tr>
+                      <td class="amelioration_equilibre">
+                        <button class="buy_button amelioration" id = "ameliorer_taille" 
+                        onclick="Amelioration('augmenterpc', 1.1, variables.densite, 'taille'); document.getElementById('valeur_taille').innerText = variables.densite['taille'].toFixed(0).toString() + '%';">
+                        augmenter la taille de l'univers de 10% </br> actuellement : <span id="valeur_taille"> 100 </span>
+                        </button>
+                      </td>
+                      <td class="amelioration_equilibre">
+                        <button class="buy_button amelioration" id = "ameliorer_diviseur" 
+                        onclick="Amelioration('augmenterpc', 0.95, variables.densite, 'diviseurMassique'); document.getElementById('valeur_diviseurMassique').innerText = variables.densite['diviseurMassique'].toFixed(2).toString() + '%';"> 
+                        diminuer le réducteur de masse de 5 % </br> actuellement : <span id="valeur_diviseurMassique"> 1 </span>
+                        </button>
+                      </td>
+                      <td class="amelioration_equilibre">
+                        <button class="buy_button amelioration" id = "ameliorer_cap" 
+                        onclick="Amelioration('augmenter', 10, variables.densite, 'cap'); document.getElementById('valeur_cap').innerText = variables.densite['cap'].toFixed(0).toString();"> 
+                        augmenter le cap de densité de 10 </br> actuellement : <span id="valeur_cap"> 100 </span>
+                        </button>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="amelioration_equilibre">
+                        <button class="buy_button amelioration" id = "acheter_automate"> acheter un nouvel automate (WIP)</button>
+                      </td>
+                      <td class="amelioration_equilibre">
+                        <button class="buy_button amelioration" id = "ameliorer_particulesD" onclick="Amelioration('augmenterpc', 1.01)"> obtenir 1% plus de particules de densité par seconde (WIP)</button>
+                      </td>
+                      <td class="amelioration_equilibre">
+                        <button class="buy_button amelioration" id = "ameliorer_dmax" 
+                        onclick="AugmenterPourcent(1.05, variables.densite, 'boostDMax'); document.getElementById('valeur_densite_max').innerText = 'x' + variables.densite['boostDMax'].toFixed(2).toString();
+                        ressources.densite_max *= 1.05;"> 
+                        obtenir un boost à la densité maximum de 5% </br> actuellement : <span id="valeur_densite_max"> x1 </span>
+                        </button>
+                      </td>
+                    </tr>
+                    
+
+                  </table>
+
+                </div>
+                <!-- fin du sous onglet principal de densité -->
+
+
+
+
+                <div class="sous_onglets" id="sous_onglet_densite_echelle" hidden>
+                  <!-- contenu du sous onglet sur l'échelle de la densité max -->
+                  <table class="equilibre table_ameliorations" style="margin-top: 50px;">
+
+                    <tr class="palier_densite">
+                      <td class="indicateur_palier">
+                        débloquer ??? (à déterminer)
+                      </td>
+
+                      <td class="palier" id="palier_5">
+                        <span id="valeur_palier_5">700</span>
+                      </td>
+                    </tr>
+
+                    <tr class="palier_densite">
+                      <td class="indicateur_palier">
+                        débloquer ??? (à déterminer)
+                      </td>
+
+                      <td class="palier" id="palier_4">
+                        <span id="valeur_palier_4">140</span>
+                      </td>
+                    </tr>
+
+
+                    <tr class="palier_densite">
+                      <td class="indicateur_palier">
+                        débloquer ??? (à déterminer)
+                      </td>
+
+                      <td class="palier" id="palier_3">
+                        <span id="valeur_palier_3">35</span>
+                      </td>
+                    </tr>
+
+                    <tr class="palier_densite">
+                      <td class="indicateur_palier">
+                        débloquer ??? (à déterminer)
+                      </td>
+
+                      <td class="palier" id="palier_2">
+                        <span id="valeur_palier_2">10</span>
+                      </td>
+                    </tr>
+
+                    <tr class="palier_densite">
+                      <td class="indicateur_palier">
+                        débloquer ??? (à déterminer)
+                      </td>
+
+                      <td class="palier" id="palier_1">
+                        <div class="progress_bar_palier" id="barre_paliers" style="height: 150%;"></div>
+                        <span id="valeur_palier_1">3</span>
+                      </td>
+                    </tr>
+
+
+
+                  </table>
+                </div>
+                <!-- fin du sous onglet de l'échelle-->
+
+              </div>
+
+
+
+              <div class="contenu_onglets" id="contenu_crunch" hidden>
+                <!-- menu des sous-onglets du premier prestige-->
+                <button class="sous_onglet_button" id="bouton_sous_onglet_crunch_base" onclick="ChangerSousOnglet('sous_onglet_crunch_base')"> crunch </button>
+                <button class="sous_onglet_button" id="bouton_sous_onglet_crunch_arbre" onclick="ChangerSousOnglet('sous_onglet_crunch_arbre')"> arbre </button>
+
+                <div class="sous_onglets" id="sous_onglet_crunch_base" hidden>
+                  <!-- contenu du sous onglet de base du premier prestige" -->
+                  prestige 1
+                </div>
+                <!-- fin du sous onglet principal du premier prestige -->
+
+
+
+
+                <div class="sous_onglets" id="sous_onglet_crunch_arbre" hidden>
+                  <!-- contenu du sous onglet sur l'arbre -->
+                   arbre de compétences
+                </div>
+                <!-- fin du sous onglet de l'arbre-->
+
+              </div>
+
+
+              <div class="contenu_onglets" id="contenu_challenges" hidden>
+                <!-- menu des sous-onglets des challenges-->
+                <button class="sous_onglet_button" id="bouton_sous_onglet_challenges_particules" onclick="ChangerSousOnglet('sous_onglet_challenges_particules')"> particules </button>
+                <button class="sous_onglet_button" id="bouton_sous_onglet_challenges_crunch" onclick="ChangerSousOnglet('sous_onglet_challenges_crunch')"> crunch </button>
+
+                <div class="sous_onglets" id="sous_onglet_challenges_particules" hidden>
+                  <!-- contenu du sous onglet des premiers challenges -->
+                  challenges particules (visuel à modifier)
+                  challenge en cours : <span id="challenge_actuel">0</span>
+                  <div class="challenge" id="challenge_11">
+                    <button onclick="StartChallenge(11)">démarrer challenge 1</button>
+                  </div>
+
+                  <div class="challenge" id="challenge_12">
+                    <button onclick="StartChallenge(12)">démarrer challenge 2</button>
+                  </div>
+
+                  <div class="challenge" id="challenge_13">
+                    <button onclick="StartChallenge(13)">démarrer challenge 3</button>
+                  </div>
+
+                  <div class="challenge" id="challenge_14">
+                    <button onclick="StartChallenge(14)">démarrer challenge 4</button>
+                  </div>
+
+                  <div class="challenge" id="challenge_15">
+                    <button onclick="StartChallenge(15)">démarrer challenge 5</button>
+                  </div>
+
+                  <div class="challenge" id="challenge_0">
+                    <button onclick="Crunch()">quitter challenge actuel</button>
+                  </div>
+                </div>
+                <!-- fin du sous onglet -->
+
+
+
+
+                <div class="sous_onglets" id="sous_onglet_challenges_crunch" hidden>
+                  <!-- contenu du sous onglet des seconds challenges -->
+                  challenges crunch
+                </div>
+                <!-- fin du sous onglet -->
+
+              </div>
+
+              <div class="contenu_onglets" id="contenu_statistiques" hidden>
+              <!-- contenu de l’onglet "statistiques" -->
+                <!-- les NaN servent de placeholder pour la première apparition de l'onglet (à améliorer)-->
+                <p id="p_tempsDepuisCreation"> temps depuis creation : <span id="tempsDepuisCreation"> NaN </span> </p>
+                <p id="p_tempstempsEnJeu"> temps en jeu : <span id="tempsEnJeu"> NaN </span> </p>
+              </div>
+
+
+              <div class="contenu_onglets" id=""></div>
+              <!--onglet vide afin de masquer le jeu-->
+
+
+            </div>
+            <!-- fin des onglets-->
+
+
+
+
+
+            <!-- template onglet -->
+            <div class="contenu_onglets" id="contenu_" hidden>
+              <!-- menu des sous-onglets de l'équilibre-->
+              <button class="sous_onglet_button" id="bouton_sous_onglet__" onclick="ChangerSousOnglet('sous_onglet__')">  </button>
+
+              <div class="sous_onglets" id="sous_onglet__" hidden>
+                <!-- contenu du sous onglet  -->
+                
+              </div>
+              <!-- fin du sous onglet-->
+
+
+            </div>
+            <!-- fin du template -->
+          </div>
+    
+    
+    </div>
+
+
+    <div id="div_boutons_fonctions">
+      <button class="boutons_fonctions" onclick="Stop()">pause</button>
+      <button class="boutons_fonctions" onclick="Sauvegarder()">Sauvegarder</button>
+      <button class="boutons_fonctions" onclick="SupprimerSauvegarde('save')">Supprimer sauvegarde</button>
+    </div>
+    
+
+</body>
+
+</html>
