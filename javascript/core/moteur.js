@@ -131,7 +131,7 @@ function Augmenter(chemin, objet, valeur)
 
 function StartChallenge(challenge)
 {
-    if (challenges.EnCours != 0) ExitChallenge();
+    if (challenges.EnCours != 0) Crunch();
     challenges.EnCours = challenge;
 
     if (challenge == 14) 
@@ -149,6 +149,7 @@ function StartChallenge(challenge)
 
 function ExitChallenge()
 {
+    if (challenges.EnCours == 0) return;
 
     if (challenges.EnCours == 14) 
     {

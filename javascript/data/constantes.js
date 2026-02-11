@@ -54,6 +54,7 @@ const ressources =
     densite : 0,
     densitepc : 0,
     densite_max : 0,
+    timeShards : 0,
 }
 
 
@@ -161,23 +162,28 @@ const challenges =
         {
             11 : 
             {
-                reussi : false
+                reussi : false,
+                informations : "la densité est fixée à 20%"
             },
             12 : 
             {
-                reussi : false
+                reussi : false,
+                informations : "il est impossible de dépasser les étoiles"
             },
             13 : 
             {
-                reussi : false
+                reussi : false,
+                informations : "la vitesse du jeu est réduite : ticks / 4"
             },
             14 : 
             {
-                reussi : false
+                reussi : false,
+                informations : "les paliers de densité sont multipliés par 2"
             },
             15 : 
             {
-                reussi : false
+                reussi : false,
+                informations : "la production est réduite à sa racine carrée"
             },
         },
     },

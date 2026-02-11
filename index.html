@@ -23,6 +23,7 @@
     <!-- 2️⃣ Game JS : moteur, player, shop, achievements -->
     
     <script src="javascript/core/moteur.js"></script>
+    <script src="javascript/core/crunch.js"></script>
   
     <!-- 3️⃣ Main JS : initialisation du jeu -->
     <script src="javascript/main.js"></script>
@@ -50,10 +51,12 @@
         </div>
     
         <div id="game_bar">
+          <div id="barre_principale">
+            <button class="crunch" onclick="Crunch()"> réinitialiser le temps</button>
             <h1 class="score ui_box" >
               particules : <span class="valeur" id="valeur_particules">0</span>
             </h1>
-
+          </div>
 
             <!-- contenu des onglets-->
             <div id="contenu_onglets">
@@ -315,7 +318,7 @@
                   </div>
 
                   <div class="challenge" id="challenge_0">
-                    <button onclick="ExitChallenge()">quitter challenge actuel</button>
+                    <button onclick="Crunch()">quitter challenge actuel</button>
                   </div>
                 </div>
                 <!-- fin du sous onglet -->
