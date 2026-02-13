@@ -66,13 +66,13 @@ OUT : met à jour l'affichage.
 */ 
 function AffichageEntites()
 {
-    let entites = Object.keys(nombres_entite['particules']);
+    let entites = Object.keys(nombres_entite['actuel']['particules']);
     for (let i = 0; i < entites.length; i++)
     {
-        document.getElementById("nombre_" + entites[i] ).innerText = nombres_entite['particules'][entites[i]];
-        document.getElementById("prix_" + entites[i]).innerText = prix_entite['particules'][entites[i]];
+        document.getElementById("nombre_" + entites[i] ).innerText = nombres_entite['actuel']['particules'][entites[i]];
+        document.getElementById("prix_" + entites[i]).innerText = prix_entite['actuel']['particules'][entites[i]];
         AfficherRessources();
-        document.getElementById("barre_" + entites[i]).style.width = ((nombres_entite['particules'][entites[i]] % 10) * 10) + "%";
+        document.getElementById("barre_" + entites[i]).style.width = ((nombres_entite['actuel']['particules'][entites[i]] % 10) * 10) + "%";
     }
 }
 

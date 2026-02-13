@@ -33,11 +33,11 @@ async function Tick(params)
 */
 function CalculerProduction()
 {
-    let entites = Object.keys(nombres_entite['particules']);
+    let entites = Object.keys(nombres_entite['actuel']['particules']);
     production = 0
     for (let i = 0; i < entites.length; i++)
     {
-        production += nombres_entite['particules'][entites[i]];
+        production += nombres_entite['actuel']['particules'][entites[i]];
 
     }
     return production

@@ -1,10 +1,9 @@
 function Crunch()
 {
     ExitChallenge();
-    
-    ressources.particules = 1
-    AfficherRessources()
-    ManageTimeShards()
+    Reset();
+    GestionStatistiques();
+
 }
 
 function ManageTimeShards()
@@ -15,4 +14,37 @@ function ManageTimeShards()
 function TimeShardsGain()
 {
     return 1;
+}
+
+function Reset()
+{
+    ResetRessources();
+    ManageTimeShards();
+    ResetEntites();
+}
+
+function ResetEntites()
+{
+    
+}
+
+
+function ResetRessources()
+{
+    ressources.particules = 1
+
+
+    ResetDensite();
+
+    AfficherRessources();
+}
+
+function ResetDensite()
+{
+
+}
+
+function GestionStatistiques()
+{
+    return null;
 }

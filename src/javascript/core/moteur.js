@@ -24,13 +24,13 @@ OUT : met à jour la valeur de l'objet acheté et de la ressource dépensée.
 function Acheter(entite, nombre)
 {
     if (challenges.EnCours == 12 && (entite == 'constellation' || entite == 'galaxie'))return;
-    if (ressources['particules'] >= prix_entite['particules'][entite])
+    if (ressources['particules'] >= prix_entite['actuel']['particules'][entite])
     {
-        ressources['particules'] -= prix_entite['particules'][entite];
-        nombres_entite['particules'][entite] += nombre;
-        if (nombres_entite['particules'][entite] % 10 == 0)
+        ressources['particules'] -= prix_entite['actuel']['particules'][entite];
+        nombres_entite['actuel']['particules'][entite] += nombre;
+        if (nombres_entite['actuel']['particules'][entite] % 10 == 0)
         {
-            prix_entite['particules'][entite] *= prix_initiaux_entite['particules'][entite];
+            prix_entite['actuel']['particules'][entite] *= prix_entite['increment']['particules'][entite];
         }
         AffichageEntites();
     }
@@ -58,16 +58,16 @@ function GestionDensite()
 function CalculerDensite()
 {
     let entites = Object.keys(densite);
-    masse = 0;
+    let masse = 0;
     for (let i = 0; i < entites.length; i++)
     {
-        masse += (densite[entites[i]]*nombres_entite['particules'][entites[i]]);
+        masse += (densite[entites[i]]*nombres_entite['actuel']['particules'][entites[i]]);
     }
 
     masse /= variables['densite']['diviseurMassique'];
-    densiteBrute = masse / variables['densite']['taille'];
+    let densiteBrute = masse / variables['densite']['taille'];
 
-    densiteActuelle = densiteBrute /** variables['densite']['alpha'] + ressources['densite'] * (1-variables['densite']['alpha'])*/;
+    let densiteActuelle = densiteBrute * variables['densite']['alpha'] + ressources['densite'] * (1-variables['densite']['alpha']);
     densiteActuelle = Math.min(densiteActuelle*100, variables['densite']['cap'])/100;
     return densiteActuelle;
 }

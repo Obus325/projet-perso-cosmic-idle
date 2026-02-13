@@ -1,41 +1,71 @@
 const nombres_entite = 
 {
-    particules : 
+    actuel:
     {
-        atome : 0,
-        nebuleuse : 0,
-        etoile : 0,
-        constellation : 0,
-        galaxie : 0,
-    }
+        particules :
+        {
+            atome : 0,
+            nebuleuse : 0,
+            etoile : 0,
+            constellation : 0,
+            galaxie : 0,
+        },
+    },
+
+    initial :
+    {
+        particules :
+        {
+            atome : 0,
+            nebuleuse : 0,
+            etoile : 0,
+            constellation : 0,
+            galaxie : 0,
+        },
+    },
+
     
 }
 
-const prix_entite = 
-{
-    particules :
+const prix_entite =
     {
-        atome : 1,
-        nebuleuse : 10,
-        etoile : 100,
-        constellation : 1000,
-        galaxie : 10000,
+        actuel :
+        {
+            particules :
+            {
+                atome : 1,
+                nebuleuse : 10,
+                etoile : 100,
+                constellation : 1000,
+                galaxie : 10000,
+            },
+        },
+
+        increment :
+        {
+            particules :
+            {
+                atome : 10,
+                nebuleuse : 100,
+                etoile : 1000,
+                constellation : 10000,
+                galaxie : 100000,
+            },
+        },
+
+        initial :
+        {
+            particules :
+            {
+                atome : 1,
+                nebuleuse : 10,
+                etoile : 100,
+                constellation : 1000,
+                galaxie : 10000,
+            },
+        }
+
     }
-}
-
-const prix_initiaux_entite = 
-{
-    particules :
-    {
-        atome : 10,
-        nebuleuse : 100,
-        etoile : 1000,
-        constellation : 10000,
-        galaxie : 100000,
-    }
-}
-
-
 
 const densite = 
 {
