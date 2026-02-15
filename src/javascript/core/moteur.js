@@ -19,7 +19,6 @@ function Start()
 
 }
 
-
 /*
 Fonction permettant d'effectuer un achat, effectue les vérifications nécessaires.
 IN : l'objet à acheter et la quantité.
@@ -56,25 +55,6 @@ function GestionDensite()
 
 }
 
-/*
-
-*/ 
-function CalculerDensite()
-{
-    let entites = Object.keys(densite);
-    let masse = 0;
-    for (let i = 0; i < entites.length; i++)
-    {
-        masse += (densite[entites[i]]*nombres_entite.actuel.particules[entites[i]]);
-    }
-
-    masse /= variables.densite.actuel.diviseurMassique;
-    let densiteBrute = masse / variables.densite.actuel.taille;
-
-    let densiteActuelle = densiteBrute * variables.densite.actuel.alpha + ressources.densite * (1-variables.densite.actuel.alpha);
-    densiteActuelle = Math.min(densiteActuelle*100, variables.densite.actuel.cap)/100;
-    return densiteActuelle;
-}
 
 /*
 
@@ -131,82 +111,6 @@ function Augmenter(chemin, objet, valeur)
 {
     chemin[objet] += valeur;
 }
-
-/*
-
-*/
-function StartChallenge(challenge)
-{
-    Crunch()
-    challenges.EnCours = challenge;
-
-    if (challenge == 14) 
-    {
-        for (let i = 1; i < 6; i++)
-        {
-            paliers[i] *= 2;
-        }
-        ActualiserPaliers();
-    }
-    
-    document.getElementById('challenge_actuel').innerText = challenge;
-
-}
-
-/*
-
-*/
-function ExitChallenge()
-{
-    if (challenges.EnCours == 0) return;
-
-    if (challenges.EnCours == 14) 
-    {
-        for (let i = 1; i < 6; i++)
-        {
-            paliers[i] /= 2;
-        }
-        ActualiserPaliers();
-    }
-
-    ValiderChallenge();
-
-    challenges.EnCours = 0;
-    document.getElementById('challenge_actuel').innerText = "aucun";
-}
-
-/*
-
- */
-function ValiderChallenge()
-{
-    console.log("v", Math.floor(challenges.EnCours/10))
-    switch (Math.floor(challenges.EnCours/10))
-    {
-        case 1 :
-            console.log("oui")
-            if (challenges.particules.defis[challenges.EnCours].condition()) challenges.particules.defis[challenges.EnCours].reussi = true
-    }
-}
-
-/*
-
- */
-function VerifierChallenges(etape)
-{
-    console.log("r")
-    let res = true
-    Object.values(challenges[etape].defis).forEach(defi =>
-    {
-        if (defi.reussi == false)
-        {
-            res = false;
-        }
-    });
-    return res
-}
-
-
 
 /*
 
