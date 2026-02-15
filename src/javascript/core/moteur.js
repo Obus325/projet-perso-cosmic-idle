@@ -11,7 +11,7 @@ function Start()
     statistiques.tickPrecedent = Date.now();
     setInterval(Tick, 200);
     AffichageEntites();
-    document.getElementById("valeur_particules").innerText = ressources['particules'].toString();
+    document.getElementById("valeur_particules").innerText = ressources.particules.toString();
     console.log(onglet_actuel);
     AfficherJeu();
     AfficherStatistiques();
@@ -28,13 +28,13 @@ OUT : met à jour la valeur de l'objet acheté et de la ressource dépensée.
 function Acheter(entite, nombre)
 {
     if (challenges.EnCours == 12 && (entite == 'constellation' || entite == 'galaxie'))return;
-    if (ressources['particules'] >= prix_entite['actuel']['particules'][entite])
+    if (ressources.particules >= prix_entite.actuel.particules[entite])
     {
-        ressources['particules'] -= prix_entite['actuel']['particules'][entite];
-        nombres_entite['actuel']['particules'][entite] += nombre;
-        if (nombres_entite['actuel']['particules'][entite] % 10 == 0)
+        ressources.particules -= prix_entite.actuel.particules[entite];
+        nombres_entite.actuel.particules[entite] += nombre;
+        if (nombres_entite.actuel.particules[entite] % 10 == 0)
         {
-            prix_entite['actuel']['particules'][entite] *= prix_entite['increment']['particules'][entite];
+            prix_entite.actuel.particules[entite] *= prix_entite.increment.particules[entite];
         }
         AffichageEntites();
     }
@@ -48,11 +48,11 @@ function GestionDensite()
     if (challenges.EnCours == 11) densiteActuelle = 0.2;
     else densiteActuelle = CalculerDensite();
     GestionDensiteMax();
-    ressources['densite'] = densiteActuelle;
-    ressources['densitepc'] = densiteActuelle * 100;
-    variables['densite']['vitesse'] = Math.max(variables['densite']['cap'] - ressources['densitepc'], 0);
-    document.getElementById("valeur_densité").innerText = ressources['densitepc'].toFixed(0).toString() + "%";
-    document.getElementById('pourcent_densite').style.width = (ressources['densitepc']/variables['densite']['cap'])*100 + '%'
+    ressources.densite = densiteActuelle;
+    ressources.densitepc = densiteActuelle * 100;
+    variables.densite.actuel.vitesse = Math.max(variables.densite.actuel.cap - ressources.densitepc, 0);
+    document.getElementById("valeur_densité").innerText = ressources.densitepc.toFixed(0).toString() + "%";
+    document.getElementById('pourcent_densite').style.width = (ressources.densitepc/variables.densite.actuel.cap)*100 + '%'
 
 }
 
@@ -65,14 +65,14 @@ function CalculerDensite()
     let masse = 0;
     for (let i = 0; i < entites.length; i++)
     {
-        masse += (densite[entites[i]]*nombres_entite['actuel']['particules'][entites[i]]);
+        masse += (densite[entites[i]]*nombres_entite.actuel.particules[entites[i]]);
     }
 
-    masse /= variables['densite']['diviseurMassique'];
-    let densiteBrute = masse / variables['densite']['taille'];
+    masse /= variables.densite.actuel.diviseurMassique;
+    let densiteBrute = masse / variables.densite.actuel.taille;
 
-    let densiteActuelle = densiteBrute * variables['densite']['alpha'] + ressources['densite'] * (1-variables['densite']['alpha']);
-    densiteActuelle = Math.min(densiteActuelle*100, variables['densite']['cap'])/100;
+    let densiteActuelle = densiteBrute * variables.densite.actuel.alpha + ressources.densite * (1-variables.densite.actuel.alpha);
+    densiteActuelle = Math.min(densiteActuelle*100, variables.densite.actuel.cap)/100;
     return densiteActuelle;
 }
 
@@ -81,10 +81,10 @@ function CalculerDensite()
 */ 
 function GestionDensiteMax()
 {
-    ressources['densite_max'] = Math.max(ressources['densite_max'], densiteActuelle*variables.densite.boostDMax);
-    if (!ongletsVisibles['menu']['densite'] && densiteActuelle >= 0.5)
+    ressources.densite_max = Math.max(ressources.densite_max, densiteActuelle*variables.densite.actuel.boostDMax);
+    if (!ongletsVisibles.menu.densite && densiteActuelle >= 0.5)
     {
-        AfficherOnglet(ongletsVisibles['menu']['densite'], 'onglet_densite');
+        AfficherOnglet(ongletsVisibles.menu.densite, 'onglet_densite');
     }
     GestionPaliersDensiteMax();
 }
@@ -137,7 +137,7 @@ function Augmenter(chemin, objet, valeur)
 */
 function StartChallenge(challenge)
 {
-    if (challenges.EnCours != 0) Crunch();
+    Crunch()
     challenges.EnCours = challenge;
 
     if (challenge == 14) 
@@ -169,8 +169,41 @@ function ExitChallenge()
         ActualiserPaliers();
     }
 
+    ValiderChallenge();
+
     challenges.EnCours = 0;
-    document.getElementById('challenge_actuel').innerText = 0;
+    document.getElementById('challenge_actuel').innerText = "aucun";
+}
+
+/*
+
+ */
+function ValiderChallenge()
+{
+    console.log("v", Math.floor(challenges.EnCours/10))
+    switch (Math.floor(challenges.EnCours/10))
+    {
+        case 1 :
+            console.log("oui")
+            if (challenges.particules.defis[challenges.EnCours].condition()) challenges.particules.defis[challenges.EnCours].reussi = true
+    }
+}
+
+/*
+
+ */
+function VerifierChallenges(etape)
+{
+    console.log("r")
+    let res = true
+    Object.values(challenges[etape].defis).forEach(defi =>
+    {
+        if (defi.reussi == false)
+        {
+            res = false;
+        }
+    });
+    return res
 }
 
 

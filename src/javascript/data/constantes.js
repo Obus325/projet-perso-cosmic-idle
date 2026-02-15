@@ -94,13 +94,26 @@ const variables =
 {
     densite :
     {
-        diviseurMassique : 1,
-        alpha : 0.05,
-        taille : 100,
-        cap : 100,
-        vitesse : 0,
-        boostDMax : 1,
-    }
+        actuel :
+        {
+            diviseurMassique : 1,
+            alpha : 0.05,
+            taille : 100,
+            cap : 100,
+            vitesse : 0,
+            boostDMax : 1,
+        },
+
+        initial :
+        {
+            diviseurMassique : 1,
+            alpha : 0.05,
+            taille : 100,
+            cap : 100,
+            vitesse : 0,
+            boostDMax : 1,
+        },
+    },
 
 }
 
@@ -208,27 +221,32 @@ const challenges =
             11 : 
             {
                 reussi : false,
-                informations : "la densité est fixée à 20%"
+                informations : "la densité est fixée à 20%",
+                condition : function () {return ressources.particules > 1000;},
             },
             12 : 
             {
                 reussi : false,
-                informations : "il est impossible de dépasser les étoiles"
+                informations : "il est impossible de dépasser les étoiles",
+                condition : function () {return ressources.particules > 1000;},
             },
             13 : 
             {
                 reussi : false,
-                informations : "la vitesse du jeu est réduite : ticks / 4"
+                informations : "la vitesse du jeu est réduite : ticks / 4",
+                condition : function () {return ressources.particules > 1000;},
             },
             14 : 
             {
                 reussi : false,
-                informations : "les paliers de densité sont multipliés par 2"
+                informations : "les paliers de densité sont multipliés par 2",
+                condition : function () {return ressources.particules > 1000;},
             },
             15 : 
             {
                 reussi : false,
-                informations : "la production est réduite à sa racine carrée"
+                informations : "la production est réduite à sa racine carrée",
+                condition : function () {return ressources.particules > 1000;},
             },
         },
     },
@@ -248,10 +266,18 @@ const challenges =
 
 const evenements =
 {
-    crunch :
+    crunchUnlock :
     {
         unlocked : false,
         condition : function() { return ressources.particules > 1000; },
+        recompense : UnlockCrunch,
+        parametre : null,
+    },
+
+    crunchBreak :
+    {
+        unlocked : false,
+        condition : function() { return statistiques.nombreCrunchs>0 && VerifierChallenges("particules");},
         recompense : UnlockCrunch,
         parametre : null,
     }

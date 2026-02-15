@@ -5,6 +5,7 @@ function Crunch()
 {
     ExitChallenge();
     Reset();
+    ManageTimeShards();
     GestionStatistiques();
     LockCrunch();
 
@@ -32,8 +33,8 @@ function TimeShardsGain()
 function Reset()
 {
     ResetRessources();
-    ManageTimeShards();
     ResetEntites();
+    ResetVariable()
 }
 
 /*
@@ -41,7 +42,13 @@ function Reset()
 */
 function ResetEntites()
 {
-    
+    Object.keys(nombres_entite.actuel.particules).forEach(entite =>
+    {
+        nombres_entite.actuel.particules[entite] = nombres_entite.initial.particules[entite]
+        prix_entite.actuel.particules[entite] = prix_entite.initial.particules[entite]
+    })
+
+    AffichageEntites();
 }
 
 /*
@@ -62,6 +69,20 @@ function ResetRessources()
 */
 function ResetDensite()
 {
+    ressources.densite = 0;
+}
+
+/*
+
+ */
+function ResetVariable()
+{
+    Object.keys(variables.densite.actuel).forEach(variable =>
+    {
+        variables.densite.actuel[variable] = variables.densite.initial[variable];
+    })
+
+    AfficherVariables();
 
 }
 
@@ -108,5 +129,5 @@ function UnlockCrunch()
 function LockCrunch()
 {
     document.getElementById("bouton_crunch").hidden = true;
-    evenements.crunch.unlocked = false;
+    evenements.crunchUnlock.unlocked = false;
 }

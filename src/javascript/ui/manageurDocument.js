@@ -214,6 +214,17 @@ function AfficherStatistiquesCrunch()
     }
 }
 
+/*
+
+ */
+function AfficherVariables()
+{
+    document.getElementById('valeur_taille').innerText = variables.densite.actuel['taille'].toFixed(0).toString() + '%';
+    document.getElementById('valeur_diviseurMassique').innerText = variables.densite.actuel['diviseurMassique'].toFixed(2).toString() + '%';
+    document.getElementById('valeur_cap').innerText = variables.densite.actuel['cap'].toFixed(0).toString();
+    document.getElementById('valeur_densite_max').innerText = 'x' + variables.densite.actuel['boostDMax'].toFixed(2).toString();
+}
+
 
 /*
 Fonction qui transforme une différence entre deux dates (int en JS) en une chaîne de caractères.

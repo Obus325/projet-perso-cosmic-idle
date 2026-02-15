@@ -12,8 +12,8 @@ async function Tick(params)
         statistiques.tickPrecedent = TickActuel;
 
         production = CalculerProduction();
-        if (challenges.EnCours == 15) ressources['particules'] += Math.sqrt((variables['densite']['vitesse'] * ressources['densitepc']) * production *0.01);
-        else ressources['particules'] += (variables['densite']['vitesse'] * ressources['densitepc']) * production *0.01;
+        if (challenges.EnCours == 15) ressources.particules += Math.sqrt((variables.densite.actuel.vitesse * ressources.densitepc) * production *0.01);
+        else ressources.particules += (variables.densite.actuel.vitesse * ressources.densitepc) * production *0.01;
         
         
         GestionDensite();
@@ -34,11 +34,11 @@ async function Tick(params)
 */
 function CalculerProduction()
 {
-    let entites = Object.keys(nombres_entite['actuel']['particules']);
+    let entites = Object.keys(nombres_entite.actuel.particules);
     production = 0
     for (let i = 0; i < entites.length; i++)
     {
-        production += nombres_entite['actuel']['particules'][entites[i]];
+        production += nombres_entite.actuel.particules[entites[i]];
 
     }
     return production
