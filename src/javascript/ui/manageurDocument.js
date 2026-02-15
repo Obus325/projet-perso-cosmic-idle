@@ -40,8 +40,7 @@ function ChangerRessource()
     cle = cles.indexOf(document.getElementById("monnaie_globale").innerText);
     cle = ++cle % cles.length;
     document.getElementById("monnaie_globale").innerText = cles[cle];
-    document.getElementById("valeur_globale").innerText = ressources[cles[cle]]
-
+    AfficherRessourceGlobale(cles[cle]);
 }
 
 /*
@@ -56,7 +55,14 @@ function AfficherRessources()
     {
         document.getElementById("valeur_densité").innerText = ressources['densitepc'].toFixed(0).toString() + "%";
     }
-    document.getElementById("valeur_globale").innerText = ressources[document.getElementById("monnaie_globale").innerText];
+    AfficherRessourceGlobale(document.getElementById("monnaie_globale").innerText);
+}
+
+function AfficherRessourceGlobale(nomRessource)
+{
+    let decimales = 0;
+    if (nomRessource.includes("densite")) decimales = 2;
+    document.getElementById("valeur_globale").innerText = ressources[nomRessource].toFixed(decimales).toString();
 }
 
 /*
@@ -101,7 +107,7 @@ function AfficherSousOnglets(onglet)
         if (ongletsVisibles['sous_onglets'][onglet][sousOnglets[j]])
         {
 
-            AfficherOnglet(ongletsVisibles['sous_onglets'][onglet][sousOnglets[j]], "bouton_sous_onglet_"+ onglet +"_"+ sousOnglets[j])  
+            AfficherOnglet(ongletsVisibles['sous_onglets'][onglet][sousOnglets[j]], "bouton_sous_onglet_"+ onglet +"_"+ sousOnglets[j])
         }
     }
 }
@@ -165,11 +171,20 @@ function ActualiserPaliers()
 }
 
 /*
+
+*/
+function AfficherStatistiques()
+{
+    AfficherStatistiquesTemps();
+    AfficherStatistiquesCrunch();
+}
+
+/*
 Fonction permettant d'actualiser les statistiques.
 IN : récupère la valeur de certains objets.
 OUT : met à jour l'onglet statistique.
 */ 
-function AfficherStatistiques()
+function AfficherStatistiquesTemps()
 {
     //console.log('stats')
     dateActuelle = Date.now();
@@ -178,6 +193,25 @@ function AfficherStatistiques()
 
     TempsEnTexte('tempsEnJeu', statistiques.tempsEnJeu);
     
+}
+
+/*
+
+*/
+function AfficherStatistiquesCrunch()
+{
+    document.getElementById("nombreCrunchs").innerText = statistiques.nombreCrunchs;
+    for (let i = 0; i <10; i++)
+    {
+        if (statistiques["crunchsPrecedents"][i]["tick"] == 0)
+        {
+            document.getElementById("crunch-"+(i+1)).innerText = "non realise";
+        }
+        else
+        {
+            TempsEnTexte("crunch-"+(i+1), statistiques["crunchsPrecedents"][i]["duree"]);
+        }
+    }
 }
 
 
@@ -228,6 +262,7 @@ function Sauvegarder()
     save.ressources = ressources;
     save.variables = variables;
     save.ongletsVisibles = ongletsVisibles;
+    //save.onglet_actuel = onglet_actuel;
     save.statistiques = statistiques;
     save.challenges = challenges;
     
@@ -252,7 +287,7 @@ function RecupererSauvegarde(sauvegarde)
         try {
             objetLocal = JSON.parse(sauvegardeLocale);
         } catch(erreur) {
-            console.warn("Save corrompue ou invalide, on l'ignore :", erreur);
+            console.warn("Save corrompue ou invalide :", erreur);
             return;
         }
 
@@ -261,6 +296,7 @@ function RecupererSauvegarde(sauvegarde)
         if (objetLocal.ressources) Object.assign(ressources, objetLocal.ressources);
         if (objetLocal.variables) Object.assign(variables, objetLocal.variables);
         if (objetLocal.ongletsVisibles) Object.assign(ongletsVisibles, objetLocal.ongletsVisibles);
+        //if (objetLocal.onglet_actuel) Object.assign(onglet_actuel, objetLocal.onglet_actuel)
         if (objetLocal.statistiques) Object.assign(statistiques, objetLocal.statistiques);
         if (objetLocal.challenges) Object.assign(challenges, objetLocal.challenges);
     }

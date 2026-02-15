@@ -157,6 +157,8 @@ const ongletsVisibles =
 
         statistiques :
         {
+            temps : true,
+            crunch : true,
         },
         
     }
@@ -177,7 +179,20 @@ const statistiques =
 {
     dateCreation : 0,
     tempsEnJeu : 0,
-    
+    nombreCrunchs : 0,
+    crunchsPrecedents :
+    {
+        0 : {duree : 0, tick :0},
+        1 : {duree : 0, tick :0},
+        2 : {duree : 0, tick :0},
+        3 : {duree : 0, tick :0},
+        4 : {duree : 0, tick :0},
+        5 : {duree : 0, tick :0},
+        6 : {duree : 0, tick :0},
+        7 : {duree : 0, tick :0},
+        8 : {duree : 0, tick :0},
+        9 : {duree : 0, tick :0},
+    },
     //recherche d'une meilleure solution en cours.
     tickPrecedent : 0,
 }
@@ -228,5 +243,16 @@ const challenges =
                 debloque : false
             }
         },
+    }
+}
+
+const evenements =
+{
+    crunch :
+    {
+        unlocked : false,
+        condition : function() { return ressources.particules > 1000; },
+        recompense : UnlockCrunch,
+        parametre : null,
     }
 }

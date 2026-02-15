@@ -12,7 +12,11 @@ function Start()
     setInterval(Tick, 200);
     AffichageEntites();
     document.getElementById("valeur_particules").innerText = ressources['particules'].toString();
+    console.log(onglet_actuel);
     AfficherJeu();
+    AfficherStatistiques();
+
+
 }
 
 
@@ -128,7 +132,9 @@ function Augmenter(chemin, objet, valeur)
     chemin[objet] += valeur;
 }
 
+/*
 
+*/
 function StartChallenge(challenge)
 {
     if (challenges.EnCours != 0) Crunch();
@@ -147,6 +153,9 @@ function StartChallenge(challenge)
 
 }
 
+/*
+
+*/
 function ExitChallenge()
 {
     if (challenges.EnCours == 0) return;
@@ -162,4 +171,22 @@ function ExitChallenge()
 
     challenges.EnCours = 0;
     document.getElementById('challenge_actuel').innerText = 0;
+}
+
+
+
+/*
+
+ */
+function GestionEvents()
+{
+    let events = Object.values(evenements)
+    events.forEach(event =>
+    {
+        if (!event.unlocked && event.condition())
+        {
+            event.unlocked = true;
+            event.recompense()
+        }
+    })
 }

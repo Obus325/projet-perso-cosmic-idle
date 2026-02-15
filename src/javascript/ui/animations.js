@@ -1,5 +1,9 @@
 // Animation des étoiles scintillantes en arrière-plan
 window.onresize = CreateStar;
+
+/*
+
+*/
 function CreateStar()
 {
     let fond = document.getElementById("etoiles");

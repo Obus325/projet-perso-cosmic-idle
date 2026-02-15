@@ -21,9 +21,10 @@ async function Tick(params)
         AfficherRessources();
         if (onglet_actuel.onglet_actuel == 'contenu_statistiques')
         {
-            AfficherStatistiques();
+            AfficherStatistiquesTemps();
         }
-        
+
+        GestionEvents();
 
     }
 }
