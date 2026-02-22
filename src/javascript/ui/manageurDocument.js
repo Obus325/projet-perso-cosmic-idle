@@ -207,5 +207,5 @@ function ChargerFichiersHTML()
     ChargerHTML("contenus_onglets", "HTML/contenu_crunch.html");
     ChargerHTML("contenus_onglets", "HTML/contenu_challenges.html");
     ChargerHTML("contenus_onglets", "HTML/contenu_statistiques.html");
-    console.log("fini")
+
 }

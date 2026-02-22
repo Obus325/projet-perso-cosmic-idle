@@ -40,4 +40,17 @@ function Stop()
     run.running = !run.running;
 }
 
-window.onload = Start;
+window.onload = function()
+{
+
+    Promise.all([
+        ChargerHTML("contenus_onglets", "HTML/contenu_entites.html"),
+        ChargerHTML("contenus_onglets", "HTML/contenu_equilibre.html"),
+        ChargerHTML("contenus_onglets", "HTML/contenu_crunch.html"),
+        ChargerHTML("contenus_onglets", "HTML/contenu_challenges.html"),
+        ChargerHTML("contenus_onglets", "HTML/contenu_statistiques.html")
+    ]).then(() => {
+        Start(); // maintenant le DOM existe vraiment
+    });
+
+};

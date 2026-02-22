@@ -6,7 +6,6 @@ OUT : instancie le jeu, les variables, et remet la page prête pour reprendre le
 */ 
 function Start()
 {
-    ChargerFichiersHTML();
     console.log("suivant")
     RecupererSauvegarde("save");
     CreateStar();
@@ -17,9 +16,6 @@ function Start()
     AfficherJeu();
     AffichageEntites();
     AfficherStatistiques();
-
-
-
 }
 
 /*
