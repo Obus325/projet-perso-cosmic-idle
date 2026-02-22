@@ -6,15 +6,18 @@ OUT : instancie le jeu, les variables, et remet la page prête pour reprendre le
 */ 
 function Start()
 {
+    ChargerFichiersHTML();
+    console.log("suivant")
     RecupererSauvegarde("save");
     CreateStar();
     statistiques.tickPrecedent = Date.now();
     setInterval(Tick, 200);
-    AffichageEntites();
     document.getElementById("valeur_particules").innerText = ressources.particules.toString();
     console.log(onglet_actuel);
     AfficherJeu();
+    AffichageEntites();
     AfficherStatistiques();
+
 
 
 }

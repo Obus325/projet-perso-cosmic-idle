@@ -1,0 +1,45 @@
+<div class="contenu_onglets" id="contenu_challenges" hidden>
+    <!-- menu des sous-onglets des challenges-->
+    <button class="sous_onglet_button" id="bouton_sous_onglet_challenges_particules" onclick="ChangerSousOnglet('sous_onglet_challenges_particules')"> particules </button>
+    <button class="sous_onglet_button" id="bouton_sous_onglet_challenges_crunch" onclick="ChangerSousOnglet('sous_onglet_challenges_crunch')"> crunch </button>
+
+    <div class="sous_onglets" id="sous_onglet_challenges_particules" hidden>
+        <!-- contenu du sous onglet des premiers challenges -->
+        challenges particules (visuel à modifier)
+        challenge en cours : <span id="challenge_actuel">0</span>
+        <div class="challenge" id="challenge_11">
+            <button onclick="StartChallenge(11)">démarrer challenge 1</button>
+        </div>
+
+        <div class="challenge" id="challenge_12">
+            <button onclick="StartChallenge(12)">démarrer challenge 2</button>
+        </div>
+
+        <div class="challenge" id="challenge_13">
+            <button onclick="StartChallenge(13)">démarrer challenge 3</button>
+        </div>
+
+        <div class="challenge" id="challenge_14">
+            <button onclick="StartChallenge(14)">démarrer challenge 4</button>
+        </div>
+
+        <div class="challenge" id="challenge_15">
+            <button onclick="StartChallenge(15)">démarrer challenge 5</button>
+        </div>
+
+        <div class="challenge" id="challenge_0">
+            <button onclick="if(challenges.EnCours != 0) Crunch()">quitter challenge actuel</button>
+        </div>
+    </div>
+    <!-- fin du sous onglet -->
+
+
+
+
+    <div class="sous_onglets" id="sous_onglet_challenges_crunch" hidden>
+        <!-- contenu du sous onglet des seconds challenges -->
+        challenges crunch
+    </div>
+    <!-- fin du sous onglet -->
+
+</div>

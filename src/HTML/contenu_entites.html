@@ -1,0 +1,74 @@
+<div class="onglet_contenu" id="contenu_particules">
+    <!-- menu des sous-onglets de base-->
+    <button class="sous_onglet_button" id="bouton_sous_onglet_particules_base" onclick="ChangerSousOnglet('sous_onglet_particules_base')" hidden>particules</button>
+    <button class="sous_onglet_button" id="bouton_sous_onglet_particules_crunch" onclick="ChangerSousOnglet('sous_onglet_particules_crunch')" hidden>prestige 1</button>
+    <button class="sous_onglet_button" id="bouton_sous_onglet_particules_p2" onclick="ChangerSousOnglet('sous_onglet_particules_p2')" hidden>prestige 2</button>
+
+    <!-- contenu du sous_onglet principal -->
+    <div class="sous_onglets" id="sous_onglet_particules_base">
+        <div class = "barre_achat" id = "atome">
+            <span class="text_progress">atome (<span id ="nombre_atome">0</span>)</span>
+            <div class="progress">
+                <div class="progress_bar" id="barre_atome"></div>
+                <button class="buy_button" id="buy_atome" onclick="Acheter('atome', 1)">
+                    <span id="prix_atome">0</span> particules
+                </button>
+            </div>
+        </div>
+
+        <div class = "barre_achat" id = "nebuleuse">
+            <span class="text_progress">nebuleuse (<span id ="nombre_nebuleuse">0</span>)</span>
+            <div class="progress">
+                <div class="progress_bar" id="barre_nebuleuse"></div>
+                <button class="buy_button" id="buy_nebuleuse" onclick="Acheter('nebuleuse', 1)">
+                    <span id="prix_nebuleuse">0</span> particules
+                </button>
+            </div>
+        </div>
+
+        <div class = "barre_achat" id = "etoile">
+            <span class="text_progress">etoile (<span id ="nombre_etoile">0</span>)</span>
+            <div class="progress">
+                <div class="progress_bar" id="barre_etoile"></div>
+                <button class="buy_button" id="buy_etoile" onclick="Acheter('etoile', 1)">
+                    <span id="prix_etoile">0</span> particules
+                </button>
+            </div>
+        </div>
+
+        <div class = "barre_achat" id = "constellation">
+            <span class="text_progress">constellation (<span id ="nombre_constellation">0</span>)</span>
+            <div class="progress">
+                <div class="progress_bar" id="barre_constellation"></div>
+                <button class="buy_button" id="buy_constellation" onclick="Acheter('constellation', 1)">
+                    <span id="prix_constellation">0</span> particules
+                </button>
+            </div>
+        </div>
+
+        <div class = "barre_achat" id = "galaxie">
+            <span class="text_progress">galaxie (<span id ="nombre_galaxie">0</span>)</span>
+            <div class="progress">
+                <div class="progress_bar" id="barre_galaxie"></div>
+                <button class="buy_button" id="buy_galaxie" onclick="Acheter('galaxie', 1)">
+                    <span id="prix_galaxie">0</span> particules
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- fin du sous onglet principal-->
+
+    <!-- contenu du sous_onglet <à venir> (présumé crunch) -->
+    <div class="sous_onglets" id="sous_onglet_particules_crunch" hidden>
+        onglet en travaux (présumé crunch)
+    </div>
+    <!-- fin du sous onglet 'nom à venir'-->
+
+    <!-- contenu du sous_onglet <à venir> (présumé prestige 2) -->
+    <div class="sous_onglets" id="sous_onglet_particules_p2" hidden>
+        onglet en travaux (présumé prestige 2)
+    </div>
+    <!-- fin du sous onglet <à venir> (présumé prestige 2)-->
+
+</div>
+<!-- fin de l'onglet des particules -->

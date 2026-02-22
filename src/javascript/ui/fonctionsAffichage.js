@@ -33,7 +33,9 @@ function AffichageEntites()
     let entites = Object.keys(nombres_entite['actuel']['particules']);
     for (let i = 0; i < entites.length; i++)
     {
-        document.getElementById("nombre_" + entites[i] ).innerText = nombres_entite['actuel']['particules'][entites[i]];
+        console.log("nombre_" + entites[i], document.getElementById("nombre_" + entites[i] ), nombres_entite.actuel.particules[entites[i]])
+        document.getElementById("nombre_" + entites[i] ).innerText = nombres_entite.actuel.particules[entites[i]];
+        console.log("oui")
         document.getElementById("prix_" + entites[i]).innerText = prix_entite['actuel']['particules'][entites[i]];
         AfficherRessources();
         document.getElementById("barre_" + entites[i]).style.width = ((nombres_entite['actuel']['particules'][entites[i]] % 10) * 10) + "%";
@@ -83,7 +85,7 @@ function AfficherJeu()
         if (ongletsVisibles['menu'][onglets[i]])
         {
             AfficherOnglet(ongletsVisibles['menu'][onglets[i]], "onglet_" + onglets[i])
-            AfficherSousOnglets(onglets[i]);
+            //AfficherSousOnglets(onglets[i]);
         }
     }
 }
@@ -134,4 +136,15 @@ function AfficherVariables()
     document.getElementById('valeur_diviseurMassique').innerText = variables.densite.actuel['diviseurMassique'].toFixed(2).toString() + '%';
     document.getElementById('valeur_cap').innerText = variables.densite.actuel['cap'].toFixed(0).toString();
     document.getElementById('valeur_densite_max').innerText = 'x' + variables.densite.actuel['boostDMax'].toFixed(2).toString();
+}
+
+/*
+
+ */
+function ChargerHTML(idContainer, fichier) {
+    fetch(fichier)
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById(idContainer).innerHTML += html;
+        });
 }

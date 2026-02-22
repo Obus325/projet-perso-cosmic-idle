@@ -1,0 +1,124 @@
+<div class="contenu_onglets" id="contenu_equilibre" hidden>
+    <!-- menu des sous-onglets de l'équilibre-->
+    <button class="sous_onglet_button" id="bouton_sous_onglet_densite_densite" onclick="ChangerSousOnglet('sous_onglet_densite_base')"> équilibre </button>
+    <button class="sous_onglet_button" id="bouton_sous_onglet_densite_progression" onclick="ChangerSousOnglet('sous_onglet_densite_echelle')" hidden> progression </button>
+    <!--<button class="sous_onglet_button" id="onglet_statistiques" onclick="ChangerSousOnglet('sous_onglet_particules_p2')"> prestige 2 </button> non utilisé pour le moment-->
+
+    <div class="sous_onglets" id="sous_onglet_densite_base" hidden>
+        <!-- contenu du sous onglet "équilibre de l'univers" -->
+        densité de l'univers : <span class="valeur" id="valeur_densité">0</span>
+        <span class="text_progress"> </span>
+        <div class="progress">
+            <div class="progress_bar" id="pourcent_densite"></div>
+        </div>
+
+
+        <table class="equilibre table_ameliorations">
+            <tr>
+                <td class="amelioration_equilibre">
+                    <button class="buy_button amelioration" id = "ameliorer_taille"
+                            onclick="Amelioration('augmenterpc', 1.1, variables.densite.actuel, 'taille'); AfficherVariables();">
+                        augmenter la taille de l'univers de 10% <br> actuellement : <span id="valeur_taille"> 100 </span>
+                    </button>
+                </td>
+                <td class="amelioration_equilibre">
+                    <button class="buy_button amelioration" id = "ameliorer_diviseur"
+                            onclick="Amelioration('augmenterpc', 0.95, variables.densite.actuel, 'diviseurMassique'); AfficherVariables();">
+                        diminuer le réducteur de masse de 5 % <br> actuellement : <span id="valeur_diviseurMassique"> 1 </span>
+                    </button>
+                </td>
+                <td class="amelioration_equilibre">
+                    <button class="buy_button amelioration" id = "ameliorer_cap"
+                            onclick="Amelioration('augmenter', 10, variables.densite.actuel, 'cap'); AfficherVariables();">
+                        augmenter le cap de densité de 10 <br> actuellement : <span id="valeur_cap"> 100 </span>
+                    </button>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="amelioration_equilibre">
+                    <button class="buy_button amelioration" id = "acheter_automate"> acheter un nouvel automate (WIP)</button>
+                </td>
+                <td class="amelioration_equilibre">
+                    <button class="buy_button amelioration" id = "ameliorer_particulesD" onclick="Amelioration('augmenterpc', 1.01)"> obtenir 1% plus de particules de densité par seconde (WIP)</button>
+                </td>
+                <td class="amelioration_equilibre">
+                    <button class="buy_button amelioration" id = "ameliorer_dmax"
+                            onclick="Amelioration('augmenterpc', 1.05, variables.densite.actuel, 'boostDMax'); AfficherVariables(); ressources.densite_max *= 1.05;">
+                        obtenir un boost à la densité maximum de 5% <br> actuellement : <span id="valeur_densite_max"> x1 </span>
+                    </button>
+                </td>
+            </tr>
+
+
+        </table>
+
+    </div>
+    <!-- fin du sous onglet principal de densité -->
+
+
+
+
+    <div class="sous_onglets" id="sous_onglet_densite_echelle" hidden>
+        <!-- contenu du sous onglet sur l'échelle de la densité max -->
+        <table class="equilibre table_ameliorations" style="margin-top: 50px;">
+
+            <tr class="palier_densite">
+                <td class="indicateur_palier">
+                    débloquer ??? (à déterminer)
+                </td>
+
+                <td class="palier" id="palier_5">
+                    <span id="valeur_palier_5">700</span>
+                </td>
+            </tr>
+
+            <tr class="palier_densite">
+                <td class="indicateur_palier">
+                    débloquer ??? (à déterminer)
+                </td>
+
+                <td class="palier" id="palier_4">
+                    <span id="valeur_palier_4">140</span>
+                </td>
+            </tr>
+
+
+            <tr class="palier_densite">
+                <td class="indicateur_palier">
+                    débloquer ??? (à déterminer)
+                </td>
+
+                <td class="palier" id="palier_3">
+                    <span id="valeur_palier_3">35</span>
+                </td>
+            </tr>
+
+            <tr class="palier_densite">
+                <td class="indicateur_palier">
+                    débloquer ??? (à déterminer)
+                </td>
+
+                <td class="palier" id="palier_2">
+                    <span id="valeur_palier_2">10</span>
+                </td>
+            </tr>
+
+            <tr class="palier_densite">
+                <td class="indicateur_palier">
+                    débloquer ??? (à déterminer)
+                </td>
+
+                <td class="palier" id="palier_1">
+                    <div class="progress_bar_palier" id="barre_paliers" style="height: 150%;"></div>
+                    <span id="valeur_palier_1">3</span>
+                </td>
+            </tr>
+
+
+
+        </table>
+    </div>
+    <!-- fin du sous onglet de l'échelle-->
+
+</div>

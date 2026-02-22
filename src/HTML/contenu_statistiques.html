@@ -1,0 +1,54 @@
+<div class="contenu_onglets" id="contenu_statistiques" hidden>
+    <!-- contenu de l’onglet "statistiques" -->
+    <button class="sous_onglet_button" id="bouton_sous_onglet_statistiques_temps" onclick="ChangerSousOnglet('sous_onglet_statistiques_temps')"> temps </button>
+    <button class="sous_onglet_button" id="bouton_sous_onglet_statistiques_crunch" onclick="ChangerSousOnglet('sous_onglet_statistiques_crunch')"> crunch </button>
+
+    <div class="sous_onglets" id="sous_onglet_statistiques_temps" hidden>
+        <!-- -->
+        <!-- les NaN servent de placeholder pour la première apparition de l'onglet (à améliorer)-->
+        <p id="p_tempsDepuisCreation"> temps depuis creation : <span id="tempsDepuisCreation"> NaN </span> </p>
+        <p id="p_tempsEnJeu"> temps en jeu : <span id="tempsEnJeu"> NaN </span> </p>
+    </div>
+
+    <div class="sous_onglets" id="sous_onglet_statistiques_crunch" hidden>
+        <p id="p_nombreCrunchs"> Crunchs : <span id="nombreCrunchs"> 0 </span> </p>
+        <br>
+        <table>
+            <thead>
+            les 10 derniers crunchs :<br>
+            </thead>
+            <tbody>
+            <tr>
+                1 : <span id="crunch-1"> non réalisé </span><br>
+            </tr>
+            <tr>
+                2 : <span id="crunch-2"> non réalisé </span><br>
+            </tr>
+            <tr>
+                3 : <span id="crunch-3"> non réalisé </span><br>
+            </tr>
+            <tr>
+                4 : <span id="crunch-4"> non réalisé </span><br>
+            </tr>
+            <tr>
+                5 : <span id="crunch-5"> non réalisé </span><br>
+            </tr>
+            <tr>
+                6 : <span id="crunch-6"> non réalisé </span><br>
+            </tr>
+            <tr>
+                7 : <span id="crunch-7"> non réalisé </span><br>
+            </tr>
+            <tr>
+                8 : <span id="crunch-8"> non réalisé </span><br>
+            </tr>
+            <tr>
+                9 : <span id="crunch-9"> non réalisé </span><br>
+            </tr>
+            <tr>
+                10 : <span id="crunch-10"> non réalisé </span><br>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
