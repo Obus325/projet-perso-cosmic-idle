@@ -23,18 +23,26 @@ Fonction permettant d'effectuer un achat, effectue les vérifications nécessair
 IN : l'objet à acheter et la quantité.
 OUT : met à jour la valeur de l'objet acheté et de la ressource dépensée.
 */ 
-function Acheter(entite, nombre)
+function Acheter_entite(entite, nombre)
 {
     if (challenges.EnCours == 12 && (entite == 'constellation' || entite == 'galaxie'))return;
-    if (ressources.particules >= prix_entite.actuel.particules[entite])
+    nombres_entite.actuel.particules[entite] += nombre;
+    if (nombres_entite.actuel.particules[entite] % 10 == 0)
     {
-        ressources.particules -= prix_entite.actuel.particules[entite];
-        nombres_entite.actuel.particules[entite] += nombre;
-        if (nombres_entite.actuel.particules[entite] % 10 == 0)
-        {
-            prix_entite.actuel.particules[entite] *= prix_entite.increment.particules[entite];
-        }
-        AffichageEntites();
+        prix_entite.actuel.particules[entite] *= prix_entite.increment.particules[entite];
+    }
+    AffichageEntites();
+}
+
+/*
+
+*/
+function Achat(recompense, parametres, ressource, cleRessource, prix)
+{
+    if (ressource[cleRessource] >= prix)
+    {
+        ressource[cleRessource] -= prix;
+        recompense(...parametres);
     }
 }
 
@@ -77,28 +85,9 @@ function GestionPaliersDensiteMax()
 }
 
 /*
-Fonction permettant d'appeler la fonction d'un bouton d'amélioration.
-IN : le type d'amélioration (string) et sa valeur (float).
-OUT : appelle la fonction nécessaire
-*/ 
-
-function Amelioration(type, valeur, chemin, objet)
-{
-    switch (type)
-    {
-        case "augmenterpc" :
-            AugmenterPourcent(chemin, objet, valeur);
-            break;
-        case "augmenter" :
-            Augmenter(chemin, objet, valeur)
-            break;
-    }
-}
-
-/*
 
 */ 
-function AugmenterPourcent(chemin, objet, valeur)
+function AugmenterPourcent(valeur, chemin, objet)
 {
     chemin[objet] *= valeur;
 }
@@ -106,7 +95,7 @@ function AugmenterPourcent(chemin, objet, valeur)
 /*
 
 */ 
-function Augmenter(chemin, objet, valeur)
+function Augmenter(valeur, chemin, objet)
 {
     chemin[objet] += valeur;
 }

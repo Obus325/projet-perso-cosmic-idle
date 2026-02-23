@@ -17,19 +17,19 @@
             <tr>
                 <td class="amelioration_equilibre">
                     <button class="buy_button amelioration" id = "ameliorer_taille"
-                            onclick="Amelioration('augmenterpc', 1.1, variables.densite.actuel, 'taille'); AfficherVariables();">
+                            onclick="Achat(AugmenterPourcent, [1.1, variables.densite.actuel, 'taille'], ressources, 'equilibrium',  0); AfficherVariables();">
                         augmenter la taille de l'univers de 10% <br> actuellement : <span id="valeur_taille"> 100 </span>
                     </button>
                 </td>
                 <td class="amelioration_equilibre">
                     <button class="buy_button amelioration" id = "ameliorer_diviseur"
-                            onclick="Amelioration('augmenterpc', 0.95, variables.densite.actuel, 'diviseurMassique'); AfficherVariables();">
+                            onclick="Achat(AugmenterPourcent, [0.95, variables.densite.actuel, 'diviseurMassique'], ressources, 'equilibrium',  0); AfficherVariables();">
                         diminuer le réducteur de masse de 5 % <br> actuellement : <span id="valeur_diviseurMassique"> 1 </span>
                     </button>
                 </td>
                 <td class="amelioration_equilibre">
                     <button class="buy_button amelioration" id = "ameliorer_cap"
-                            onclick="Amelioration('augmenter', 10, variables.densite.actuel, 'cap'); AfficherVariables();">
+                            onclick="Achat(Augmenter, [10, variables.densite.actuel, 'cap'], ressources, 'equilibrium',  0); AfficherVariables();">
                         augmenter le cap de densité de 10 <br> actuellement : <span id="valeur_cap"> 100 </span>
                     </button>
                 </td>
@@ -40,11 +40,11 @@
                     <button class="buy_button amelioration" id = "acheter_automate"> acheter un nouvel automate (WIP)</button>
                 </td>
                 <td class="amelioration_equilibre">
-                    <button class="buy_button amelioration" id = "ameliorer_particulesD" onclick="Amelioration('augmenterpc', 1.01)"> obtenir 1% plus de particules de densité par seconde (WIP)</button>
+                    <button class="buy_button amelioration" id = "ameliorer_particulesD" onclick=""> obtenir 1% plus de particules de densité par seconde (WIP)</button>
                 </td>
                 <td class="amelioration_equilibre">
                     <button class="buy_button amelioration" id = "ameliorer_dmax"
-                            onclick="Amelioration('augmenterpc', 1.05, variables.densite.actuel, 'boostDMax'); AfficherVariables(); ressources.densite_max *= 1.05;">
+                            onclick="Achat(AugmenterPourcent, [1.05, variables.densite.actuel, 'boostDMax'], ressources, 'equilibrium',  0); AfficherVariables(); ressources.densite_max *= 1.05;">
                         obtenir un boost à la densité maximum de 5% <br> actuellement : <span id="valeur_densite_max"> x1 </span>
                     </button>
                 </td>
