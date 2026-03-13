@@ -40,6 +40,10 @@ function Stop()
     run.running = !run.running;
 }
 
+
+/*
+création de la page au chargement
+ */
 window.onload = function()
 {
 
@@ -50,7 +54,7 @@ window.onload = function()
         ChargerHTML("contenus_onglets", "HTML/contenu_challenges.html"),
         ChargerHTML("contenus_onglets", "HTML/contenu_statistiques.html")
     ]).then(() => {
-        Start(); // maintenant le DOM existe vraiment
+        Start();
     });
 
 };

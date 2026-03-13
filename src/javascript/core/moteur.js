@@ -35,7 +35,9 @@ function Acheter_entite(entite, nombre)
 }
 
 /*
-
+Fonction de gestion des achats
+IN : recompense (fonction), parametres (liste), ressource (objet ressource sans la cle), cleRessource (string pour appeler l'objet), prix (number)
+OUT : appelle la récompense si la condition est remplie
 */
 function Achat(recompense, parametres, ressource, cleRessource, prix)
 {
@@ -47,7 +49,9 @@ function Achat(recompense, parametres, ressource, cleRessource, prix)
 }
 
 /*
-
+Fonction de gestion de la densité
+IN : rien
+OUT : rien
 */ 
 function GestionDensite()
 {
@@ -64,7 +68,9 @@ function GestionDensite()
 
 
 /*
-
+Fonction de gestion de la densité maximale atteinte
+IN : rien
+OUT : rien
 */ 
 function GestionDensiteMax()
 {
@@ -77,7 +83,9 @@ function GestionDensiteMax()
 }
 
 /* 
-
+Fonction en travaux
+IN : rien
+OUT : rien
 */
 function GestionPaliersDensiteMax()
 {
@@ -85,7 +93,9 @@ function GestionPaliersDensiteMax()
 }
 
 /*
-
+Fonction d'augmentation par multiplication
+IN : valeur (number), chemin (objet sans sa cle), objet (string cle d'appel)
+OUT : modifie la valeur de l'objet
 */ 
 function AugmenterPourcent(valeur, chemin, objet)
 {
@@ -93,7 +103,9 @@ function AugmenterPourcent(valeur, chemin, objet)
 }
 
 /*
-
+Fonction d'augmentation par addition
+IN : valeur (number), chemin (objet sans sa cle), objet (string cle d'appel)
+OUT : modifie la valeur de l'objet
 */ 
 function Augmenter(valeur, chemin, objet)
 {
@@ -101,7 +113,9 @@ function Augmenter(valeur, chemin, objet)
 }
 
 /*
-
+Fonction de vérification de tous les "évènements" (de l'objet évènement) probables
+IN : rien
+OUT : rien
  */
 function GestionEvents()
 {

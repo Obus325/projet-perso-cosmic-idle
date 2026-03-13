@@ -14,7 +14,9 @@ function AfficherRessources()
 }
 
 /*
-
+Fonction affichant la valeur de la ressource épinglée (en coin)
+IN : le nom de la ressource épinglée
+OUT : met à jour l'affichage
  */
 function AfficherRessourceGlobale(nomRessource)
 {
@@ -25,7 +27,7 @@ function AfficherRessourceGlobale(nomRessource)
 
 /*
 Fonction permettant d'afficher les informations des entites de base.
-IN : none.
+IN : rien.
 OUT : met à jour l'affichage.
 */
 function AffichageEntites()
@@ -55,7 +57,9 @@ function AfficherOnglet(chemin, onglet)
 }
 
 /*
-
+Fonction permettant d'afficher dans un onglet le bouton d'un sous onglet nouvellement débloqué
+IN : le bouton à afficher (onglet)
+OUT : modifie la page
 */
 function AfficherSousOnglets(onglet)
 {
@@ -89,7 +93,9 @@ function AfficherJeu()
 }
 
 /*
-
+Fonction d'affichage des paliers de densité
+IN : rien
+OUT : met à jour la page
 */
 function AfficherPaliersDensiteMax()
 {
@@ -101,7 +107,9 @@ function AfficherPaliersDensiteMax()
 }
 
 /*
-
+Fonction de gestion de l'affichage des statistiques
+IN : rien
+OUT : rien
 */
 function AfficherStatistiques()
 {
@@ -126,7 +134,9 @@ function AfficherStatistiquesTemps()
 }
 
 /*
-
+Fonction d'affichage des variables dans les boutons de densité
+IN : rien
+OUT : met à jour la page
  */
 function AfficherVariables()
 {
@@ -137,7 +147,9 @@ function AfficherVariables()
 }
 
 /*
-
+Fonction pour récupérer les fichiers HTML des composants
+IN : le container der réception (id), et le composant (fichier)
+OUT : ajoute l'HTML du composant dans le container et le renvoie
  */
 function ChargerHTML(idContainer, fichier) {
     return fetch(fichier)

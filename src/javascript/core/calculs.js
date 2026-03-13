@@ -1,5 +1,7 @@
 /*
-
+Fonction de calcul de la production de particules
+IN : l'état du jeu
+OUT : la production (number)
 */
 function CalculerProduction()
 {
@@ -14,7 +16,9 @@ function CalculerProduction()
 }
 
 /*
-
+Fonction de calcul de la densité
+IN : l'état du jeu
+OUT : la densité actuelle (number)
 */
 function CalculerDensite()
 {
@@ -31,4 +35,23 @@ function CalculerDensite()
     let densiteActuelle = densiteBrute * variables.densite.actuel.alpha + ressources.densite * (1-variables.densite.actuel.alpha);
     densiteActuelle = Math.min(densiteActuelle*100, variables.densite.actuel.cap)/100;
     return densiteActuelle;
+}
+
+/*
+Fonction de calcul du palier atteint le plus haut
+IN : l'état du jeu
+OUT : palier le plus haut (int)
+*/
+function DernierPalierAtteint()
+{
+    let palierActuel = 0;
+    for (let i = 0; i < Object.keys(paliers).length; i++)
+    {
+        if (ressources['densite_max'] >= paliers[i])
+        {
+            palierActuel = i;
+        }
+    }
+    return palierActuel;
+
 }

@@ -84,7 +84,7 @@ const ressources =
     densite : 0,
     densitepc : 0,
     densite_max : 0,
-    equilibrium : 0, // -4x²+4x
+    equilibrium : 0, // -4x²+4x à implémenter
     timeShards : 0,
 }
 

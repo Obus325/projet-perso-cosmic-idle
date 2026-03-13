@@ -20,7 +20,9 @@ function ChangerOnglet(direction)
 }
 
 /*
-
+Fonction permettant d'afficher un sous onglet.
+IN : le sous onglet cible.
+OUT : affiche le contenu du sous onglet souhaité en masquant le précédant.
 */ 
 function ChangerSousOnglet(direction)
 {
@@ -31,7 +33,7 @@ function ChangerSousOnglet(direction)
 
 /*
 Fonction permettant d'afficher une ressource dans le coin supérieur gauche.
-IN : récupère la valeur de la ressources.
+IN : récupère la valeur de la ressource.
 OUT : met à jour le coin supérieur gauche.
 */ 
 function ChangerRessource()
@@ -45,24 +47,9 @@ function ChangerRessource()
 
 
 /*
-
-*/ 
-function DernierPalierAtteint()
-{
-    let palierActuel = 0;
-    for (let i = 0; i < Object.keys(paliers).length; i++)
-    {
-        if (ressources['densite_max'] >= paliers[i])
-        {
-            palierActuel = i;
-        }
-    }
-    return palierActuel;
-    
-}
-
-/*
-
+Fonction d'affichage des objectifs des paliers de densité
+IN : l'objet "paliers"
+OUT : actualise la sous page des paliers de densite
 */
 function ActualiserPaliers()
 {
@@ -75,7 +62,9 @@ function ActualiserPaliers()
 
 
 /*
-
+Fonction d'affichage des statistiques du crunch
+IN : l'objet statistique
+OUT : actualise la sous page crunch des statistiques
 */
 function AfficherStatistiquesCrunch()
 {
@@ -194,18 +183,4 @@ OUT : supprime la sauvergarde.
 function SupprimerSauvegarde(sauvegarde)
 {
     localStorage.removeItem(sauvegarde);
-}
-
-
-/*
-
- */
-function ChargerFichiersHTML()
-{
-    ChargerHTML("contenus_onglets", "HTML/contenu_entites.html");
-    ChargerHTML("contenus_onglets", "HTML/contenu_equilibre.html");
-    ChargerHTML("contenus_onglets", "HTML/contenu_crunch.html");
-    ChargerHTML("contenus_onglets", "HTML/contenu_challenges.html");
-    ChargerHTML("contenus_onglets", "HTML/contenu_statistiques.html");
-
 }

@@ -16,7 +16,7 @@ const statistiques =
                 8 : {duree : 0, tick :0},
                 9 : {duree : 0, tick :0},
             },
-        //recherche d'une meilleure solution en cours.
+        //TO DO : trouver une solution moins lourde.
         tickPrecedent : 0,
     }
 

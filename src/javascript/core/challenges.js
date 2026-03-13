@@ -1,5 +1,7 @@
 /*
-
+Fonction pour démarrer un challenge
+IN : le numéro du challenge (int)
+OUT : modifie le challenge en cours
 */
 function StartChallenge(challenge)
 {
@@ -20,7 +22,9 @@ function StartChallenge(challenge)
 }
 
 /*
-
+Fonction de sortie du challenge
+IN : rien
+OUT : modifie le challenge en cours à 0
 */
 function ExitChallenge()
 {
@@ -42,25 +46,29 @@ function ExitChallenge()
 }
 
 /*
-
- */
+Fonction de validation d'un challenge
+IN : rien
+OUT : modifie l'objet lié au challenge en cours
+*/
 function ValiderChallenge()
 {
-    console.log("v", Math.floor(challenges.EnCours/10))
     switch (Math.floor(challenges.EnCours/10))
     {
         case 1 :
             console.log("oui")
             if (challenges.particules.defis[challenges.EnCours].condition()) challenges.particules.defis[challenges.EnCours].reussi = true
+
+        //ajouter le case default
     }
 }
 
 /*
-
- */
+Fonction qui vérifie si un ensemble de challenges est completé
+IN : l'étape actuelle (int) qui correspond à l'ensemble de challenges à observer
+OUT : booléen vrai si tous les challenges de l'étape sont à vrai
+*/
 function VerifierChallenges(etape)
 {
-    console.log("r")
     let res = true
     Object.values(challenges[etape].defis).forEach(defi =>
     {

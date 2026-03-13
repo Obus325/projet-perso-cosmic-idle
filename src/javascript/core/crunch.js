@@ -1,5 +1,7 @@
 /*
-
+Fonction de gestion de l'entièreté du crunch
+IN : rien
+OUT : rien
 */
 function Crunch()
 {
@@ -12,7 +14,9 @@ function Crunch()
 }
 
 /*
-
+Fonction qui modifie la ressource time shards
+IN : rien
+OUT : modifie le nombre de time shards
 */
 function ManageTimeShards()
 {
@@ -20,7 +24,9 @@ function ManageTimeShards()
 }
 
 /*
-
+Fonction qui renvoie le nombre de time shards obtenues en un crunch
+IN : rien
+OUT : le nombre de time shards à attribuer (int)
 */
 function TimeShardsGain()
 {
@@ -28,7 +34,9 @@ function TimeShardsGain()
 }
 
 /*
-
+Fonction qui appelle les remises à zéros
+IN : rien
+OUT : rien
 */
 function Reset()
 {
@@ -38,7 +46,9 @@ function Reset()
 }
 
 /*
-
+Fonction qui réinitialise les objets liés aux entités
+IN : l'état du jeu
+OUT : remet les objets liés aux entités à leurs valeurs initiales
 */
 function ResetEntites()
 {
@@ -52,7 +62,9 @@ function ResetEntites()
 }
 
 /*
-
+Fonction qui réinitialise les objets liés aux ressources
+IN : l'état du jeu
+OUT : remet les objets liés aux ressources à leurs valeurs initiales
 */
 function ResetRessources()
 {
@@ -65,7 +77,9 @@ function ResetRessources()
 }
 
 /*
-
+Fonction qui réinitialise les objets liés à l'équilibre
+IN : l'état du jeu
+OUT : remet les objets liés à l'équilibre à leurs valeurs initiales
 */
 function ResetDensite()
 {
@@ -73,7 +87,9 @@ function ResetDensite()
 }
 
 /*
-
+Fonction qui réinitialise les objets liés aux variables de jeu
+IN : l'état du jeu
+OUT : remet les objets liés aux variables de jeu à leurs valeurs initiales
  */
 function ResetVariable()
 {
@@ -87,7 +103,9 @@ function ResetVariable()
 }
 
 /*
-
+Fonction de gestion de l'onglet des statistiques
+IN : rien
+OUT : actualise la page des statistiques
 */
 function GestionStatistiques()
 {
@@ -97,7 +115,9 @@ function GestionStatistiques()
 }
 
 /*
-
+Fonction de gestion du temps de réalisation des 10 derniers crunchs
+IN : utilise l'objet des statistiques
+OUT : actualise l'objet des statistiques
  */
 function GestionTempsCrunch()
 {
@@ -119,13 +139,20 @@ function GestionTempsCrunch()
 }
 
 /*
-
+Fonction déverrouille le bouton pour cruncher
+IN : rien
+OUT : rien
  */
 function UnlockCrunch()
 {
     document.getElementById("bouton_crunch").hidden = false;
 }
 
+/*
+Fonction déverrouille le bouton pour cruncher
+IN : rien
+OUT : rien
+ */
 function LockCrunch()
 {
     document.getElementById("bouton_crunch").hidden = true;
