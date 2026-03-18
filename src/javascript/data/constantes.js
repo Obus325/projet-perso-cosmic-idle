@@ -67,6 +67,51 @@ const prix_entite =
 
     }
 
+
+
+const prix_ameliorations =
+    {
+        actuel :
+            {
+                densite :
+                    {
+                        taille : 1,
+                        masse : 10,
+                        cap : 10,
+                        automate : 10,
+                        equilibrium : 10,
+                        max : 10,
+                    },
+            },
+
+        increment :
+            {
+                densite :
+                    {
+                        taille : 1,
+                        masse : 10,
+                        cap : 10,
+                        automate : 10,
+                        equilibrium : 10,
+                        max : 10,
+                    },
+            },
+
+        initial :
+            {
+                densite :
+                    {
+                        taille : 1,
+                        masse : 10,
+                        cap : 10,
+                        automate : 10,
+                        equilibrium : 10,
+                        max : 10,
+                    },
+            }
+
+    }
+
 const densite = 
 {
     atome : 10,
@@ -82,9 +127,8 @@ const ressources =
 {
     particules : 1,
     densite : 0,
-    densitepc : 0,
     densite_max : 0,
-    equilibrium : 0, // -4x²+4x à implémenter
+    equilibrium : 0,
     timeShards : 0,
 }
 

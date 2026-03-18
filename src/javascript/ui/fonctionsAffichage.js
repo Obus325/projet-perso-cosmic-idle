@@ -6,10 +6,6 @@ OUT : met à jour la valeur des ressources visibles.
 function AfficherRessources()
 {
     document.getElementById("valeur_particules").innerText = ressources['particules'].toFixed(0).toString();
-    if (ongletsVisibles['menu']['densite'])
-    {
-        document.getElementById("valeur_densité").innerText = ressources['densitepc'].toFixed(0).toString() + "%";
-    }
     AfficherRessourceGlobale(document.getElementById("monnaie_globale").innerText);
 }
 
@@ -40,6 +36,17 @@ function AffichageEntites()
         AfficherRessources();
         document.getElementById("barre_" + entites[i]).style.width = ((nombres_entite['actuel']['particules'][entites[i]] % 10) * 10) + "%";
     }
+}
+
+/*
+Fonction affichant les informations sur la page de densité
+IN : rien
+OUT : met à jour l'affichage
+ */
+function AffichageDensite()
+{
+    document.getElementById("valeur_densité").innerText = (ressources.densite*100).toFixed(0).toString() + "%";
+    document.getElementById('pourcent_densite').style.width = (ressources.densite/variables.densite.actuel.cap)*100 + '%'
 }
 
 /*

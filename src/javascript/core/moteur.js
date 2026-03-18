@@ -35,15 +35,37 @@ function Acheter_entite(entite, nombre)
 }
 
 /*
+Fonction permettant d'effectuer un achat, effectue les vérifications nécessaires.
+IN : l'objet à acheter et la quantité.
+OUT : met à jour la valeur de l'objet acheté et de la ressource dépensée.
+*/
+function Acheter_amelioration(entite, nombre)
+{
+    if (challenges.EnCours == 12 && (entite == 'constellation' || entite == 'galaxie'))return;
+    nombres_entite.actuel.particules[entite] += nombre;
+    if (nombres_entite.actuel.particules[entite] % 10 == 0)
+    {
+        prix_entite.actuel.particules[entite] *= prix_entite.increment.particules[entite];
+    }
+    AffichageEntites();
+}
+
+function GestionPrix(ressource, cleRessource, prix, cleprix)
+{
+    ressource[cleRessource] -= prix[cleprix];
+    prix
+}
+
+/*
 Fonction de gestion des achats
 IN : recompense (fonction), parametres (liste), ressource (objet ressource sans la cle), cleRessource (string pour appeler l'objet), prix (number)
 OUT : appelle la récompense si la condition est remplie
 */
-function Achat(recompense, parametres, ressource, cleRessource, prix)
+function Achat(recompense, parametres, ressource, cleRessource, prix, cleprix)
 {
-    if (ressource[cleRessource] >= prix)
+    if (ressource[cleRessource] >= prix[cleprix])
     {
-        ressource[cleRessource] -= prix;
+        GestionPrix(ressource, cleRessource, prix, cleprix);
         recompense(...parametres);
     }
 }
@@ -55,15 +77,19 @@ OUT : rien
 */ 
 function GestionDensite()
 {
-    if (challenges.EnCours == 11) densiteActuelle = 0.2;
-    else densiteActuelle = CalculerDensite();
-    GestionDensiteMax();
-    ressources.densite = densiteActuelle;
-    ressources.densitepc = densiteActuelle * 100;
-    variables.densite.actuel.vitesse = Math.max(variables.densite.actuel.cap - ressources.densitepc, 0);
-    document.getElementById("valeur_densité").innerText = ressources.densitepc.toFixed(0).toString() + "%";
-    document.getElementById('pourcent_densite').style.width = (ressources.densitepc/variables.densite.actuel.cap)*100 + '%'
+    let GainEquilibrium = CalculEquilibrium();
+    let densiteActuelle = CalculerDensite();
+    ActualisationConstantes(densiteActuelle, GainEquilibrium);
+    GestionDensiteMax(densiteActuelle);
+    AffichageDensite();
 
+}
+
+function ActualisationConstantes(densiteActuelle, GainEquilibrium)
+{
+    ressources.densite = densiteActuelle;
+    ressources.equilibrium = GainEquilibrium;
+    variables.densite.actuel.vitesse = Math.max(variables.densite.actuel.cap - ressources.densite, 0);
 }
 
 
@@ -72,7 +98,7 @@ Fonction de gestion de la densité maximale atteinte
 IN : rien
 OUT : rien
 */ 
-function GestionDensiteMax()
+function GestionDensiteMax(densiteActuelle)
 {
     ressources.densite_max = Math.max(ressources.densite_max, densiteActuelle*variables.densite.actuel.boostDMax);
     if (!ongletsVisibles.menu.densite && densiteActuelle >= 0.5)
