@@ -16,10 +16,10 @@
                 <td class="amelioration_equilibre">
                     <button class="buy_button amelioration" id = "ameliorer_taille"
                             onclick="
-                            if(Achat(AugmenterPourcent, [1.1, variables.densite.actuel, 'taille'], ressources, 'equilibrium',  'densite', 'taille'))
+                            if(Achat(AugmenterPourcent, [1.1, variables.actuel.densite, 'taille'], ressources, 'equilibrium',  'densite', 'taille'))
                                 {
                                     prix.actuel.densite.taille += prix.increment.densite.taille;
-                                    AfficherVariableDensite('taille', variables.densite.actuel['taille'].toFixed(1).toString() + '%');
+                                    AfficherVariableDensite('taille', variables.actuel.densite['taille'].toFixed(1).toString() + '%');
                                 }
                             ">
                         Augmenter la taille de l'univers de 10% <br> Actuellement : <span id="valeur_taille">100 </span>
@@ -29,10 +29,10 @@
                 <td class="amelioration_equilibre">
                     <button class="buy_button amelioration" id = "ameliorer_diviseur"
                             onclick="
-                            if(Achat(AugmenterPourcent, [0.95, variables.densite.actuel, 'diviseurMassique'], ressources, 'equilibrium',  'densite', 'diviseurMassique'))
+                            if(Achat(AugmenterPourcent, [0.95, variables.actuel.densite, 'diviseurMassique'], ressources, 'equilibrium',  'densite', 'diviseurMassique'))
                                 {
                                     prix.actuel.densite.diviseurMassique += prix.increment.densite.diviseurMassique;
-                                    AfficherVariableDensite('diviseurMassique', variables.densite.actuel['diviseurMassique'].toFixed(2).toString() + '%')
+                                    AfficherVariableDensite('diviseurMassique', variables.actuel.densite['diviseurMassique'].toFixed(2).toString() + '%')
                                 }
                             ">
                         Diminuer le réducteur de masse de 5 % <br> Actuellement : <span id="valeur_diviseurMassique">1 </span>
@@ -42,10 +42,10 @@
                 <td class="amelioration_equilibre">
                     <button class="buy_button amelioration" id = "ameliorer_cap"
                             onclick="
-                            if(Achat(Augmenter, [0.1, variables.densite.actuel, 'cap'], ressources, 'equilibrium',  'densite', 'cap'))
+                            if(Achat(Augmenter, [0.1, variables.actuel.densite, 'cap'], ressources, 'equilibrium',  'densite', 'cap'))
                                 {
                                     prix.actuel.densite.cap += prix.increment.densite.cap;
-                                    AfficherVariableDensite('cap', variables.densite.actuel['cap'].toFixed(1).toString())
+                                    AfficherVariableDensite('cap', variables.actuel.densite['cap'].toFixed(1).toString())
                                 }
                             ">
                         Augmenter le cap de densité de 0.1 <br> Actuellement : <span id="valeur_cap">1 </span>
@@ -59,15 +59,26 @@
                     <button class="buy_button amelioration" id = "acheter_automate"> acheter un nouvel automate (WIP)</button>
                 </td>
                 <td class="amelioration_equilibre">
-                    <button class="buy_button amelioration" id = "ameliorer_particulesD" onclick=""> obtenir 1% plus de particules de densité par seconde (WIP)</button>
+                    <button class="buy_button amelioration" id = "ameliorer_equilibrium"
+                            onclick="
+                            if(Achat(Augmenter, [0.05, variables.actuel.densite, 'boostEquilibrium'], ressources, 'equilibrium',  'densite', 'boostEquilibrium'))
+                            {
+                                prix.actuel.densite.boostEquilibrium += prix.increment.densite.boostEquilibrium;
+                                AfficherVariableDensite('boostEquilibrium', 'x' + variables.actuel.densite['boostEquilibrium'].toFixed(2).toString())
+                            }"
+                    >
+                        obtenir plus de particules de densité par seconde <br> Actuellement : <span id="valeur_boostEquilibrium">x1 </span>
+                        <br> Prix : <span id="prix_boostEquilibrium">10 </span>
+
+                    </button>
                 </td>
                 <td class="amelioration_equilibre">
                     <button class="buy_button amelioration" id = "ameliorer_dmax"
                             onclick="
-                            if(Achat(AugmenterPourcent, [1.05, variables.densite.actuel, 'boostDMax'], ressources, 'equilibrium',  'densite', 'max'))
+                            if(Achat(AugmenterPourcent, [1.05, variables.actuel.densite, 'boostDMax'], ressources, 'equilibrium',  'densite', 'max'))
                                 {
                                     prix.actuel.densite.max += prix.increment.densite.max;
-                                    AfficherVariableDensite('max', 'x' + variables.densite.actuel['boostDMax'].toFixed(2).toString())
+                                    AfficherVariableDensite('max', 'x' + variables.actuel.densite['boostDMax'].toFixed(2).toString())
                                     ressources.densite_max *= 1.05;
                                 }">
 

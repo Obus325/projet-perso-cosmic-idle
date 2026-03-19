@@ -46,7 +46,7 @@ OUT : met à jour l'affichage
 function AffichageDensite()
 {
     document.getElementById("valeur_densité").innerText = (ressources.densite*100).toFixed(0).toString() + "%";
-    document.getElementById('pourcent_densite').style.width = (ressources.densite/variables.densite.actuel.cap)*100 + '%'
+    document.getElementById('pourcent_densite').style.width = (ressources.densite/variables.actuel.densite.cap)*100 + '%'
 }
 
 /*

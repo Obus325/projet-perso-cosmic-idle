@@ -93,12 +93,12 @@ OUT : remet les objets liés aux variables de jeu à leurs valeurs initiales
  */
 function ResetVariable()
 {
-    Object.keys(variables.densite.actuel).forEach(variable =>
+    Object.keys(variables.actuel.densite).forEach(variable =>
     {
-        variables.densite.actuel[variable] = variables.densite.initial[variable];
+        variables.actuel.densite[variable] = variables.actuel.densite[variable];
     })
 
-    AfficherVariables();
+    AfficherVariableDensite();
 
 }
 

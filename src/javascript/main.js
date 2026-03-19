@@ -12,8 +12,8 @@ async function Tick(params)
         statistiques.tickPrecedent = TickActuel;
 
         production = CalculerProduction();
-        if (challenges.EnCours == 15) ressources.particules += Math.sqrt(variables.densite.actuel.vitesse * ressources.densite * production);
-        else ressources.particules += variables.densite.actuel.vitesse * ressources.densite * production;
+        if (challenges.EnCours == 15) ressources.particules += Math.sqrt(variables.actuel.densite.vitesse * ressources.densite * production);
+        else ressources.particules += variables.actuel.densite.vitesse * ressources.densite * production;
         
         
         GestionDensite();

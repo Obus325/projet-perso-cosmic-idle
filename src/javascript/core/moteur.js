@@ -58,7 +58,6 @@ OUT : appelle la récompense si la condition est remplie
 */
 function Achat(recompense, parametres, ressource, cleRessource, groupePrix, cleprix)
 {
-    console.log(ressource[cleRessource] >= prix.actuel[groupePrix][cleprix], ressource[cleRessource], prix.actuel[groupePrix][cleprix])
     if (ressource[cleRessource] >= prix.actuel[groupePrix][cleprix])
     {
         ressource[cleRessource] -= prix.actuel[groupePrix][cleprix];
@@ -86,7 +85,7 @@ function ActualisationConstantes(densiteActuelle, GainEquilibrium)
 {
     ressources.densite = densiteActuelle;
     ressources.equilibrium += GainEquilibrium;
-    variables.densite.actuel.vitesse = Math.max(variables.densite.actuel.cap - ressources.densite, 0);
+    variables.actuel.densite.vitesse = Math.max(variables.actuel.densite.cap - ressources.densite, 0);
 }
 
 
@@ -97,7 +96,7 @@ OUT : rien
 */ 
 function GestionDensiteMax(densiteActuelle)
 {
-    ressources.densite_max = Math.max(ressources.densite_max, densiteActuelle*variables.densite.actuel.boostDMax);
+    ressources.densite_max = Math.max(ressources.densite_max, densiteActuelle*variables.actuel.densite.boostDMax);
     if (!ongletsVisibles.menu.densite && densiteActuelle >= 0.5)
     {
         AfficherOnglet(ongletsVisibles.menu.densite, 'onglet_densite');

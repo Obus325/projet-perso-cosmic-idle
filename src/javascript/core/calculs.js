@@ -30,18 +30,20 @@ function CalculerDensite()
             masse += (densite[entites[i]] * nombres_entite.actuel.particules[entites[i]]);
         }
 
-        masse /= variables.densite.actuel.diviseurMassique;
-        let densiteBrute = masse / variables.densite.actuel.taille;
+        masse /= variables.actuel.densite.diviseurMassique;
+        let densiteBrute = masse / variables.actuel.densite.taille;
 
-        let densiteActuelle = densiteBrute * variables.densite.actuel.alpha + ressources.densite * (1 - variables.densite.actuel.alpha);
-        densiteActuelle = Math.min(densiteActuelle, variables.densite.actuel.cap);
+        let densiteActuelle = densiteBrute * variables.actuel.densite.alpha + ressources.densite * (1 - variables.actuel.densite.alpha);
+        densiteActuelle = Math.min(densiteActuelle, variables.actuel.densite.cap);
         return densiteActuelle;
     }
 }
 
 function CalculEquilibrium()
 {
-    return 4*ressources.densite*(variables.densite.actuel.cap-ressources.densite);
+    let equi = 4*ressources.densite*(variables.actuel.densite.cap-ressources.densite)*variables.actuel.densite.boostEquilibrium
+    console.log(equi)
+    return equi;
 }
 
 /*

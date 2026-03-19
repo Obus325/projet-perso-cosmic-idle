@@ -48,6 +48,7 @@ const prix =
                         automate : 10,
                         equilibrium : 10,
                         max : 10,
+                        boostEquilibrium : 10,
                     },
             },
 
@@ -70,6 +71,7 @@ const prix =
                         automate : 10,
                         equilibrium : 10,
                         max : 10,
+                        boostEquilibrium : 10,
                     },
             },
 
@@ -92,6 +94,7 @@ const prix =
                         automate : 10,
                         equilibrium : 10,
                         max : 10,
+                        boostEquilibrium : 10,
                     },
             }
     }
@@ -122,29 +125,33 @@ const ressources =
 //ces variables sont modifiables sous des conditions précises
 const variables = 
 {
-    densite :
-    {
-        actuel :
+    actuel :
         {
-            diviseurMassique : 1,
-            alpha : 0.05,
-            taille : 100,
-            cap : 1,
-            vitesse : 0,
-            boostDMax : 1,
+            densite :
+                {
+                    diviseurMassique: 1,
+                    alpha: 0.05,
+                    taille: 100,
+                    cap: 1,
+                    vitesse: 0,
+                    boostDMax: 1,
+                    boostEquilibrium: 1,
+                },
         },
 
-        initial :
+    initial :
         {
-            diviseurMassique : 1,
-            alpha : 0.05,
-            taille : 100,
-            cap : 1,
-            vitesse : 0,
-            boostDMax : 1,
+            densite :
+                {
+                    diviseurMassique: 1,
+                    alpha: 0.05,
+                    taille: 100,
+                    cap: 1,
+                    vitesse: 0,
+                    boostDMax: 1,
+                    boostEquilibrium: 1,
+                },
         },
-    },
-
 }
 
 //valeur cibles des differents paliers de densite max
