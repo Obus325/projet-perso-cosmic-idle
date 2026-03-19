@@ -32,7 +32,7 @@ function AffichageEntites()
     for (let i = 0; i < entites.length; i++)
     {
         document.getElementById("nombre_" + entites[i] ).innerText = nombres_entite.actuel.particules[entites[i]];
-        document.getElementById("prix_" + entites[i]).innerText = prix_entite['actuel']['particules'][entites[i]];
+        document.getElementById("prix_" + entites[i]).innerText = prix.actuel.particules[entites[i]];
         AfficherRessources();
         document.getElementById("barre_" + entites[i]).style.width = ((nombres_entite['actuel']['particules'][entites[i]] % 10) * 10) + "%";
     }
@@ -145,12 +145,10 @@ Fonction d'affichage des variables dans les boutons de densité
 IN : rien
 OUT : met à jour la page
  */
-function AfficherVariables()
+function AfficherVariableDensite(lieu, valeur)
 {
-    document.getElementById('valeur_taille').innerText = variables.densite.actuel['taille'].toFixed(0).toString() + '%';
-    document.getElementById('valeur_diviseurMassique').innerText = variables.densite.actuel['diviseurMassique'].toFixed(2).toString() + '%';
-    document.getElementById('valeur_cap').innerText = variables.densite.actuel['cap'].toFixed(0).toString();
-    document.getElementById('valeur_densite_max').innerText = 'x' + variables.densite.actuel['boostDMax'].toFixed(2).toString();
+    document.getElementById('valeur_'+lieu).innerText = valeur
+    document.getElementById('prix_'+lieu).innerText = prix.actuel.densite[lieu]
 }
 
 /*

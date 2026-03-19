@@ -125,7 +125,7 @@ function Sauvegarder()
     // création de l'objet save avec toutes les informations à enregistrer
     let save = {}
     save.nombres_entite = nombres_entite;
-    save.prix_entite = prix_entite;
+    save.prix = prix;
     save.ressources = ressources;
     save.variables = variables;
     save.ongletsVisibles = ongletsVisibles;
@@ -159,7 +159,7 @@ function RecupererSauvegarde(sauvegarde)
         }
 
         if (objetLocal.nombres_entite) Object.assign(nombres_entite, objetLocal.nombres_entite);
-        if (objetLocal.prix_entite) Object.assign(prix_entite, objetLocal.prix_entite);
+        if (objetLocal.prix) Object.assign(prix, objetLocal.prix);
         if (objetLocal.ressources) Object.assign(ressources, objetLocal.ressources);
         if (objetLocal.variables) Object.assign(variables, objetLocal.variables);
         if (objetLocal.ongletsVisibles) Object.assign(ongletsVisibles, objetLocal.ongletsVisibles);

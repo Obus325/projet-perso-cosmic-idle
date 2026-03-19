@@ -29,7 +29,7 @@ function Acheter_entite(entite, nombre)
     nombres_entite.actuel.particules[entite] += nombre;
     if (nombres_entite.actuel.particules[entite] % 10 == 0)
     {
-        prix_entite.actuel.particules[entite] *= prix_entite.increment.particules[entite];
+        prix.actuel.particules[entite] *= prix.increment.particules[entite];
     }
     AffichageEntites();
 }
@@ -41,32 +41,29 @@ OUT : met à jour la valeur de l'objet acheté et de la ressource dépensée.
 */
 function Acheter_amelioration(entite, nombre)
 {
-    if (challenges.EnCours == 12 && (entite == 'constellation' || entite == 'galaxie'))return;
-    nombres_entite.actuel.particules[entite] += nombre;
-    if (nombres_entite.actuel.particules[entite] % 10 == 0)
-    {
-        prix_entite.actuel.particules[entite] *= prix_entite.increment.particules[entite];
-    }
+
     AffichageEntites();
 }
 
-function GestionPrix(ressource, cleRessource, prix, cleprix)
+/*function GestionPrix(ressource, cleRessource, groupePrix, cleprix)
 {
-    ressource[cleRessource] -= prix[cleprix];
-    prix
-}
+    ressource[cleRessource] -= prix.actuel[groupePrix][cleprix];
+    prix.actuel[groupePrix][cleprix] += prix.increment[groupePrix][cleprix]
+}*/
 
 /*
 Fonction de gestion des achats
 IN : recompense (fonction), parametres (liste), ressource (objet ressource sans la cle), cleRessource (string pour appeler l'objet), prix (number)
 OUT : appelle la récompense si la condition est remplie
 */
-function Achat(recompense, parametres, ressource, cleRessource, prix, cleprix)
+function Achat(recompense, parametres, ressource, cleRessource, groupePrix, cleprix)
 {
-    if (ressource[cleRessource] >= prix[cleprix])
+    console.log(ressource[cleRessource] >= prix.actuel[groupePrix][cleprix], ressource[cleRessource], prix.actuel[groupePrix][cleprix])
+    if (ressource[cleRessource] >= prix.actuel[groupePrix][cleprix])
     {
-        GestionPrix(ressource, cleRessource, prix, cleprix);
+        ressource[cleRessource] -= prix.actuel[groupePrix][cleprix];
         recompense(...parametres);
+        return true;
     }
 }
 
@@ -88,7 +85,7 @@ function GestionDensite()
 function ActualisationConstantes(densiteActuelle, GainEquilibrium)
 {
     ressources.densite = densiteActuelle;
-    ressources.equilibrium = GainEquilibrium;
+    ressources.equilibrium += GainEquilibrium;
     variables.densite.actuel.vitesse = Math.max(variables.densite.actuel.cap - ressources.densite, 0);
 }
 

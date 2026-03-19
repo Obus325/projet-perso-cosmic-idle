@@ -34,7 +34,7 @@ function CalculerDensite()
         let densiteBrute = masse / variables.densite.actuel.taille;
 
         let densiteActuelle = densiteBrute * variables.densite.actuel.alpha + ressources.densite * (1 - variables.densite.actuel.alpha);
-        densiteActuelle = Math.min(densiteActuelle * 100, variables.densite.actuel.cap) / 100;
+        densiteActuelle = Math.min(densiteActuelle, variables.densite.actuel.cap);
         return densiteActuelle;
     }
 }

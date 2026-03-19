@@ -27,56 +27,23 @@ const nombres_entite =
     
 }
 
-const prix_entite =
-    {
-        actuel :
-        {
-            particules :
-            {
-                atome : 1,
-                nebuleuse : 10,
-                etoile : 100,
-                constellation : 1000,
-                galaxie : 10000,
-            },
-        },
-
-        increment :
-        {
-            particules :
-            {
-                atome : 10,
-                nebuleuse : 100,
-                etoile : 1000,
-                constellation : 10000,
-                galaxie : 100000,
-            },
-        },
-
-        initial :
-        {
-            particules :
-            {
-                atome : 1,
-                nebuleuse : 10,
-                etoile : 100,
-                constellation : 1000,
-                galaxie : 10000,
-            },
-        }
-
-    }
-
-
-
-const prix_ameliorations =
+const prix =
     {
         actuel :
             {
+                particules :
+                    {
+                        atome : 1,
+                        nebuleuse : 10,
+                        etoile : 100,
+                        constellation : 1000,
+                        galaxie : 10000,
+                    },
+
                 densite :
                     {
-                        taille : 1,
-                        masse : 10,
+                        taille : 10,
+                        diviseurMassique : 10,
                         cap : 10,
                         automate : 10,
                         equilibrium : 10,
@@ -86,10 +53,19 @@ const prix_ameliorations =
 
         increment :
             {
+                particules :
+                    {
+                        atome : 10,
+                        nebuleuse : 100,
+                        etoile : 1000,
+                        constellation : 10000,
+                        galaxie : 100000,
+                    },
+
                 densite :
                     {
-                        taille : 1,
-                        masse : 10,
+                        taille : 10,
+                        diviseurMassique : 10,
                         cap : 10,
                         automate : 10,
                         equilibrium : 10,
@@ -99,18 +75,27 @@ const prix_ameliorations =
 
         initial :
             {
+                particules :
+                    {
+                        atome : 10,
+                        nebuleuse : 10,
+                        etoile : 100,
+                        constellation : 1000,
+                        galaxie : 10000,
+                    },
+
                 densite :
                     {
                         taille : 1,
-                        masse : 10,
+                        diviseurMassique : 10,
                         cap : 10,
                         automate : 10,
                         equilibrium : 10,
                         max : 10,
                     },
             }
-
     }
+
 
 const densite = 
 {
@@ -128,7 +113,7 @@ const ressources =
     particules : 1,
     densite : 0,
     densite_max : 0,
-    equilibrium : 0,
+    equilibrium : 10,
     timeShards : 0,
 }
 
@@ -144,7 +129,7 @@ const variables =
             diviseurMassique : 1,
             alpha : 0.05,
             taille : 100,
-            cap : 100,
+            cap : 1,
             vitesse : 0,
             boostDMax : 1,
         },
@@ -154,7 +139,7 @@ const variables =
             diviseurMassique : 1,
             alpha : 0.05,
             taille : 100,
-            cap : 100,
+            cap : 1,
             vitesse : 0,
             boostDMax : 1,
         },

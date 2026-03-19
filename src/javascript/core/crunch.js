@@ -55,7 +55,7 @@ function ResetEntites()
     Object.keys(nombres_entite.actuel.particules).forEach(entite =>
     {
         nombres_entite.actuel.particules[entite] = nombres_entite.initial.particules[entite]
-        prix_entite.actuel.particules[entite] = prix_entite.initial.particules[entite]
+        prix.actuel.particules[entite] = prix.initial.particules[entite]
     })
 
     AffichageEntites();
