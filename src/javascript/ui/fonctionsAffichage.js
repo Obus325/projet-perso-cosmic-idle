@@ -5,7 +5,7 @@ OUT : met à jour la valeur des ressources visibles.
 */
 function AfficherRessources()
 {
-    document.getElementById("valeur_particules").innerText = ressources['particules'].toFixed(0).toString();
+    document.getElementById("valeur_particules").innerText = Math.floor(ressources['particules']).toString();
     AfficherRessourceGlobale(document.getElementById("monnaie_globale").innerText);
 }
 

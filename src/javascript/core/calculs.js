@@ -42,7 +42,6 @@ function CalculerDensite()
 function CalculEquilibrium()
 {
     let equi = 4*ressources.densite*(variables.actuel.densite.cap-ressources.densite)*variables.actuel.densite.boostEquilibrium
-    console.log(equi)
     return equi;
 }
 
