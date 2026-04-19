@@ -49,6 +49,7 @@ const prix =
                         equilibrium : 10,
                         max : 10,
                         boostEquilibrium : 10,
+                        automate: 10,
                     },
             },
 
@@ -72,6 +73,7 @@ const prix =
                         equilibrium : 10,
                         max : 10,
                         boostEquilibrium : 10,
+                        automate: 1000,
                     },
             },
 
@@ -95,6 +97,7 @@ const prix =
                         equilibrium : 10,
                         max : 10,
                         boostEquilibrium : 10,
+                        automate: 10,
                     },
             }
     }
@@ -136,6 +139,7 @@ const variables =
                     vitesse: 0,
                     boostDMax: 1,
                     boostEquilibrium: 1,
+                    automate: 0,
                 },
         },
 
@@ -150,6 +154,7 @@ const variables =
                     vitesse: 0,
                     boostDMax: 1,
                     boostEquilibrium: 1,
+                    automate: 0,
                 },
         },
 }

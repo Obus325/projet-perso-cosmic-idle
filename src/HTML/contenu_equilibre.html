@@ -56,7 +56,16 @@
 
             <tr>
                 <td class="amelioration_equilibre">
-                    <button class="buy_button amelioration" id = "acheter_automate"> acheter un nouvel automate (WIP)</button>
+                    <button class="buy_button amelioration" id = "acheter_automate"
+                            onclick="
+                            if(Achat(Augmenter, [1, variables.actuel.densite, 'automate'], ressources, 'equilibrium',  'densite', 'automate'))
+                            {
+                                prix.actuel.densite.automate += prix.increment.densite.automate;
+                                AfficherVariableDensite('automate', variables.actuel.densite['automate'].toString())
+                            }"
+                    >
+                        acheter un automate <br> Actuellement : <span id="valeur_automate"> 0 </span>
+                        <br> Prix : <span id="prix_automate">10 </span>
                 </td>
                 <td class="amelioration_equilibre">
                     <button class="buy_button amelioration" id = "ameliorer_equilibrium"

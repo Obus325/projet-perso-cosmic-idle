@@ -151,3 +151,18 @@ function GestionEvents()
         }
     })
 }
+
+
+/*
+Fonction de gestion des automates
+IN : rien
+OUT : joue au jeu
+ */
+function GestionAutomates()
+{
+    for (i = 0; i < variables.actuel.densite.automate; i++)
+    {
+        let entite = Object.keys(nombres_entite.actuel.particules)[i];
+        Achat(Acheter_entite, [entite, 1], ressources, 'particules', 'particules', entite)
+    }
+}

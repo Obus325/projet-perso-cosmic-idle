@@ -11,6 +11,8 @@ async function Tick(params)
         statistiques.tempsEnJeu += TickActuel - statistiques.tickPrecedent;
         statistiques.tickPrecedent = TickActuel;
 
+        GestionAutomates();
+
         production = CalculerProduction();
         if (challenges.EnCours == 15) ressources.particules += Math.sqrt(variables.actuel.densite.vitesse * ressources.densite * production);
         else ressources.particules += variables.actuel.densite.vitesse * ressources.densite * production;
