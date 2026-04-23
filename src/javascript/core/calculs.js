@@ -6,7 +6,7 @@ OUT : la production (number)
 function CalculerProduction()
 {
     let entites = Object.keys(nombres_entite.actuel.particules);
-    production = 0
+    let production = 0
     for (let i = 0; i < entites.length; i++)
     {
         production += nombres_entite.actuel.particules[entites[i]];
@@ -41,8 +41,7 @@ function CalculerDensite()
 
 function CalculEquilibrium()
 {
-    let equi = 4*ressources.densite*(variables.actuel.densite.cap-ressources.densite)*variables.actuel.densite.boostEquilibrium
-    return equi;
+    return 1 + 4 * ressources.densite * (variables.actuel.densite.cap - ressources.densite) * variables.actuel.densite.boostEquilibrium;
 }
 
 /*

@@ -6,16 +6,13 @@ OUT : instancie le jeu, les variables, et remet la page prête pour reprendre le
 */ 
 function Start()
 {
-    console.log("suivant")
-    RecupererSauvegarde("save");
-    CreateStar();
-    statistiques.tickPrecedent = Date.now();
+    DemarrerSauvegarde();
+
+    AffichageInitial();
+
     setInterval(Tick, 200);
-    document.getElementById("valeur_particules").innerText = ressources.particules.toString();
-    console.log(onglet_actuel);
-    AfficherJeu();
-    AffichageEntites();
-    AfficherStatistiques();
+
+
 }
 
 /*
@@ -34,22 +31,6 @@ function Acheter_entite(entite, nombre)
     AffichageEntites();
 }
 
-/*
-Fonction permettant d'effectuer un achat, effectue les vérifications nécessaires.
-IN : l'objet à acheter et la quantité.
-OUT : met à jour la valeur de l'objet acheté et de la ressource dépensée.
-*/
-function Acheter_amelioration(entite, nombre)
-{
-
-    AffichageEntites();
-}
-
-/*function GestionPrix(ressource, cleRessource, groupePrix, cleprix)
-{
-    ressource[cleRessource] -= prix.actuel[groupePrix][cleprix];
-    prix.actuel[groupePrix][cleprix] += prix.increment[groupePrix][cleprix]
-}*/
 
 /*
 Fonction de gestion des achats
@@ -66,6 +47,13 @@ function Achat(recompense, parametres, ressource, cleRessource, groupePrix, clep
     }
 }
 
+function GestionProduction()
+{
+    let production = CalculerProduction();
+    if (challenges.EnCours == 15) ressources.particules += Math.sqrt(variables.actuel.densite.vitesse * ressources.densite * production);
+    else ressources.particules += variables.actuel.densite.vitesse * ressources.densite * production;
+}
+
 /*
 Fonction de gestion de la densité
 IN : rien
@@ -77,7 +65,7 @@ function GestionDensite()
     let densiteActuelle = CalculerDensite();
     ActualisationConstantes(densiteActuelle, GainEquilibrium);
     GestionDensiteMax(densiteActuelle);
-    AffichageDensite();
+
 
 }
 
@@ -166,3 +154,4 @@ function GestionAutomates()
         Achat(Acheter_entite, [entite, 1], ressources, 'particules', 'particules', entite)
     }
 }
+

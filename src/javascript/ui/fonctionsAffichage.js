@@ -1,3 +1,15 @@
+function GestionAffichages()
+{
+    AfficherPaliersDensiteMax();
+    AfficherRessources();
+    AffichageDensite();
+    if (onglet_actuel.onglet_actuel == 'contenu_statistiques')
+    {
+        AfficherStatistiquesTemps();
+    }
+}
+
+
 /*
 Fonction permettant d'afficher la valeur des ressources aux endroits prévus.
 IN : récupère la valeur des ressources.
@@ -86,7 +98,7 @@ Fonction permettant d'afficher tous les onglets et sous onglets disponibles (uti
 IN : utilise la constante : ongletsVisibles.
 OUT : execute la fonction AfficherOnglet sur tous les élements à afficher.
 */
-function AfficherJeu()
+function AfficherMenu()
 {
     let onglets = Object.keys(ongletsVisibles['menu']);
     for (let i = 0; i < onglets.length; i++)
@@ -131,13 +143,11 @@ OUT : met à jour l'onglet statistique.
 */
 function AfficherStatistiquesTemps()
 {
-    //console.log('stats')
-    dateActuelle = Date.now();
-    tempsDepuisCreation = dateActuelle - statistiques.dateCreation;
+    let dateActuelle = Date.now();
+    let tempsDepuisCreation = dateActuelle - statistiques.dateCreation;
     TempsEnTexte('tempsDepuisCreation', tempsDepuisCreation);
 
     TempsEnTexte('tempsEnJeu', statistiques.tempsEnJeu);
-
 }
 
 /*
@@ -162,4 +172,13 @@ function ChargerHTML(idContainer, fichier) {
         .then(html => {
             document.getElementById(idContainer).innerHTML += html;
         });
+}
+
+function AffichageInitial()
+{
+    CreateStar();
+    document.getElementById("valeur_particules").innerText = ressources.particules.toString();
+    AfficherMenu();
+    AffichageEntites();
+    AfficherStatistiques();
 }
