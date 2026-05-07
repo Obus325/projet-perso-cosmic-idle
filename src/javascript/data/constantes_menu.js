@@ -57,8 +57,7 @@ const ongletsVisibles =
                 particules :
                     {
                         base : true,
-                        crunch : false,
-                        p2 : true,
+                        crunch : true,
                     },
                 densite :
                     {
@@ -69,6 +68,7 @@ const ongletsVisibles =
                 crunch :
                     {
                         base : true,
+                        arbre : true,
                     },
 
                 challenges :

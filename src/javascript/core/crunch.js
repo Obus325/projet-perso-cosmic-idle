@@ -58,7 +58,6 @@ function ResetEntites()
         prix.actuel.particules[entite] = prix.initial.particules[entite]
     })
 
-    AffichageEntites();
 }
 
 /*
@@ -72,8 +71,6 @@ function ResetRessources()
 
 
     ResetDensite();
-
-    AfficherRessources();
 }
 
 /*
@@ -84,6 +81,7 @@ OUT : remet les objets liés à l'équilibre à leurs valeurs initiales
 function ResetDensite()
 {
     ressources.densite = 0;
+    ressources.equilibrium = 10;
 }
 
 /*
@@ -98,7 +96,6 @@ function ResetVariable()
         variables.actuel.densite[variable] = variables.actuel.densite[variable];
     })
 
-    AfficherVariableDensite();
 
 }
 
@@ -111,7 +108,6 @@ function GestionStatistiques()
 {
     GestionTempsCrunch();
     statistiques.nombreCrunchs++;
-    AfficherStatistiquesCrunch();
 }
 
 /*

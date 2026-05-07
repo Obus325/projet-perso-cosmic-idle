@@ -20,13 +20,13 @@ Fonction permettant d'effectuer un achat, effectue les vérifications nécessair
 IN : l'objet à acheter et la quantité.
 OUT : met à jour la valeur de l'objet acheté et de la ressource dépensée.
 */ 
-function Acheter_entite(entite, nombre)
+function Acheter_entite(groupeEntite, entite, nombre)
 {
     if (challenges.EnCours == 12 && (entite == 'constellation' || entite == 'galaxie'))return;
-    nombres_entite.actuel.particules[entite] += nombre;
-    if (nombres_entite.actuel.particules[entite] % 10 == 0)
+    nombres_entite.actuel[groupeEntite][entite] += nombre;
+    if (nombres_entite.actuel[groupeEntite][entite] % 10 == 0)
     {
-        prix.actuel.particules[entite] *= prix.increment.particules[entite];
+        prix.actuel[groupePrix][entite] *= prix.increment[groupePrix][entite];
     }
     AffichageEntites();
 }

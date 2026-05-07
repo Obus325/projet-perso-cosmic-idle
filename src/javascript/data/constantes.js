@@ -10,6 +10,15 @@ const nombres_entite =
             constellation : 0,
             galaxie : 0,
         },
+
+        generateurs : 
+        {
+            gen_1 : 0,
+            gen_2 : 0,
+            gen_3 : 0,
+            gen_4 : 0,
+            gen_5 : 0,
+        }
     },
 
     initial :
@@ -22,6 +31,15 @@ const nombres_entite =
             constellation : 0,
             galaxie : 0,
         },
+
+        generateurs : 
+        {
+            gen_1 : 0,
+            gen_2 : 0,
+            gen_3 : 0,
+            gen_4 : 0,
+            gen_5 : 0,
+        }
     },
 
     
@@ -51,54 +69,82 @@ const prix =
                         boostEquilibrium : 10,
                         automate: 10,
                     },
+                
+                generateurs : 
+                {
+                    gen_1 : 1,
+                    gen_2 : 10,
+                    gen_3 : 100,
+                    gen_4 : 1000,
+                    gen_5 : 10000,
+                }
+
             },
 
         increment :
             {
                 particules :
-                    {
-                        atome : 10,
-                        nebuleuse : 100,
-                        etoile : 1000,
-                        constellation : 10000,
-                        galaxie : 100000,
-                    },
+                {
+                    atome : 10,
+                    nebuleuse : 100,
+                    etoile : 1000,
+                    constellation : 10000,
+                    galaxie : 100000,
+                },
 
                 densite :
-                    {
-                        taille : 10,
-                        diviseurMassique : 10,
-                        cap : 10,
-                        automate : 10,
-                        equilibrium : 10,
-                        max : 10,
-                        boostEquilibrium : 10,
-                        automate: 1000,
-                    },
+                {
+                    taille : 10,
+                    diviseurMassique : 10,
+                    cap : 10,
+                    automate : 10,
+                    equilibrium : 10,
+                    max : 10,
+                    boostEquilibrium : 10,
+                    automate: 1000,
+                },
+                
+                generateurs : 
+                {
+                    gen_1 : 1,
+                    gen_2 : 10,
+                    gen_3 : 100,
+                    gen_4 : 1000,
+                    gen_5 : 10000,
+                }
             },
 
         initial :
             {
                 particules :
-                    {
-                        atome : 10,
-                        nebuleuse : 10,
-                        etoile : 100,
-                        constellation : 1000,
-                        galaxie : 10000,
-                    },
+                {
+                    atome : 1,
+                    nebuleuse : 10,
+                    etoile : 100,
+                    constellation : 1000,
+                    galaxie : 10000,
+                },
 
                 densite :
-                    {
-                        taille : 1,
-                        diviseurMassique : 10,
-                        cap : 10,
-                        automate : 10,
-                        equilibrium : 10,
-                        max : 10,
-                        boostEquilibrium : 10,
-                        automate: 10,
-                    },
+                {
+                    taille : 1,
+                    diviseurMassique : 10,
+                    cap : 10,
+                    automate : 10,
+                    equilibrium : 10,
+                    max : 10,
+                    boostEquilibrium : 10,
+                    automate: 10,
+                },
+
+                generateurs : 
+                {
+                    gen_1 : 10,
+                    gen_2 : 10,
+                    gen_3 : 10,
+                    gen_4 : 10,
+                    gen_5 : 10,
+                }
             }
     }
 

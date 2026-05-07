@@ -38,7 +38,7 @@ création de la page au chargement
  */
 window.onload = function()
 {
-
+    console.log("bonjour")
     Promise.all([
         ChargerHTML("contenus_onglets", "HTML/contenu_entites.html"),
         ChargerHTML("contenus_onglets", "HTML/contenu_equilibre.html"),
