@@ -77,6 +77,14 @@ const prix =
                     gen_3 : 100,
                     gen_4 : 1000,
                     gen_5 : 10000,
+                },
+
+                crunch :
+                {
+                    generateurs : 2,
+                    ticks : 1,
+                    timeShardsBoost : 1,
+
                 }
 
             },
@@ -111,6 +119,14 @@ const prix =
                     gen_3 : 100,
                     gen_4 : 1000,
                     gen_5 : 10000,
+                },
+
+                crunch :
+                {
+                    generateurs : 2,
+                    ticks : 1,
+                    timeShardsBoost : 1,
+
                 }
             },
 
@@ -144,18 +160,27 @@ const prix =
                     gen_3 : 10,
                     gen_4 : 10,
                     gen_5 : 10,
+                },
+
+                crunch :
+                {
+                    generateurs : 2,
+                    ticks : 1,
+                    timeShardsBoost : 1,
+
                 }
+
             }
     }
 
 
 const densite = 
 {
-    atome : 10,
-    nebuleuse : 20,
-    etoile : 30,
-    constellation : 40,
-    galaxie : 50,
+    atome : 1,
+    nebuleuse : 2,
+    etoile : 3,
+    constellation : 4,
+    galaxie : 5,
 }
 
 
@@ -166,7 +191,7 @@ const ressources =
     densite : 0,
     densite_max : 0,
     equilibrium : 10,
-    timeShards : 0,
+    timeShards : 10,
 }
 
 
@@ -187,6 +212,12 @@ const variables =
                     boostEquilibrium: 1,
                     automate: 0,
                 },
+            crunch :
+                {
+                    generateurs : 0,
+                    timeShardsBoost : 1,
+                    ticks : 1,
+                }
         },
 
     initial :
@@ -202,6 +233,12 @@ const variables =
                     boostEquilibrium: 1,
                     automate: 0,
                 },
+            crunch :
+                {
+                    generateurs : 0,
+                    timeShardsBoost : 1,
+                    ticks : 1,
+                }
         },
 }
 
@@ -261,16 +298,5 @@ const challenges =
             },
         },
     },
-    
-    crunch : 
-    {
-        debloque : false,
-        defis :
-        {
-            11 : 
-            {
-                debloque : false
-            }
-        },
-    }
+
 }

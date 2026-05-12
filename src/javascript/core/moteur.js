@@ -20,7 +20,7 @@ Fonction permettant d'effectuer un achat, effectue les vérifications nécessair
 IN : l'objet à acheter et la quantité.
 OUT : met à jour la valeur de l'objet acheté et de la ressource dépensée.
 */ 
-function Acheter_entite(groupeEntite, entite, nombre)
+function Acheter_entite(groupeEntite, groupePrix, entite, nombre)
 {
     if (challenges.EnCours == 12 && (entite == 'constellation' || entite == 'galaxie'))return;
     nombres_entite.actuel[groupeEntite][entite] += nombre;
@@ -28,7 +28,8 @@ function Acheter_entite(groupeEntite, entite, nombre)
     {
         prix.actuel[groupePrix][entite] *= prix.increment[groupePrix][entite];
     }
-    AffichageEntites();
+    AffichageEntite(groupeEntite, entite);
+    AfficherRessources();
 }
 
 
@@ -107,7 +108,7 @@ Fonction d'augmentation par multiplication
 IN : valeur (number), chemin (objet sans sa cle), objet (string cle d'appel)
 OUT : modifie la valeur de l'objet
 */ 
-function AugmenterPourcent(valeur, chemin, objet)
+function Multiplier(valeur, chemin, objet)
 {
     chemin[objet] *= valeur;
 }
@@ -151,7 +152,7 @@ function GestionAutomates()
     for (i = 0; i < variables.actuel.densite.automate; i++)
     {
         let entite = Object.keys(nombres_entite.actuel.particules)[i];
-        Achat(Acheter_entite, [entite, 1], ressources, 'particules', 'particules', entite)
+        Achat(Acheter_entite, ['particules', 'particules', entite, 1], ressources, 'particules', 'particules', entite)
     }
 }
 

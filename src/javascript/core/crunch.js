@@ -30,7 +30,7 @@ OUT : le nombre de time shards à attribuer (int)
 */
 function TimeShardsGain()
 {
-    return 1;
+    return variables.actuel.crunch.timeShardsBoost * (Math.floor(ressources.particules/1000)+1);
 }
 
 /*
@@ -153,4 +153,20 @@ function LockCrunch()
 {
     document.getElementById("bouton_crunch").hidden = true;
     evenements.crunchUnlock.unlocked = false;
+}
+
+
+function DebloquerGenerateur() {
+    if (variables.actuel.crunch.generateurs < 5) {
+        variables.actuel.crunch.generateurs++;
+        var gen = variables.actuel.crunch.generateurs;
+        
+        document.getElementById("sous_onglet_particules_crunch").innerHTML += 
+        "<div class = \"barre_achat\" id = \"gen_" + gen + "\" hidden> <span class=\"text_progress\">générateur " + gen + " (<span id =\"nombre_gen_" + gen + "\">0</span>)</span> <div class=\"progress\"> <div class=\"progress_bar\" id=\"barre_gen_" + gen + "\"></div> <button class=\"buy_button\" id=\"buy_gen_" + gen + "\" onclick=\"Achat(Acheter_entite, ['generateurs', 'generateurs', 'gen_" + gen + "', 1], ressources, 'timeShards', 'generateurs', 'gen_" + gen + "') \"> <span id=\"prix_gen_" + gen + "\">0</span> timeshards </button> </div> </div>"
+        AffichageEntite('generateurs', 'gen_' + gen);
+    }
+    else 
+    {
+        console.log("Tous les générateurs sont débloqués")
+    }
 }

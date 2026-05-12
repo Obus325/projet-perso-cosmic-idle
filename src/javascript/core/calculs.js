@@ -12,7 +12,7 @@ function CalculerProduction()
         production += nombres_entite.actuel.particules[entites[i]];
 
     }
-    return production
+    return production * CalculerGenBoost();
 }
 
 /*
@@ -61,4 +61,14 @@ function DernierPalierAtteint()
     }
     return palierActuel;
 
+}
+
+function CalculerGenBoost()
+{
+    sumgens = 0;
+    for (let i = 0; i < variables.actuel.crunch.generateurs; i++)
+    {
+        sumgens += 1 + 0.5 * i;
+    }
+    return sumgens + 1;
 }

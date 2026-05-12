@@ -7,7 +7,7 @@
             <span class="text_progress">atome (<span id ="nombre_atome">0</span>)</span>
             <div class="progress">
                 <div class="progress_bar" id="barre_atome"></div>
-                <button class="buy_button" id="buy_atome" onclick="Achat(Acheter_entite, ['particules', 'atome', 1], ressources, 'particules', 'particules', 'atome')">
+                <button class="buy_button" id="buy_atome" onclick="Achat(Acheter_entite, ['particules', 'particules', 'atome', 1], ressources, 'particules', 'particules', 'atome')">
                     <span id="prix_atome">0</span> particules
                 </button>
             </div>
@@ -17,7 +17,7 @@
             <span class="text_progress">nebuleuse (<span id ="nombre_nebuleuse">0</span>)</span>
             <div class="progress">
                 <div class="progress_bar" id="barre_nebuleuse"></div>
-                <button class="buy_button" id="buy_nebuleuse" onclick="Achat(Acheter_entite, ['particules', 'nebuleuse', 1], ressources, 'particules', 'particules', 'nebuleuse') ">
+                <button class="buy_button" id="buy_nebuleuse" onclick="Achat(Acheter_entite, ['particules', 'particules', 'nebuleuse', 1], ressources, 'particules', 'particules', 'nebuleuse') ">
                     <span id="prix_nebuleuse">0</span> particules
                 </button>
             </div>
@@ -27,7 +27,7 @@
             <span class="text_progress">etoile (<span id ="nombre_etoile">0</span>)</span>
             <div class="progress">
                 <div class="progress_bar" id="barre_etoile"></div>
-                <button class="buy_button" id="buy_etoile" onclick="Achat(Acheter_entite, ['particules', 'etoile', 1], ressources, 'particules', 'particules', 'etoile') ">
+                <button class="buy_button" id="buy_etoile" onclick="Achat(Acheter_entite, ['particules', 'particules', 'etoile', 1], ressources, 'particules', 'particules', 'etoile') ">
                     <span id="prix_etoile">0</span> particules
                 </button>
             </div>
@@ -37,7 +37,7 @@
             <span class="text_progress">constellation (<span id ="nombre_constellation">0</span>)</span>
             <div class="progress">
                 <div class="progress_bar" id="barre_constellation"></div>
-                <button class="buy_button" id="buy_constellation" onclick="Achat(Acheter_entite, ['particules', 'constellation', 1], ressources, 'particules', 'particules', 'constellation') ">
+                <button class="buy_button" id="buy_constellation" onclick="Achat(Acheter_entite, ['particules', 'particules', 'constellation', 1], ressources, 'particules', 'particules', 'constellation') ">
                     <span id="prix_constellation">0</span> particules
                 </button>
             </div>
@@ -47,7 +47,7 @@
             <span class="text_progress">galaxie (<span id ="nombre_galaxie">0</span>)</span>
             <div class="progress">
                 <div class="progress_bar" id="barre_galaxie"></div>
-                <button class="buy_button" id="buy_galaxie" onclick="Achat(Acheter_entite, ['particules', 'galaxie', 1], ressources, 'particules', 'particules', 'galaxie') ">
+                <button class="buy_button" id="buy_galaxie" onclick="Achat(Acheter_entite, ['particules', 'particules', 'galaxie', 1], ressources, 'particules', 'particules', 'galaxie') ">
                     <span id="prix_galaxie">0</span> particules
                 </button>
             </div>
@@ -60,55 +60,7 @@
 
 
     <div class="sous_onglets" id="sous_onglet_particules_crunch" hidden>
-        <div class = "barre_achat" id = "gen_1">
-            <span class="text_progress">générateur 1 (<span id ="nombre_gen_1">0</span>)</span>
-            <div class="progress">
-                <div class="progress_bar" id="barre_gen_1"></div>
-                <button class="buy_button" id="buy_gen_1" onclick="Achat(Acheter_entite, ['generateurs', 'gen_1', 1], ressources, 'timeShards', 'generateurs', 'gen_1') ">
-                    <span id="prix_gen_1">0</span> timeshards
-                </button>
-            </div>
-        </div>
-
-        <div class = "barre_achat" id = "gen_2">
-            <span class="text_progress">générateur 2 (<span id ="nombre_gen_2">0</span>)</span>
-            <div class="progress">
-                <div class="progress_bar" id="barre_gen_2"></div>
-                <button class="buy_button" id="buy_gen_2" onclick="Achat(Acheter_entite, ['generateurs', 'gen_2', 1], ressources, 'timeShards', 'generateurs', 'gen_2') ">
-                    <span id="prix_gen_2">0</span> timeshards
-                </button>
-            </div>
-        </div>
-
-        <div class = "barre_achat" id = "gen_3">
-            <span class="text_progress">générateur 3 (<span id ="nombre_gen_3">0</span>)</span>
-            <div class="progress">
-                <div class="progress_bar" id="barre_gen_3"></div>
-                <button class="buy_button" id="buy_gen_3" onclick="Achat(Acheter_entite, ['generateurs', 'gen_3', 1], ressources, 'timeShards', 'generateurs', 'gen_3') ">
-                    <span id="prix_gen_3">0</span> timeshards
-                </button>
-            </div>
-        </div>
-
-        <div class = "barre_achat" id = "gen_4">
-            <span class="text_progress">générateur 4 (<span id ="nombre_gen_4">0</span>)</span>
-            <div class="progress">
-                <div class="progress_bar" id="barre_gen_4"></div>
-                <button class="buy_button" id="buy_gen_4" onclick="Achat(Acheter_entite, ['generateurs', 'gen_4', 1], ressources, 'timeShards', 'generateurs', 'gen_4') ">
-                    <span id="prix_gen_4">0</span> timeshards
-                </button>
-            </div>
-        </div>
-
-        <div class = "barre_achat" id = "gen_5">
-            <span class="text_progress">générateur 5 (<span id ="nombre_gen_5">0</span>)</span>
-            <div class="progress">
-                <div class="progress_bar" id="barre_gen_5"></div>
-                <button class="buy_button" id="buy_gen_5" onclick="Achat(Acheter_entite, ['generateurs', 'gen_5', 1], ressources, 'timeShards', 'generateurs', 'gen_5') ">
-                    <span id="prix_gen_5">0</span> timeshards
-                </button>
-            </div>
-        </div>
+        contenu prestige 1
 
 
     </div>

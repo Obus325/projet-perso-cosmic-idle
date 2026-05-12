@@ -3,7 +3,49 @@
     <button class="sous_onglet_button" id="bouton_sous_onglet_crunch_arbre" onclick="ChangerSousOnglet('sous_onglet_crunch_arbre')"> arbre </button>
 
     <div class="sous_onglets" id="sous_onglet_crunch_base" hidden>
-        prestige 1
+        
+        <table class="crunch table_ameliorations">
+            <tr>
+                <td class="amelioration_crunch">
+                    <button class="buy_button amelioration" id = "ameliorer_gens"
+                            onclick="
+                            if(Achat(DebloquerGenerateur, [], ressources, 'timeShards',  'crunch', 'generateurs'))
+                                {
+                                    prix.actuel.crunch.generateurs += prix.increment.crunch.generateurs;
+                                    AfficherVariable('crunch', 'generateurs', variables.actuel.crunch.generateurs.toString())
+                                }
+                            ">
+                        Débloquer un générateur <br> Actuellement : <span id="valeur_generateurs">0 </span>
+                        <br> Prix : <span id="prix_generateurs">2 </span>
+                    </button>
+                </td>
+                <td class="amelioration_crunch">
+                    <button class="buy_button amelioration" id = "ameliorer_ticks"
+                            onclick="
+                            if(Achat(Multiplier, [1.2, variables.actuel.crunch, 'ticks'], ressources, 'timeShards',  'crunch', 'ticks'))
+                                {
+                                    prix.actuel.crunch.ticks += prix.increment.crunch.ticks;
+                                    AfficherVariable('crunch', 'ticks', variables.actuel.crunch['ticks'].toFixed(2).toString() + '%')
+                                }
+                            ">
+                        Augmenter les ticks de 20% <br> Actuellement : <span id="valeur_ticks">1 </span>
+                        <br> Prix : <span id="prix_ticks">1 </span>
+                    </button>
+                </td>
+                <td class="amelioration_crunch">
+                    <button class="buy_button amelioration" id = "ameliorer_timeShards"
+                            onclick="
+                            if(Achat(Augmenter, [0.5, variables.actuel.crunch, 'timeShardsBoost'], ressources, 'timeShards',  'crunch', 'timeShardsBoost'))
+                                {
+                                    prix.actuel.crunch.timeShardsBoost += prix.increment.crunch.timeShardsBoost;
+                                    AfficherVariable('crunch', 'timeShardsBoost', variables.actuel.crunch.timeShardsBoost.toFixed(2).toString())
+                                }
+                            ">
+                        Augmenter le boost du gain de time shards de 0.5 <br> Actuellement : <span id="valeur_timeShardsBoost">1 </span>
+                        <br> Prix : <span id="prix_timeShardsBoost">1 </span>
+                    </button>
+                </td>
+            </tr>
     </div>
 
 

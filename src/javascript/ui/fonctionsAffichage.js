@@ -38,16 +38,29 @@ Fonction permettant d'afficher les informations des entites de base.
 IN : rien.
 OUT : met à jour l'affichage.
 */
-function AffichageEntites()
+function AffichageEntites(groupeEntite)
 {
-    let entites = Object.keys(nombres_entite['actuel']['particules']);
+    let entites = Object.keys(nombres_entite['actuel'][groupeEntite]);
     for (let i = 0; i < entites.length; i++)
     {
-        document.getElementById("nombre_" + entites[i] ).innerText = nombres_entite.actuel.particules[entites[i]];
-        document.getElementById("prix_" + entites[i]).innerText = prix.actuel.particules[entites[i]];
-        AfficherRessources();
-        document.getElementById("barre_" + entites[i]).style.width = ((nombres_entite['actuel']['particules'][entites[i]] % 10) * 10) + "%";
+        console.log(entites[i])
+        document.getElementById("nombre_" + entites[i] ).innerText = nombres_entite.actuel[groupeEntite][entites[i]];
+        document.getElementById("prix_" + entites[i]).innerText = prix.actuel[groupeEntite][entites[i]];
+        document.getElementById("barre_" + entites[i]).style.width = ((nombres_entite['actuel'][groupeEntite][entites[i]] % 10) * 10) + "%";
     }
+}
+
+/*
+Fonction permettant d'afficher les informations des entites de base.
+IN : rien.
+OUT : met à jour l'affichage.
+*/
+function AffichageEntite(groupeEntite, entite)
+{
+
+    document.getElementById("nombre_" + entite ).innerText = nombres_entite.actuel[groupeEntite][entite];
+    document.getElementById("prix_" + entite).innerText = prix.actuel[groupeEntite][entite];
+    document.getElementById("barre_" + entite).style.width = ((nombres_entite['actuel'][groupeEntite][entite] % 10) * 10) + "%";
 }
 
 /*
@@ -155,10 +168,10 @@ Fonction d'affichage des variables dans les boutons de densité
 IN : rien
 OUT : met à jour la page
  */
-function AfficherVariableDensite(lieu, valeur)
+function AfficherVariable(groupeprix, lieu, valeur)
 {
     document.getElementById('valeur_'+lieu).innerText = valeur
-    document.getElementById('prix_'+lieu).innerText = prix.actuel.densite[lieu]
+    document.getElementById('prix_'+lieu).innerText = prix.actuel[groupeprix][lieu]
 }
 
 /*
@@ -179,6 +192,7 @@ function AffichageInitial()
     CreateStar();
     document.getElementById("valeur_particules").innerText = ressources.particules.toString();
     AfficherMenu();
-    AffichageEntites();
+    AffichageEntites('particules');
+    AffichageDensite();
     AfficherStatistiques();
 }
