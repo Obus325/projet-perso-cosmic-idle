@@ -239,3 +239,21 @@ html
   text-align: center; 
   color:rgb(43, 177, 244);
 }
+
+#arbre
+{
+  position: relative;
+}
+
+
+.noeud
+{
+  position: absolute;
+  
+}
+
+.noeud_button
+{  
+  background-color: lightgray; 
+  color: black;
+}

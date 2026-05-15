@@ -179,9 +179,28 @@ function ChargerArbre()
     {
         let entite = noeuds[clé];
         let arbre = document.getElementById("arbre")
-        arbre.innerHTML += "<div class=\"noeud\" id=\"" + entite.nom + "\"> <button class=\"noeud_button\" id=\"button_" + entite.nom + "\" onclick=\"DebloquerNoeud('" + clé + "')\">" + entite.nom_affichage + "</button> </div>"
-        
+        arbre.innerHTML += "<div class=\"noeud\" id=\"" + entite.nom + "\" style=\"left: " + entite.x + "px; top: " + entite.y + "px;\"> <button class=\"noeud_button\" id=\"button_" + entite.nom + "\" onclick=\"DebloquerNoeud('" + clé + "')\">" + entite.nom_affichage + "</button> </div>"
+        for (let i = 0; i < entite.parent.length; i++)
+        {
+            console.log("Ligne entre " + entite.nom + " et " + noeuds[entite.parent[i]].nom)
+            créerLigne(entite.parent[i], clé);
+        }
     })
+}
+
+function créerLigne(parent, enfant)
+{
+    let svg = document.getElementById("lignes")
+    let line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+
+    line.setAttribute("x1", noeuds[parent].x+20);
+    line.setAttribute("y1", noeuds[parent].y+5);
+    line.setAttribute("x2", noeuds[enfant].x+20);
+    line.setAttribute("y2", noeuds[enfant].y+5);
+    line.setAttribute("stroke", "white");
+    line.setAttribute("stroke-width", "2");
+
+    svg.appendChild(line);
 }
 
 function DebloquerNoeud(clé)
@@ -197,7 +216,7 @@ function DebloquerNoeud(clé)
         button.disabled = true;
         document.getElementById("button_" + Noeud.nom).style.backgroundColor = "green";
         document.getElementById("button_" + Noeud.nom).disabled = true;
-        AffichageRessource('timeShards');
+        // AffichageRessource('timeShards');
         console.log("Noeud " + Noeud.nom + " débloqué !")
     }
     else
