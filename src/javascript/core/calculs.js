@@ -66,9 +66,11 @@ function DernierPalierAtteint()
 function CalculerGenBoost()
 {
     sumgens = 0;
-    for (let i = 0; i < variables.actuel.crunch.generateurs; i++)
+    for (let i = 1; i <= variables.actuel.crunch.generateurs; i++)
     {
-        sumgens += 1 + 0.5 * i;
+        nameGen = "gen_" + (i);
+        sumgens += 0.5 * nombres_entite.actuel.generateurs[nameGen];
     }
+    console.log("boost gen : " + sumgens)
     return sumgens + 1;
 }

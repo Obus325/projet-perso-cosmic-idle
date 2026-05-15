@@ -187,7 +187,7 @@ const densite =
 //ensemble des ressources du joueur (mal rangé)
 const ressources = 
 {
-    particules : 1,
+    particules : 4000,
     densite : 0,
     densite_max : 0,
     equilibrium : 10,

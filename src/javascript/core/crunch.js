@@ -6,8 +6,8 @@ OUT : rien
 function Crunch()
 {
     ExitChallenge();
-    Reset();
     ManageTimeShards();
+    Reset();
     GestionStatistiques();
     LockCrunch();
 
@@ -57,6 +57,7 @@ function ResetEntites()
         nombres_entite.actuel.particules[entite] = nombres_entite.initial.particules[entite]
         prix.actuel.particules[entite] = prix.initial.particules[entite]
     })
+    AffichageEntites('particules');
 
 }
 
