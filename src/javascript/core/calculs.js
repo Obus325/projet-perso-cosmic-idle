@@ -68,9 +68,7 @@ function CalculerGenBoost()
     sumgens = 0;
     for (let i = 1; i <= variables.actuel.crunch.generateurs; i++)
     {
-        nameGen = "gen_" + (i);
-        sumgens += 0.5 * nombres_entite.actuel.generateurs[nameGen];
+        sumgens += 0.5 * nombres_entite.actuel.generateurs["gen_" + (i)] * (i);
     }
-    console.log("boost gen : " + sumgens)
     return sumgens + 1;
 }

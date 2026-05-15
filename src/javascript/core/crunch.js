@@ -171,3 +171,50 @@ function DebloquerGenerateur() {
         console.log("Tous les générateurs sont débloqués")
     }
 }
+
+function ChargerArbre()
+{
+    console.log("Chargement de l'arbre de compétences")
+    Object.keys(noeuds).forEach(clé =>
+    {
+        let entite = noeuds[clé];
+        let arbre = document.getElementById("arbre")
+        arbre.innerHTML += "<div class=\"noeud\" id=\"" + entite.nom + "\"> <button class=\"noeud_button\" id=\"button_" + entite.nom + "\" onclick=\"DebloquerNoeud('" + clé + "')\">" + entite.nom_affichage + "</button> </div>"
+        
+    })
+}
+
+function DebloquerNoeud(clé)
+{
+    let Noeud = noeuds[clé];
+    console.log("Tentative de déblocage du noeud " + Noeud.nom)
+    if (Deblocable(clé) && ressources.timeShards >= Noeud.prix)
+    {
+        Noeud.recompense();
+        ressources.timeShards -= Noeud.prix;
+        Noeud.debloque = true;
+        let button = document.getElementById("button_" + Noeud.nom);
+        button.disabled = true;
+        document.getElementById("button_" + Noeud.nom).style.backgroundColor = "green";
+        document.getElementById("button_" + Noeud.nom).disabled = true;
+        AffichageRessource('timeShards');
+        console.log("Noeud " + Noeud.nom + " débloqué !")
+    }
+    else
+    {
+        console.log("Impossible de débloquer le noeud " + Noeud.nom)
+    }
+}
+
+function Deblocable(clé)
+{
+    let deblocable = true;
+    let Noeud = noeuds[clé];
+    console.log("Vérification du déblocage du noeud " + Noeud.nom)
+    console.log(Noeud.parent)
+    if (Noeud.parent.length == 0) return true;
+    Noeud.parent.forEach(parent => {
+        if (!noeuds[parent].debloque)deblocable = false;
+    })
+    return deblocable;
+}

@@ -30,7 +30,8 @@ function AfficherRessourceGlobale(nomRessource)
 {
     let decimales = 0;
     if (nomRessource.includes("densite")) decimales = 2;
-    document.getElementById("valeur_globale").innerText = ressources[nomRessource].toFixed(decimales).toString();
+    if (decimales == 0) document.getElementById("valeur_globale").innerText = Math.floor(ressources[nomRessource]).toString();
+    else document.getElementById("valeur_globale").innerText = ressources[nomRessource].toFixed(decimales).toString();
 }
 
 /*
@@ -43,7 +44,6 @@ function AffichageEntites(groupeEntite)
     let entites = Object.keys(nombres_entite['actuel'][groupeEntite]);
     for (let i = 0; i < entites.length; i++)
     {
-        console.log(entites[i])
         document.getElementById("nombre_" + entites[i] ).innerText = nombres_entite.actuel[groupeEntite][entites[i]];
         document.getElementById("prix_" + entites[i]).innerText = prix.actuel[groupeEntite][entites[i]];
         document.getElementById("barre_" + entites[i]).style.width = ((nombres_entite['actuel'][groupeEntite][entites[i]] % 10) * 10) + "%";
@@ -195,4 +195,5 @@ function AffichageInitial()
     AffichageEntites('particules');
     AffichageDensite();
     AfficherStatistiques();
+    ChargerArbre();
 }
