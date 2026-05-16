@@ -13,7 +13,9 @@ function Sauvegarder()
     save.variables = variables;
     save.ongletsVisibles = ongletsVisibles;
     //save.onglet_actuel = onglet_actuel;
+    save.evenements = evenements;
     save.statistiques = statistiques;
+    save.noeuds = noeuds;
     save.challenges = challenges;
 
 
@@ -46,8 +48,10 @@ function RecupererSauvegarde(sauvegarde)
         if (objetLocal.ressources) Object.assign(ressources, objetLocal.ressources);
         if (objetLocal.variables) Object.assign(variables, objetLocal.variables);
         if (objetLocal.ongletsVisibles) Object.assign(ongletsVisibles, objetLocal.ongletsVisibles);
-        //if (objetLocal.onglet_actuel) Object.assign(onglet_actuel, objetLocal.onglet_actuel)
+        //if (objetLocal.onglet_actuel) Object.assign(onglet_actuel, objetLocal.onglet_actuel);
+        if (objetLocal.evenements) Object.assign(evenements, objetLocal.evenements);
         if (objetLocal.statistiques) Object.assign(statistiques, objetLocal.statistiques);
+        if (objetLocal.noeuds) Object.assign(noeuds, objetLocal.noeuds);
         if (objetLocal.challenges) Object.assign(challenges, objetLocal.challenges);
     }
 

@@ -179,6 +179,7 @@ function ChargerArbre()
     {
         let entite = noeuds[clé];
         let arbre = document.getElementById("arbre")
+        document.getElementById("arbre").style.minHeight = (entite.y + 100).toString() + "px";
         arbre.innerHTML += "<div class=\"noeud\" id=\"" + entite.nom + "\" style=\"left: " + entite.x + "px; top: " + entite.y + "px;\"> <button class=\"noeud_button\" id=\"button_" + entite.nom + "\" onclick=\"DebloquerNoeud('" + clé + "')\">" + entite.nom_affichage + "</button> </div>"
         for (let i = 0; i < entite.parent.length; i++)
         {

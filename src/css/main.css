@@ -6,6 +6,11 @@ html
  background-color: black;
 }
 
+body
+{
+  overflow: auto;
+}
+
 /* Conteneur principal : onglets + contenu */
 #flexer
 {
@@ -71,6 +76,7 @@ html
   background-color: rgba(0, 170, 255, 0.15);
   color: #4caf50;
 }
+
 
 #game_bar
 {
@@ -149,6 +155,7 @@ html
 
   #contenus_onglets
 {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -243,6 +250,7 @@ html
 #arbre
 {
   position: relative;
+  height: 100%;
 }
 
 
@@ -251,6 +259,7 @@ html
   position: absolute;
   
 }
+
 
 .noeud_button
 {  
