@@ -77,10 +77,3 @@ function DemarrerSauvegarde()
     RecupererSauvegarde("save");
     statistiques.tickPrecedent = Date.now();
 }
-
-function GestionTick()
-{
-    let TickActuel = Date.now();
-    statistiques.tempsEnJeu += TickActuel - statistiques.tickPrecedent;
-    statistiques.tickPrecedent = TickActuel;
-}

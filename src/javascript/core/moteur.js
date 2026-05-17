@@ -1,20 +1,3 @@
-
-/*
-Fonction permettant le démarage du jeu.
-IN : l'êtat des variables au chargement de page (actuellement etat initial).
-OUT : instancie le jeu, les variables, et remet la page prête pour reprendre le jeu.
-*/ 
-function Start()
-{
-    DemarrerSauvegarde();
-
-    AffichageInitial();
-
-    setInterval(Tick, 200);
-
-
-}
-
 /*
 Fonction permettant d'effectuer un achat, effectue les vérifications nécessaires.
 IN : l'objet à acheter et la quantité.
@@ -48,9 +31,9 @@ function Achat(recompense, parametres, ressource, cleRessource, groupePrix, clep
     }
 }
 
-function GestionProduction()
+function GestionProduction(deltaTicks)
 {
-    let production = CalculerProduction();
+    let production = CalculerProduction(deltaTicks);
     if (challenges.EnCours == 15) ressources.particules += Math.sqrt(variables.actuel.densite.vitesse * ressources.densite * production);
     else ressources.particules += variables.actuel.densite.vitesse * ressources.densite * production;
 }
@@ -60,9 +43,9 @@ Fonction de gestion de la densité
 IN : rien
 OUT : rien
 */ 
-function GestionDensite()
+function GestionDensite(deltaTicks)
 {
-    let GainEquilibrium = CalculEquilibrium();
+    let GainEquilibrium = CalculEquilibrium(deltaTicks);
     let densiteActuelle = CalculerDensite();
     ActualisationConstantes(densiteActuelle, GainEquilibrium);
     GestionDensiteMax(densiteActuelle);

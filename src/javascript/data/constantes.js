@@ -82,8 +82,8 @@ const prix =
                 crunch :
                 {
                     generateurs : 2,
-                    ticks : 1,
                     timeShardsBoost : 1,
+                    tickSpeedCrunch : 1,
 
                 }
 
@@ -124,9 +124,8 @@ const prix =
                 crunch :
                 {
                     generateurs : 2,
-                    ticks : 1,
                     timeShardsBoost : 1,
-
+                    tickSpeedCrunch : 1,
                 }
             },
 
@@ -165,9 +164,8 @@ const prix =
                 crunch :
                 {
                     generateurs : 2,
-                    ticks : 1,
                     timeShardsBoost : 1,
-
+                    tickSpeedCrunch : 1,
                 }
 
             }
@@ -211,12 +209,13 @@ const variables =
                     boostDMax: 1,
                     boostEquilibrium: 1,
                     automate: 0,
+                    tickSpeedDensite: 1,
                 },
             crunch :
                 {
                     generateurs : 0,
                     timeShardsBoost : 1,
-                    ticks : 1,
+                    tickSpeedCrunch : 1,
                 }
         },
 
@@ -232,12 +231,13 @@ const variables =
                     boostDMax: 1,
                     boostEquilibrium: 1,
                     automate: 0,
+                    tickSpeedDensite: 1,
                 },
             crunch :
                 {
                     generateurs : 0,
                     timeShardsBoost : 1,
-                    ticks : 1,
+                    tickSpeedCrunch : 1,
                 }
         },
 }

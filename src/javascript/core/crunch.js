@@ -132,7 +132,6 @@ function GestionTempsCrunch()
     {
         statistiques["crunchsPrecedents"][0]["duree"] = statistiques["crunchsPrecedents"][0]["tick"] - statistiques["crunchsPrecedents"][1]["tick"]
     }
-    console.log((statistiques.crunchsPrecedents))
 }
 
 /*
@@ -174,7 +173,6 @@ function DebloquerGenerateur() {
 
 function ChargerArbre()
 {
-    console.log("Chargement de l'arbre de compétences")
     Object.keys(noeuds).forEach(clé =>
     {
         let entite = noeuds[clé];
@@ -183,7 +181,6 @@ function ChargerArbre()
         arbre.innerHTML += "<div class=\"noeud\" id=\"" + entite.nom + "\" style=\"left: " + entite.x + "px; top: " + entite.y + "px;\"> <button class=\"noeud_button\" id=\"button_" + entite.nom + "\" onclick=\"DebloquerNoeud('" + clé + "')\">" + entite.nom_affichage + "</button> </div>"
         for (let i = 0; i < entite.parent.length; i++)
         {
-            console.log("Ligne entre " + entite.nom + " et " + noeuds[entite.parent[i]].nom)
             créerLigne(entite.parent[i], clé);
         }
     })
@@ -207,7 +204,6 @@ function créerLigne(parent, enfant)
 function DebloquerNoeud(clé)
 {
     let Noeud = noeuds[clé];
-    console.log("Tentative de déblocage du noeud " + Noeud.nom)
     if (Deblocable(clé) && ressources.timeShards >= Noeud.prix)
     {
         Noeud.recompense();
@@ -218,7 +214,6 @@ function DebloquerNoeud(clé)
         document.getElementById("button_" + Noeud.nom).style.backgroundColor = "green";
         document.getElementById("button_" + Noeud.nom).disabled = true;
         // AffichageRessource('timeShards');
-        console.log("Noeud " + Noeud.nom + " débloqué !")
     }
     else
     {
@@ -230,8 +225,6 @@ function Deblocable(clé)
 {
     let deblocable = true;
     let Noeud = noeuds[clé];
-    console.log("Vérification du déblocage du noeud " + Noeud.nom)
-    console.log(Noeud.parent)
     if (Noeud.parent.length == 0) return true;
     Noeud.parent.forEach(parent => {
         if (!noeuds[parent].debloque)deblocable = false;

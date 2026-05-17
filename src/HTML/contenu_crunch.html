@@ -22,14 +22,14 @@
                 <td class="amelioration_crunch">
                     <button class="buy_button amelioration" id = "ameliorer_ticks"
                             onclick="
-                            if(Achat(Multiplier, [1.2, variables.actuel.crunch, 'ticks'], ressources, 'timeShards',  'crunch', 'ticks'))
+                            if(Achat(Multiplier, [1.2, variables.actuel.crunch, 'tickSpeedCrunch'], ressources, 'timeShards',  'crunch', 'tickSpeedCrunch'))
                                 {
-                                    prix.actuel.crunch.ticks += prix.increment.crunch.ticks;
-                                    AfficherVariable('crunch', 'ticks', variables.actuel.crunch['ticks'].toFixed(2).toString() + '%')
+                                    prix.actuel.crunch.tickSpeedCrunch += prix.increment.crunch.tickSpeedCrunch;
+                                    AfficherVariable('crunch', 'tickSpeedCrunch', variables.actuel.crunch['tickSpeedCrunch'].toFixed(2).toString() + '%')
                                 }
                             ">
-                        Augmenter les ticks de 20% <br> Actuellement : <span id="valeur_ticks">1 </span>
-                        <br> Prix : <span id="prix_ticks">1 </span>
+                        Augmenter les ticks de 20% <br> Actuellement : <span id="valeur_tickSpeedCrunch">1 </span>
+                        <br> Prix : <span id="prix_tickSpeedCrunch">1 </span>
                     </button>
                 </td>
                 <td class="amelioration_crunch">
@@ -53,9 +53,8 @@
 
 
     <div class="sous_onglets" id="sous_onglet_crunch_arbre" hidden>
-        hola
         <div id="arbre">
-            <svg id="lignes"></svg>
+            <svg id="lignes" width="100%" height="100%" style="position: absolute; top: 0; left: 0;"></svg>
         </div>
         
     </div>

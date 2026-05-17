@@ -3,7 +3,7 @@ Fonction de calcul de la production de particules
 IN : l'état du jeu
 OUT : la production (number)
 */
-function CalculerProduction()
+function CalculerProduction(deltaTicks)
 {
     let entites = Object.keys(nombres_entite.actuel.particules);
     let production = 0
@@ -12,7 +12,7 @@ function CalculerProduction()
         production += nombres_entite.actuel.particules[entites[i]];
 
     }
-    return production * CalculerGenBoost();
+    return production * CalculerGenBoost() * deltaTicks;
 }
 
 /*
@@ -39,9 +39,9 @@ function CalculerDensite()
     }
 }
 
-function CalculEquilibrium()
+function CalculEquilibrium(deltaTicks)
 {
-    return 1 + 4 * ressources.densite * (variables.actuel.densite.cap - ressources.densite) * variables.actuel.densite.boostEquilibrium;
+    return 1 + 4 * ressources.densite * (variables.actuel.densite.cap - ressources.densite) * variables.actuel.densite.boostEquilibrium * deltaTicks;
 }
 
 /*
