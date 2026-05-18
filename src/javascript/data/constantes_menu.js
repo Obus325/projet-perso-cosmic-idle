@@ -22,21 +22,37 @@ const statistiques =
 
 const evenements =
     {
+        densiteUnlock :
+        {
+            unlocked : false,
+            condition : function() { return ressources.densite_max > 0.5; },
+            recompense : function() { ongletsVisibles.menu.densite = true; AfficherOnglet(); AfficherSousOnglets('densite');},
+            parametre : null,
+        },
+
         crunchUnlock :
-            {
-                unlocked : false,
-                condition : function() { return ressources.particules > 1000; },
-                recompense : UnlockCrunch,
-                parametre : null,
-            },
+        {
+            unlocked : false,
+            condition : function() { return ressources.particules > 1000; },
+            recompense : function() { UnlockCrunch(); },
+            parametre : null,
+        },
+
+        firstcrunchUnlock :
+        {
+            unlocked : false,
+            condition : function() { return statistiques.nombreCrunchs>0; },
+            recompense : function() { UnlockPages(); },
+            parametre : null,
+        },
 
         crunchBreak :
-            {
-                unlocked : false,
-                condition : function() { return statistiques.nombreCrunchs>0 && VerifierChallenges("particules");},
-                recompense : UnlockCrunch,
-                parametre : null,
-            }
+        {
+            unlocked : false,
+            condition : function() { return statistiques.nombreCrunchs>0 && VerifierChallenges("particules");},
+            recompense : function() { ongletsVisibles.sous_onglets.crunch.arbre = true; AfficherSousOnglets('crunch');},
+            parametre : null,
+        }
     }
 
 
@@ -46,10 +62,10 @@ const ongletsVisibles =
         menu :
             {
                 particules : true,
-                densite : true,
-                crunch : true,
+                densite : false,
+                crunch : false,
                 statistiques : true,
-                challenges : true,
+                challenges : false,
             },
 
         sous_onglets :
@@ -57,7 +73,7 @@ const ongletsVisibles =
                 particules :
                     {
                         base : true,
-                        crunch : true,
+                        crunch : false,
                     },
                 densite :
                     {
@@ -68,19 +84,18 @@ const ongletsVisibles =
                 crunch :
                     {
                         base : true,
-                        arbre : true,
+                        arbre : false,
                     },
 
                 challenges :
                     {
                         particules : true,
-                        crunch : true,
                     },
 
                 statistiques :
                     {
                         temps : true,
-                        crunch : true,
+                        crunch : false,
                     },
 
             }

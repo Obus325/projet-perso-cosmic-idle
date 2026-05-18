@@ -109,6 +109,7 @@ function GestionStatistiques()
 {
     GestionTempsCrunch();
     statistiques.nombreCrunchs++;
+    AfficherStatistiquesCrunch();
 }
 
 /*
@@ -120,17 +121,17 @@ function GestionTempsCrunch()
 {
     for (let i = 9; i > 0; i--)
     {
-        statistiques["crunchsPrecedents"][i]["tick"] = statistiques["crunchsPrecedents"][i-1]["tick"]
-        statistiques["crunchsPrecedents"][i]["duree"] = statistiques["crunchsPrecedents"][i-1]["duree"]
+        statistiques.crunchsPrecedents[i].tick = statistiques.crunchsPrecedents[i-1].tick
+        statistiques.crunchsPrecedents[i].duree = statistiques.crunchsPrecedents[i-1].duree
     }
-    statistiques["crunchsPrecedents"][0]["tick"] = Date.now()
+    statistiques.crunchsPrecedents[0].tick = Date.now()
     if (statistiques.nombreCrunchs == 0)
     {
-        statistiques["crunchsPrecedents"][0]["duree"] = statistiques["crunchsPrecedents"][0]["tick"] - statistiques.dateCreation
+        statistiques.crunchsPrecedents[0].duree = statistiques.crunchsPrecedents[0].tick - statistiques.dateCreation
     }
     else
     {
-        statistiques["crunchsPrecedents"][0]["duree"] = statistiques["crunchsPrecedents"][0]["tick"] - statistiques["crunchsPrecedents"][1]["tick"]
+        statistiques.crunchsPrecedents[0].duree = statistiques.crunchsPrecedents[0].tick - statistiques.crunchsPrecedents[1].tick
     }
 }
 
@@ -142,6 +143,15 @@ OUT : rien
 function UnlockCrunch()
 {
     document.getElementById("bouton_crunch").hidden = false;
+}
+
+function UnlockPages()
+{
+    ongletsVisibles.menu.crunch = true;
+    ongletsVisibles.sous_onglets.particules.crunch = true;
+    ongletsVisibles.menu.challenges = true;
+    AfficherMenu();
+
 }
 
 /*

@@ -34,57 +34,11 @@ function Achat(recompense, parametres, ressource, cleRessource, groupePrix, clep
 function GestionProduction(deltaTicks)
 {
     let production = CalculerProduction(deltaTicks);
-    if (challenges.EnCours == 15) ressources.particules += Math.sqrt(variables.actuel.densite.vitesse * ressources.densite * production);
-    else ressources.particules += variables.actuel.densite.vitesse * ressources.densite * production;
+    
+    if (challenges.EnCours == 15) ressources.particules += Math.sqrt(CalculerVitesse() * ressources.densite * production);
+    else ressources.particules += CalculerVitesse() * ressources.densite * production;
 }
 
-/*
-Fonction de gestion de la densité
-IN : rien
-OUT : rien
-*/ 
-function GestionDensite(deltaTicks)
-{
-    let GainEquilibrium = CalculEquilibrium(deltaTicks);
-    let densiteActuelle = CalculerDensite();
-    ActualisationConstantes(densiteActuelle, GainEquilibrium);
-    GestionDensiteMax(densiteActuelle);
-
-
-}
-
-function ActualisationConstantes(densiteActuelle, GainEquilibrium)
-{
-    ressources.densite = densiteActuelle;
-    ressources.equilibrium += GainEquilibrium;
-    variables.actuel.densite.vitesse = Math.max(variables.actuel.densite.cap - ressources.densite, 0);
-}
-
-
-/*
-Fonction de gestion de la densité maximale atteinte
-IN : rien
-OUT : rien
-*/ 
-function GestionDensiteMax(densiteActuelle)
-{
-    ressources.densite_max = Math.max(ressources.densite_max, densiteActuelle*variables.actuel.densite.boostDMax);
-    if (!ongletsVisibles.menu.densite && densiteActuelle >= 0.5)
-    {
-        AfficherOnglet(ongletsVisibles.menu.densite, 'onglet_densite');
-    }
-    GestionPaliersDensiteMax();
-}
-
-/* 
-Fonction en travaux
-IN : rien
-OUT : rien
-*/
-function GestionPaliersDensiteMax()
-{
-    AfficherPaliersDensiteMax();
-}
 
 /*
 Fonction d'augmentation par multiplication
@@ -113,15 +67,14 @@ OUT : rien
  */
 function GestionEvents()
 {
-    let events = Object.values(evenements)
-    events.forEach(event =>
+    for (event in evenements)
     {
-        if (!event.unlocked && event.condition())
+        if (!evenements[event].unlocked && evenements[event].condition())
         {
-            event.unlocked = true;
-            event.recompense()
+            evenements[event].unlocked = true;
+            evenements[event].recompense()
         }
-    })
+    }
 }
 
 
@@ -139,3 +92,8 @@ function GestionAutomates()
     }
 }
 
+function AcheterAutomate()
+{
+    if (variables.actuel.densite.automate >= 5) return;
+    variables.actuel.densite.automate += 1;
+}

@@ -5,11 +5,10 @@ OUT : la production (number)
 */
 function CalculerProduction(deltaTicks)
 {
-    let entites = Object.keys(nombres_entite.actuel.particules);
     let production = 0
-    for (let i = 0; i < entites.length; i++)
+    for (entite in nombres_entite.actuel.particules)
     {
-        production += nombres_entite.actuel.particules[entites[i]];
+        production += nombres_entite.actuel.particules[entite] * poids_entite.actuel.particules[entite];
 
     }
     return production * CalculerGenBoost() * deltaTicks;
@@ -24,24 +23,32 @@ function CalculerDensite()
 {
     if (challenges.EnCours == 11) return 0.2;
     else {
-        let entites = Object.keys(densite);
-        let masse = 0;
-        for (let i = 0; i < entites.length; i++) {
-            masse += (densite[entites[i]] * nombres_entite.actuel.particules[entites[i]]);
-        }
 
-        masse /= variables.actuel.densite.diviseurMassique;
-        let densiteBrute = masse / variables.actuel.densite.taille;
-
-        let densiteActuelle = densiteBrute * variables.actuel.densite.alpha + ressources.densite * (1 - variables.actuel.densite.alpha);
+        let densiteActuelle = (CalculerMasse() / variables.actuel.densite.taille) * 0.05 + ressources.densite * (1 - 0.05);
         densiteActuelle = Math.min(densiteActuelle, variables.actuel.densite.cap);
         return densiteActuelle;
     }
+}
+function CalculerMasse()
+{
+    let masse = 0;
+    for (entite in poids_entite.actuel.densite) {
+        masse += (poids_entite.actuel.densite[entite] * nombres_entite.actuel.particules[entite]);
+    }
+
+    masse /= variables.actuel.densite.diviseurMassique;
+    return masse;
+}
+
+function CalculerVitesse()
+{
+    return Math.max(variables.actuel.densite.cap - ressources.densite, 0);
 }
 
 function CalculEquilibrium(deltaTicks)
 {
     return 1 + 4 * ressources.densite * (variables.actuel.densite.cap - ressources.densite) * variables.actuel.densite.boostEquilibrium * deltaTicks;
+
 }
 
 /*

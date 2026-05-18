@@ -1,6 +1,6 @@
 <div class="contenu_onglets" id="contenu_equilibre" hidden>
-    <button class="sous_onglet_button" id="bouton_sous_onglet_densite_densite" onclick="ChangerSousOnglet('sous_onglet_densite_base')"> équilibre </button>
-    <button class="sous_onglet_button" id="bouton_sous_onglet_densite_progression" onclick="ChangerSousOnglet('sous_onglet_densite_echelle')" hidden> progression </button>
+    <button class="sous_onglet_button" id="bouton_sous_onglet_densite_densite" onclick="ChangerSousOnglet('sous_onglet_densite_base')" hidden> équilibre </button>
+    <button class="sous_onglet_button" id="bouton_sous_onglet_densite_progression" onclick="ChangerSousOnglet('sous_onglet_densite_progression')" hidden> progression </button>
     <!--<button class="sous_onglet_button" id="onglet_statistiques" onclick="ChangerSousOnglet('sous_onglet_particules_p2')"> prestige 2 </button> non utilisé pour le moment-->
 
     <div class="sous_onglets" id="sous_onglet_densite_base" hidden>
@@ -19,7 +19,7 @@
                             if(Achat(Multiplier, [1.1, variables.actuel.densite, 'taille'], ressources, 'equilibrium',  'densite', 'taille'))
                                 {
                                     prix.actuel.densite.taille += prix.increment.densite.taille;
-                                    AfficherVariable('densite', 'taille', variables.actuel.densite['taille'].toFixed(1).toString() + '%');
+                                    AffichageDensite()
                                 }
                             ">
                         Augmenter la taille de l'univers de 10% <br> Actuellement : <span id="valeur_taille">100 </span>
@@ -32,7 +32,7 @@
                             if(Achat(Multiplier, [0.95, variables.actuel.densite, 'diviseurMassique'], ressources, 'equilibrium',  'densite', 'diviseurMassique'))
                                 {
                                     prix.actuel.densite.diviseurMassique += prix.increment.densite.diviseurMassique;
-                                    AfficherVariable('densite', 'diviseurMassique', variables.actuel.densite['diviseurMassique'].toFixed(2).toString() + '%')
+                                    AffichageDensite()
                                 }
                             ">
                         Diminuer le réducteur de masse de 5 % <br> Actuellement : <span id="valeur_diviseurMassique">1 </span>
@@ -45,7 +45,7 @@
                             if(Achat(Augmenter, [0.1, variables.actuel.densite, 'cap'], ressources, 'equilibrium',  'densite', 'cap'))
                                 {
                                     prix.actuel.densite.cap += prix.increment.densite.cap;
-                                    AfficherVariable('densite', 'cap', variables.actuel.densite['cap'].toFixed(1).toString())
+                                    AffichageDensite()
                                 }
                             ">
                         Augmenter le cap de densité de 0.1 <br> Actuellement : <span id="valeur_cap">1 </span>
@@ -58,10 +58,10 @@
                 <td class="amelioration_equilibre">
                     <button class="buy_button amelioration" id = "acheter_automate"
                             onclick="
-                            if(Achat(Augmenter, [1, variables.actuel.densite, 'automate'], ressources, 'equilibrium',  'densite', 'automate'))
+                            if(Achat(AcheterAutomate, [], ressources, 'equilibrium',  'densite', 'automate'))
                             {
                                 prix.actuel.densite.automate += prix.increment.densite.automate;
-                                AfficherVariable('densite', 'automate', variables.actuel.densite['automate'].toString())
+                                AffichageDensite()
                             }"
                     >
                         acheter un automate <br> Actuellement : <span id="valeur_automate"> 0 </span>
@@ -73,7 +73,7 @@
                             if(Achat(Augmenter, [0.05, variables.actuel.densite, 'boostEquilibrium'], ressources, 'equilibrium',  'densite', 'boostEquilibrium'))
                             {
                                 prix.actuel.densite.boostEquilibrium += prix.increment.densite.boostEquilibrium;
-                                AfficherVariable('densite', 'boostEquilibrium', 'x' + variables.actuel.densite['boostEquilibrium'].toFixed(2).toString())
+                                AffichageDensite()
                             }"
                     >
                         obtenir plus de particules de densité par seconde <br> Actuellement : <span id="valeur_boostEquilibrium">x1 </span>
@@ -84,15 +84,15 @@
                 <td class="amelioration_equilibre">
                     <button class="buy_button amelioration" id = "ameliorer_dmax"
                             onclick="
-                            if(Achat(Multiplier, [1.05, variables.actuel.densite, 'boostDMax'], ressources, 'equilibrium',  'densite', 'max'))
+                            if(Achat(Multiplier, [1.05, variables.actuel.densite, 'boostDMax'], ressources, 'equilibrium',  'densite', 'boostDMax'))
                                 {
                                     prix.actuel.densite.max += prix.increment.densite.max;
-                                    AfficherVariable('densite', 'max', 'x' + variables.actuel.densite['boostDMax'].toFixed(2).toString())
+                                    AffichageDensite()
                                     ressources.densite_max *= 1.05;
                                 }">
 
-                        Obtenir un boost à la densité maximum de 5% <br> Actuellement : <span id="valeur_max">x1 </span>
-                        <br> Prix : <span id="prix_max">10 </span>
+                        Obtenir un boost à la densité maximum de 5% <br> Actuellement : <span id="valeur_boostDMax">x1 </span>
+                        <br> Prix : <span id="prix_boostDMax">10 </span>
                     </button>
                 </td>
             </tr>
@@ -103,7 +103,7 @@
     </div>
 
 
-    <div class="sous_onglets" id="sous_onglet_densite_echelle" hidden>
+    <div class="sous_onglets" id="sous_onglet_densite_progression" hidden>
         <table class="equilibre table_ameliorations" style="margin-top: 50px;">
 
             <tr class="palier_densite">

@@ -3,10 +3,8 @@ function GestionAffichages()
     AfficherPaliersDensiteMax();
     AfficherRessources();
     AffichageDensite();
-    if (onglet_actuel.onglet_actuel == 'contenu_statistiques')
-    {
-        AfficherStatistiquesTemps();
-    }
+    AfficherStatistiquesTemps();
+
 }
 
 
@@ -41,12 +39,11 @@ OUT : met à jour l'affichage.
 */
 function AffichageEntites(groupeEntite)
 {
-    let entites = Object.keys(nombres_entite['actuel'][groupeEntite]);
-    for (let i = 0; i < entites.length; i++)
+    for (entite in nombres_entite.actuel[groupeEntite])
     {
-        document.getElementById("nombre_" + entites[i] ).innerText = nombres_entite.actuel[groupeEntite][entites[i]];
-        document.getElementById("prix_" + entites[i]).innerText = prix.actuel[groupeEntite][entites[i]];
-        document.getElementById("barre_" + entites[i]).style.width = ((nombres_entite['actuel'][groupeEntite][entites[i]] % 10) * 10) + "%";
+        document.getElementById("nombre_" + entite ).innerText = nombres_entite.actuel[groupeEntite][entite];
+        document.getElementById("prix_" + entite).innerText = prix.actuel[groupeEntite][entite];
+        document.getElementById("barre_" + entite).style.width = ((nombres_entite.actuel[groupeEntite][entite] % 10) * 10) + "%";
     }
 }
 
@@ -72,6 +69,12 @@ function AffichageDensite()
 {
     document.getElementById("valeur_densité").innerText = (ressources.densite*100).toFixed(0).toString() + "%";
     document.getElementById('pourcent_densite').style.width = (ressources.densite/variables.actuel.densite.cap)*100 + '%'
+    
+    for (variable in variables.actuel.densite)
+    {
+        document.getElementById("valeur_" + variable).innerText = variables.actuel.densite[variable].toFixed(2).toString();
+        document.getElementById("prix_" + variable).innerText = prix.actuel.densite[variable].toFixed(0).toString();
+    }
 }
 
 /*
@@ -79,13 +82,12 @@ Fonction permettant d'afficher dans le menu le bouton d'un onglet nouvellement d
 IN : le bouton à afficher (onglet) ainsi que son chemin dans la constante 'ongletsVisibles'.
 OUT : le bouton est affiché et marqué comme tel en variable.
 */
-function AfficherOnglet(chemin, onglet)
+function AfficherOnglet()
 {
-    if (document.getElementById(onglet).hidden)
+    for (onglet in ongletsVisibles.menu)
     {
-        ModifierVisibilite(onglet);
+        document.getElementById("onglet_" + onglet).hidden = !ongletsVisibles.menu[onglet];
     }
-    chemin = true;
 }
 
 /*
@@ -95,14 +97,9 @@ OUT : modifie la page
 */
 function AfficherSousOnglets(onglet)
 {
-    let sousOnglets = Object.keys(ongletsVisibles['sous_onglets'][onglet]);
-    for (let j = 0; j < sousOnglets.length; j++)
+    for (sousOnglet in ongletsVisibles.sous_onglets[onglet])
     {
-        if (ongletsVisibles['sous_onglets'][onglet][sousOnglets[j]])
-        {
-
-            AfficherOnglet(ongletsVisibles['sous_onglets'][onglet][sousOnglets[j]], "bouton_sous_onglet_"+ onglet +"_"+ sousOnglets[j])
-        }
+        document.getElementById("bouton_sous_onglet_"+ onglet +"_"+ sousOnglet).hidden = !ongletsVisibles.sous_onglets[onglet][sousOnglet];
     }
 }
 
@@ -113,15 +110,12 @@ OUT : execute la fonction AfficherOnglet sur tous les élements à afficher.
 */
 function AfficherMenu()
 {
-    let onglets = Object.keys(ongletsVisibles['menu']);
-    for (let i = 0; i < onglets.length; i++)
+    AfficherOnglet();
+    for (onglet in ongletsVisibles.sous_onglets)
     {
-        if (ongletsVisibles['menu'][onglets[i]])
-        {
-            AfficherOnglet(ongletsVisibles['menu'][onglets[i]], "onglet_" + onglets[i])
-            AfficherSousOnglets(onglets[i]);
-        }
+        AfficherSousOnglets(onglet);
     }
+
 }
 
 /*
@@ -161,6 +155,14 @@ function AfficherStatistiquesTemps()
     TempsEnTexte('tempsDepuisCreation', tempsDepuisCreation);
 
     TempsEnTexte('tempsEnJeu', statistiques.tempsEnJeu);
+}
+
+function AfficherStatistiquesCrunch()
+{
+    document.getElementById('nombreCrunchs').innerText = statistiques.nombreCrunchs;
+    for (let i = 0; i < statistiques.crunchsPrecedents.length; i++)    {
+        TempsEnTexte('crunch'+i, statistiques.crunchsPrecedents[i].duree);
+    }
 }
 
 /*

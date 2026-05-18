@@ -45,6 +45,7 @@ const nombres_entite =
     
 }
 
+
 const prix =
     {
         actuel :
@@ -52,10 +53,10 @@ const prix =
                 particules :
                     {
                         atome : 1,
-                        nebuleuse : 10,
-                        etoile : 100,
-                        constellation : 1000,
-                        galaxie : 10000,
+                        nebuleuse : 5,
+                        etoile : 15,
+                        constellation : 30,
+                        galaxie : 50,
                     },
 
                 densite :
@@ -63,11 +64,9 @@ const prix =
                         taille : 10,
                         diviseurMassique : 10,
                         cap : 10,
-                        automate : 10,
-                        equilibrium : 10,
-                        max : 10,
+                        boostDMax : 10,
                         boostEquilibrium : 10,
-                        automate: 10,
+                        automate: 200,
                     },
                 
                 generateurs : 
@@ -93,11 +92,11 @@ const prix =
             {
                 particules :
                 {
-                    atome : 10,
-                    nebuleuse : 100,
-                    etoile : 1000,
-                    constellation : 10000,
-                    galaxie : 100000,
+                    atome : 2,
+                    nebuleuse : 3,
+                    etoile : 4,
+                    constellation : 5,
+                    galaxie : 6,
                 },
 
                 densite :
@@ -105,11 +104,9 @@ const prix =
                     taille : 10,
                     diviseurMassique : 10,
                     cap : 10,
-                    automate : 10,
-                    equilibrium : 10,
-                    max : 10,
+                    boostDMax : 10,
                     boostEquilibrium : 10,
-                    automate: 1000,
+                    automate: 200,
                 },
                 
                 generateurs : 
@@ -134,10 +131,10 @@ const prix =
                 particules :
                 {
                     atome : 1,
-                    nebuleuse : 10,
-                    etoile : 100,
-                    constellation : 1000,
-                    galaxie : 10000,
+                    nebuleuse : 5,
+                    etoile : 15,
+                    constellation : 30,
+                    galaxie : 50,
                 },
 
                 densite :
@@ -145,11 +142,9 @@ const prix =
                     taille : 1,
                     diviseurMassique : 10,
                     cap : 10,
-                    automate : 10,
-                    equilibrium : 10,
-                    max : 10,
+                    boostDMax : 10,
                     boostEquilibrium : 10,
-                    automate: 10,
+                    automate: 200,
                 },
 
                 generateurs : 
@@ -171,15 +166,48 @@ const prix =
             }
     }
 
+    const poids_entite =
+    {
+        actuel :
+        {
+            particules : 
+            {
+                atome : 1,
+                nebuleuse : 2,
+                etoile : 4,
+                constellation : 7,
+                galaxie : 10,
+            },
+            densite :
+            {
+                atome : 1,
+                nebuleuse : 2,
+                etoile : 3,
+                constellation : 4,
+                galaxie : 5,
+            }
+        },
+        initial :
+        {
+            particules :
+            {
+                atome : 1,
+                nebuleuse : 2,
+                etoile : 4,
+                constellation : 7,
+                galaxie : 10,
+            },
+            densite :
+            {
+                atome : 1,
+                nebuleuse : 2,
+                etoile : 3,
+                constellation : 4,
+                galaxie : 5,
+            }
+        }
+    }
 
-const densite = 
-{
-    atome : 1,
-    nebuleuse : 2,
-    etoile : 3,
-    constellation : 4,
-    galaxie : 5,
-}
 
 
 //ensemble des ressources du joueur (mal rangé)
@@ -188,7 +216,7 @@ const ressources =
     particules : 4000,
     densite : 0,
     densite_max : 0,
-    equilibrium : 10,
+    equilibrium : 5000,
     timeShards : 10,
 }
 
@@ -202,14 +230,11 @@ const variables =
             densite :
                 {
                     diviseurMassique: 1,
-                    alpha: 0.05,
                     taille: 100,
                     cap: 1,
-                    vitesse: 0,
                     boostDMax: 1,
                     boostEquilibrium: 1,
                     automate: 0,
-                    tickSpeedDensite: 1,
                 },
             crunch :
                 {
@@ -224,14 +249,11 @@ const variables =
             densite :
                 {
                     diviseurMassique: 1,
-                    alpha: 0.05,
                     taille: 100,
                     cap: 1,
-                    vitesse: 0,
                     boostDMax: 1,
                     boostEquilibrium: 1,
                     automate: 0,
-                    tickSpeedDensite: 1,
                 },
             crunch :
                 {
@@ -246,11 +268,11 @@ const variables =
 const paliers = 
 {
     0 : 0,
-    1 : 3,
-    2 : 10,
-    3 : 35,
-    4 : 140,
-    5 : 700,
+    1 : 1,
+    2 : 3,
+    3 : 6,
+    4 : 12,
+    5 : 20,
     6 : Infinity,
 }
 

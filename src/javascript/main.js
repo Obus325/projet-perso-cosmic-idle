@@ -73,7 +73,7 @@ function Start()
 
         
         let deltaTicks =
-            (deltaTemps / 1000) * variables.actuel.crunch.tickSpeedCrunch * variables.actuel.densite.tickSpeedDensite;
+            (deltaTemps / 1000) * variables.actuel.crunch.tickSpeedCrunch;
 
         if (challenges.EnCours == 13) deltaTicks /= 4;
 
